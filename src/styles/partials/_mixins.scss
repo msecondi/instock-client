@@ -1,4 +1,7 @@
 @use "./variables" as *;
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap"); //import font from google fonts
+
+$primary-font: "Titilium Web", sans-serif;
 
 @mixin tablet {
   @media screen and (min-width: $min-tablet-breakpoint) and (max-width: $max-tablet-breakpoint) {
@@ -13,43 +16,99 @@
 }
 
 @mixin m-page-header {
+  font-family: $primary-font;
   font-size: 1.75rem;
   font-weight: $font-weight-semibold;
   line-height: 2.25rem;
 }
 
 @mixin m-subheader {
+  font-family: $primary-font;
   font-size: 1.25rem;
   font-weight: $font-weight-semibold;
   line-height: 1.75rem;
 }
 
 @mixin m-labels-links-buttons {
+  font-family: $primary-font;
   font-size: 0.813rem;
   font-weight: $font-weight-semibold;
   line-height: 1.25rem;
 }
 
 @mixin m-table-header {
+  font-family: $primary-font;
   font-size: 0.688rem;
   font-weight: $font-weight-semibold;
   line-height: 1rem;
 }
 
 @mixin m-body-large {
-    font-size: 0.938rem;
-    font-weight: $font-weight-regular;
-    line-height: 1.625rem;
+  font-family: $primary-font;
+  font-size: 0.938rem;
+  font-weight: $font-weight-regular;
+  line-height: 1.625rem;
 }
 
 @mixin m-body-medium {
-    font-size: 0.813rem;
-    font-weight: $font-weight-regular;
-    line-height: 1.25rem;
+  font-family: $primary-font;
+  font-size: 0.813rem;
+  font-weight: $font-weight-regular;
+  line-height: 1.25rem;
 }
 
 @mixin m-body-small {
-    font-size: 0.688rem;
-    font-weight: $font-weight-regular;
-    line-height: 1rem;
+  font-family: $primary-font;
+  font-size: 0.688rem;
+  font-weight: $font-weight-regular;
+  line-height: 1rem;
+}
+
+@mixin page-header {
+  font-family: $primary-font;
+  font-size: 2rem;
+  font-weight: $font-weight-semibold;
+  line-height: 2.5rem;
+}
+
+@mixin subheader {
+  font-family: $primary-font;
+  font-size: 1.5rem;
+  font-weight: $font-weight-semibold;
+  line-height: 2rem;
+}
+
+@mixin labels-links-buttons {
+  font-family: $primary-font;
+  font-size: 0.9rem;
+  font-weight: $font-weight-semibold;
+  line-height: 1.4rem;
+}
+
+@mixin table-header {
+  font-family: $primary-font;
+  font-size: 0.8rem;
+  font-weight: $font-weight-semibold;
+  line-height: 1.1rem;
+}
+
+@mixin body-large {
+  font-family: $primary-font;
+  font-size: 1rem;
+  font-weight: $font-weight-regular;
+  line-height: 1.8rem;
+}
+
+@mixin body-medium {
+  font-family: $primary-font;
+  font-size: 0.9rem;
+  font-weight: $font-weight-regular;
+  line-height: 1.4rem;
+}
+
+@mixin body-small {
+  font-family: $primary-font;
+  font-size: 0.8rem;
+  font-weight: $font-weight-regular;
+  line-height: 1.1rem;
 }
