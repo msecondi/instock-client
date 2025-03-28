@@ -1,0 +1,55 @@
+@use "./variables" as *;
+
+@mixin tablet {
+  @media screen and (min-width: $min-tablet-breakpoint) and (max-width: $max-tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin m-page-header {
+  font-size: 1.75rem;
+  font-weight: $font-weight-semibold;
+  line-height: 2.25rem;
+}
+
+@mixin m-subheader {
+  font-size: 1.25rem;
+  font-weight: $font-weight-semibold;
+  line-height: 1.75rem;
+}
+
+@mixin m-labels-links-buttons {
+  font-size: 0.813rem;
+  font-weight: $font-weight-semibold;
+  line-height: 1.25rem;
+}
+
+@mixin m-table-header {
+  font-size: 0.688rem;
+  font-weight: $font-weight-semibold;
+  line-height: 1rem;
+}
+
+@mixin m-body-large {
+    font-size: 0.938rem;
+    font-weight: $font-weight-regular;
+    line-height: 1.625rem;
+}
+
+@mixin m-body-medium {
+    font-size: 0.813rem;
+    font-weight: $font-weight-regular;
+    line-height: 1.25rem;
+}
+
+@mixin m-body-small {
+    font-size: 0.688rem;
+    font-weight: $font-weight-regular;
+    line-height: 1rem;
+}
