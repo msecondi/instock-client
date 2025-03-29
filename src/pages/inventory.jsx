@@ -1,10 +1,10 @@
-import '../styles/inventory.css';
+import '../styles/inventory.scss';
 
 function Inventory() {
     return (
-        <section className="inventory">
+        <main className="inventory">
 
-        </section>
+        </main>
     );
 }
 

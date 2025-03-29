@@ -9,6 +9,12 @@ $primary-font: "Titilium Web", sans-serif;
   }
 }
 
+@mixin tablet-and-desktop {
+  @media screen and (min-width: $min-tablet-breakpoint) {
+    @content;
+  }
+}
+
 @mixin desktop {
   @media screen and (min-width: $desktop-breakpoint) {
     @content;

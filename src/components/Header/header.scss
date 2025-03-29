@@ -1,0 +1,62 @@
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $background-graphite;
+    padding: 1.5rem $m-site-wide-left-right-padding;
+
+    @include tablet-and-desktop {
+        flex-direction: row;
+    }
+
+    @include tablet {
+        padding: 2rem $t-site-wide-left-right-padding;
+    }
+
+    @include desktop {
+        padding: 2rem $site-wide-left-right-padding;
+    }
+
+    &__logo {
+        margin-bottom: 1rem;
+        width: 8.125rem;
+        height: auto;
+
+        @include tablet-and-desktop {
+            margin-bottom: 0;
+        }
+    }
+
+    &__logo-img {
+        width: 100%;
+        height: auto;
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        @include tablet-and-desktop {
+            width: auto;
+        }
+    }
+
+    &__nav-link {
+        text-decoration: none;
+        width: 100%;
+
+        &--right-margin {
+            margin-right: 0.25rem;
+
+            @include tablet-and-desktop {
+                margin-right: 0.5rem;
+            }
+        }
+    }
+}
