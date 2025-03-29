@@ -1,0 +1,150 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.warehouse-form {
+  background-color: white;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  max-width: 75rem; // Adjust based on your design
+  margin: 0 auto;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  &__back-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 0.5rem;
+    
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &__title {
+    @include m-page-header; // Adjust to your actual mixin
+    margin: 0;
+  }
+
+  &__section {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid $divider-color; // Adjust to your variable
+    padding-bottom: 1.5rem;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+
+  &__section-title {
+    @include m-subheader; // Adjust to your actual mixin
+    margin-bottom: 1.5rem;
+  }
+
+  &__field {
+    margin-bottom: 1rem;
+    
+    label {
+      @include m-label-text; // Adjust to your actual mixin
+      display: block;
+      margin-bottom: 0.25rem; // 4px spacing between label and field
+    }
+  }
+
+  &__input {
+    width: 100%;
+    height: 2.375rem; // 38px converted to rem
+    padding: 0 1rem; // 16px padding on left and right
+    border: 1px solid $input-border; // Adjust to your variable
+    border-radius: 1.25rem; // 20px radius
+    font-family: inherit;
+    
+    &::placeholder {
+      color: $placeholder-color; // Adjust to your variable
+    }
+    
+    &--active {
+      border-color: $active-input-border; // Adjust to your variable
+    }
+    
+    &--error {
+      border-color: $error-color; // Adjust to your variable
+    }
+  }
+
+  &__error {
+    @include m-error-text; // Adjust to your actual mixin
+    color: $error-color; // Adjust to your variable
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  &__button {
+    padding: 0.5rem 1.5rem;
+    border-radius: 1.25rem; // 20px radius
+    font-weight: 600;
+    cursor: pointer;
+    
+    &--cancel {
+      background-color: white;
+      border: 1px solid $button-color; // Adjust to your variable
+      color: $button-color; // Adjust to your variable
+    }
+    
+    &--save {
+      background-color: $button-color; // Adjust to your variable
+      border: 1px solid $button-color; // Adjust to your variable
+      color: white;
+      
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  // Responsive styles
+  @media screen and (max-width: 768px) {
+    &__input {
+      height: 2.25rem; // 36px for mobile
+    }
+    
+    &__actions {
+      flex-direction: column-reverse;
+      
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  // For tablet and desktop, we can use a two-column layout
+  @media screen and (min-width: 768px) {
+    &__section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+    }
+    
+    &__section-title {
+      width: 100%;
+    }
+    
+    &__field {
+      flex: 1 0 calc(50% - 1rem);
+    }
+  }
+}

@@ -1,24 +1,23 @@
-import './styles/app';
-import { BrowserRouter, Routers, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Warehouse from './components/Warehouse';
-import Footer from './components/Footer';
+import "./styles/app";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Warehouse from "./pages/Warehouse/Warehouse";
 
 function App() {
-
   return (
     <>
       <BrowserRouter>
-        <Header/>
-        <Routers>
+        <Header />
+        <Routes>
           <main>
-            <Route path="/" element={<Warehouse />} />
+            <Route path="/warehouses/*" element={<Warehouse />} />
           </main>
-        </Routers>
+        </Routes>
         <Footer />
       </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
