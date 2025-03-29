@@ -3,10 +3,15 @@
 
 .header {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background-color: $background-graphite;
     padding: 1rem $m-site-wide-left-right-padding;
+
+    @include tablet-and-desktop {
+        flex-direction: row;
+    }
 
     @include tablet {
         padding: 1rem $t-site-wide-left-right-padding;
@@ -14,6 +19,14 @@
 
     @include desktop {
         padding: 1rem $site-wide-left-right-padding;
+    }
+
+    &__logo {
+        margin-bottom: 1rem;
+
+        @include tablet-and-desktop {
+            margin-bottom: 0;
+        }
     }
 
     &__nav {
