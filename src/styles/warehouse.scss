@@ -1,2 +1,17 @@
 @use "../styles/partials/variables.scss" as *;
 @use "../styles/partials/mixins.scss" as *;
+
+.warehouse {
+    padding-left: $m-site-wide-left-right-padding;
+    padding-right: $m-site-wide-left-right-padding;
+
+    @include tablet {
+        padding-left: $t-site-wide-left-right-padding;
+        padding-right: $t-site-wide-left-right-padding;
+    }
+
+    @include desktop {
+        padding-left: $site-wide-left-right-padding;
+        padding-right: $site-wide-left-right-padding;
+    }
+}
