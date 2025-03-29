@@ -1,4 +1,4 @@
-import '../styles/warehouse.css';
+import '../styles/warehouse.scss';
 
 function Warehouse() {
     return (

@@ -1,8 +1,8 @@
-import './styles/app';
-import { BrowserRouter, Routers, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Warehouse from './components/Warehouse';
-import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
+import Warehouse from './pages/Warehouse';
+import Footer from './components/Footer/Footer';
+import './styles/app.scss';
 
 function App() {
 
@@ -10,11 +10,13 @@ function App() {
     <>
       <BrowserRouter>
         <Header/>
-        <Routers>
-          <main>
-            <Route path="/" element={<Warehouse />} />
-          </main>
-        </Routers>
+        <Routes>
+            <Route path="/" element={
+              <main>
+                <Warehouse />
+              </main>
+            } />
+        </Routes>
         <Footer />
       </BrowserRouter>
     </>
