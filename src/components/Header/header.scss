@@ -23,10 +23,17 @@
 
     &__logo {
         margin-bottom: 1rem;
+        width: 8.125rem;
+        height: auto;
 
         @include tablet-and-desktop {
             margin-bottom: 0;
         }
+    }
+
+    &__logo-img {
+        width: 100%;
+        height: auto;
     }
 
     &__nav {
