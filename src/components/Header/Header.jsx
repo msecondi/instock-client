@@ -9,18 +9,20 @@ function Header() {
             <Link className="header__logo" to="/">
                 <img className="header__logo-img" src={Logo} alt="InStock logo" />
             </Link>
-            <NavLink className="header__nav" to="/">
-                { ({isActive}) => (
-                    <Button buttonText="Warehouse" 
-                        buttonType={isActive ? 'nav--active' : 'nav'} />
-                )}
-            </NavLink>
-            <NavLink className="header__nav" to="/inventory">
-                { ({isActive}) => (
-                    <Button buttonText="Inventory" 
-                        buttonType={isActive ? 'nav--active' : 'nav'} />
-                )}
-            </NavLink>
+            <nav className="header__nav">
+                <NavLink className="header__nav-link header__nav-link--right-margin" to="/">
+                    { ({isActive}) => (
+                        <Button buttonText="Warehouse" 
+                            buttonType={isActive ? 'nav--active' : 'nav'} />
+                    )}
+                </NavLink>
+                <NavLink className="header__nav-link" to="/inventory">
+                    { ({isActive}) => (
+                        <Button buttonText="Inventory" 
+                            buttonType={isActive ? 'nav--active' : 'nav'} />
+                    )}
+                </NavLink>
+            </nav>
         </header>
     );
 }

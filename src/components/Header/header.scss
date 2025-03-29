@@ -1,9 +1,36 @@
 @use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
 
 .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: $background-graphite;
+    padding: 1rem $m-site-wide-left-right-padding;
+
+    @include tablet {
+        padding: 1rem $t-site-wide-left-right-padding;
+    }
+
+    @include desktop {
+        padding: 1rem $site-wide-left-right-padding;
+    }
 
     &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__nav-link {
         text-decoration: none;
+
+        &--right-margin {
+            margin-right: 0.25rem;
+
+            @include tablet-and-desktop {
+                margin-right: 0.5rem;
+            }
+        }
     }
 }
