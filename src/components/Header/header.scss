@@ -33,6 +33,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
+
+        @include tablet-and-desktop {
+            width: auto;
+        }
     }
 
     &__nav-link {
