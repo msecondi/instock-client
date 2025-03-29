@@ -1,9 +1,2 @@
 @use "../styles/partials/variables.scss" as *;
 @use "../styles/partials/mixins.scss" as *;
-
-.warehouse {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: $background-graphite;
-}
