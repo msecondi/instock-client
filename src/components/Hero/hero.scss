@@ -3,7 +3,7 @@
 
 .hero {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     background-color: $primary-instock-white;
@@ -14,6 +14,16 @@
         justify-content: center;
         align-items: center;
         flex-direction: row;
-        width: 100%;
+    }
+
+    &__title {
+        @include m-page-header;
+        font-weight: 400;
+        margin: 0;
+
+        @include tablet-and-desktop {
+            @include page-header;
+            font-weight: 400;
+        }
     }
 }
