@@ -19,6 +19,10 @@ function Button({buttonText, imgSrc, buttonType, onClick}) {
         buttonClass = 'button--delete';
     }
 
+    if (buttonType == 'icon-only') {
+        buttonClass = 'button--icon-only';
+    }
+
     return ( 
         <button className={`button ${buttonClass} ${imgSrc ? 'button--width-img' : ''}`} onClick={onClick}>
             { imgSrc && (
