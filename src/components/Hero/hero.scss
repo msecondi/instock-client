@@ -7,9 +7,11 @@
     align-items: left;
     flex-direction: column;
     background-color: $primary-instock-white;
+    box-sizing: border-box;
     width: 100%;
-    margin-top: 1.75rem;
-    margin-bottom: 1.5rem;
+    padding: 0 1.5rem;
+    padding-top: 1.75rem;
+    padding-bottom: 1.5rem;
 
     @include tablet-and-desktop {
         flex-direction: row;
