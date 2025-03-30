@@ -66,9 +66,17 @@
     }
 
     &__search-input {
+        @include m-labels-links-buttons;
         outline: none;
         border: none;
         width: 100%;
+        font-weight: 500;
+
+
+        @include tablet-and-desktop {
+            @include labels-links-buttons;
+            font-weight: 500;
+        }
     }
 
     &__search-button {
