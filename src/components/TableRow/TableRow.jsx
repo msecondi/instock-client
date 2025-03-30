@@ -18,19 +18,19 @@ function TableRow({warehouse}) {
                     </div>
                     <div className="table-row__info">
                         <label className="table-row__label">ADDRESS</label>
-                        <span className="table-row__address">{warehouse.address}</span>
+                        <span className="table-row__text">{warehouse.address}</span>
                     </div>
                 </div>
                 <div className="table-row__info-group-2">
                     <div className="table-row__info">
                         <label className="table-row__label">CONTACT NAME</label>
-                        <span className="table-row__contact-name">{warehouse.contactName}</span>
+                        <span className="table-row__text">{warehouse.contactName}</span>
                     </div>
                     <div className="table-row__info">
                         <label className="table-row__label">CONTACT INFORMATION</label>
                         <div className="table-row__contact-info">
-                            <span className="table-row__contact-info-text">{warehouse.phoneNumber}</span>
-                            <span className="table-row__contact-info-text">{warehouse.email}</span>
+                            <span className="table-row__text">{warehouse.phoneNumber}</span>
+                            <span className="table-row__text">{warehouse.email}</span>
                         </div>
                     </div>
                 </div>
