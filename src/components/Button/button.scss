@@ -24,8 +24,11 @@
     }
 
     &__text {
+        @include m-labels-links-buttons;
         display: none;
+
         @include tablet-and-desktop {
+            @include labels-links-buttons;
             display: block;
         }
     }

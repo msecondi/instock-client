@@ -20,10 +20,7 @@ function Button({buttonText, imgSrc, buttonType, onClick}) {
     }
 
     return ( 
-        <button className={`button 
-            ${buttonClass} 
-            ${imgSrc ? 'button--width-img' : ''}`}
-            onClick={onClick}>
+        <button className={`button ${buttonClass} ${imgSrc ? 'button--width-img' : ''}`} onClick={onClick}>
             { imgSrc && (
                 <img className="button__img" src={imgSrc} alt="Button Icon"/>
             )}
