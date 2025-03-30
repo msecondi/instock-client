@@ -1,8 +1,6 @@
-// src/pages/AddWarehouse/AddWarehouse.jsx
-
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import WarehouseForm from "../../components/WarehouseForm/WarehouseForm";
+import WarehouseForm from "../components/WarehouseForm/WarehouseForm";
 import "./AddWarehouse.scss";
 
 const AddWarehouse = () => {
@@ -15,7 +13,6 @@ const AddWarehouse = () => {
         "http://localhost:8080/api/warehouses",
         formData
       );
-
       // goes back to warehouses list on successful submission
       navigate("/warehouses");
     } catch (error) {

@@ -1,3 +1,9 @@
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import WarehouseForm from '../components/WarehouseForm/WarehouseForm';
+import './EditWarehouse.scss';
+
 const EditWarehouse = () => {
     const { id } = useParams(); // Get warehouse ID from URL
     const navigate = useNavigate();
@@ -45,3 +51,5 @@ const EditWarehouse = () => {
       </div>
     );
   };
+
+  export default EditWarehouse;

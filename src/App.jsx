@@ -1,8 +1,7 @@
-import "./styles/app";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Warehouse from "./pages/Warehouse/Warehouse";
+import Warehouse from "./pages/Warehouses";
 
 function App() {
   return (

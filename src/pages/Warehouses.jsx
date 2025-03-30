@@ -1,4 +1,4 @@
-import "../styles/warehouse.css";
+// import "../styles/warehouse.css";
 import AddWarehouse from "./AddWarehouse";
 import EditWarehouse from "./EditWarehouse";
 
