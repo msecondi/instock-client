@@ -4,26 +4,76 @@
 .hero {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
+    align-items: left;
+    flex-direction: column;
     background-color: $primary-instock-white;
     width: 100%;
+    margin-top: 1.75rem;
+    margin-bottom: 1.5rem;
+
+    @include tablet-and-desktop {
+        flex-direction: row;
+        align-items: center;
+    }
 
     &__controls {
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: row;
+        flex-direction: column;
+
+        @include tablet-and-desktop {
+            flex-direction: row;
+        }
     }
 
     &__title {
         @include m-page-header;
         font-weight: 400;
         margin: 0;
+        margin-bottom: 1rem;
 
         @include tablet-and-desktop {
             @include page-header;
             font-weight: 400;
         }
+    }
+
+    &__search-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        border: 1px solid $secondary-cloud;
+        border-radius: 1.25rem;
+        padding: 0.25rem 1rem;
+        box-sizing: border-box;
+        margin-bottom: 1rem;
+
+        @include tablet-and-desktop {
+            margin-bottom: 0;
+        }
+
+        &--right-margin {
+            margin-right: 0rem;
+
+            @include tablet-and-desktop {
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    &__search-input {
+        outline: none;
+        border: none;
+        width: 100%;
+    }
+
+    &__search-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: transparent;
     }
 }
