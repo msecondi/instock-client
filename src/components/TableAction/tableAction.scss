@@ -1,0 +1,20 @@
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.table-action {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    @include tablet-and-desktop {
+        width: auto;
+    }
+
+    &__left-button {
+        @include tablet-and-desktop {
+            margin-right: 0.75rem;
+        }
+    }
+}
