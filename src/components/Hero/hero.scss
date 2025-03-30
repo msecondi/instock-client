@@ -13,8 +13,10 @@
     padding-right: $m-warehouse-page-left-right-padding;
     padding-top: 1.75rem;
     padding-bottom: 1.5rem;
+    border-bottom: 1px solid $secondary-cloud;
 
     @include tablet-and-desktop {
+        border-bottom: none;
         flex-direction: row;
         align-items: center;
     }
