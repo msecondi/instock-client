@@ -49,9 +49,11 @@
         padding: 0.25rem 1rem;
         box-sizing: border-box;
         margin-bottom: 1rem;
+        width: 100%;
 
         @include tablet-and-desktop {
             margin-bottom: 0;
+            width: auto;
         }
 
         &--right-margin {

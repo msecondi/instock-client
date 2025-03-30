@@ -2,7 +2,7 @@ import './hero.scss';
 import Button from '../Button/Button';
 import SearchIcon from '../../assets/icons/search-24px.svg';
 
-function Hero() {
+function Hero({onClick}) {
     return (
         <section className="hero">
             <h1 className="hero__title">Warehouses</h1>
@@ -13,7 +13,7 @@ function Hero() {
                         <img className="hero__search-icon" src={SearchIcon} alt="Search Icon" />
                     </button>
                 </div>
-                <Button buttonText="+ Add New Warehouse" />
+                <Button buttonText="+ Add New Warehouse" onClick={onClick} />
             </div>
         </section>
     );
