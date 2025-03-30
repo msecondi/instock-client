@@ -2,16 +2,17 @@
 @use "../styles/partials/mixins.scss" as *;
 
 .warehouse {
-    padding-left: $m-site-wide-left-right-padding;
-    padding-right: $m-site-wide-left-right-padding;
+    margin-left: $m-site-wide-left-right-padding;
+    margin-right: $m-site-wide-left-right-padding;
+    background-color: $primary-instock-white;
 
     @include tablet {
-        padding-left: $t-site-wide-left-right-padding;
-        padding-right: $t-site-wide-left-right-padding;
+        margin-left: $t-site-wide-left-right-padding;
+        margin-right: $t-site-wide-left-right-padding;
     }
 
     @include desktop {
-        padding-left: $site-wide-left-right-padding;
-        padding-right: $site-wide-left-right-padding;
+        margin-left: $site-wide-left-right-padding;
+        margin-right: $site-wide-left-right-padding;
     }
 }
