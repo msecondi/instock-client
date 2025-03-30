@@ -12,7 +12,7 @@ function TableRow({warehouse}) {
         <div className="table-row">
             <div className="table-row__info-groups">
                 <div className="table-row__info-group-1">
-                    <div className="table-row__info">
+                    <div className="table-row__info table-row__info--bottom-margin">
                         <label className="table-row__label">WAREHOUSE</label>
                         <TableLink link={link} />
                     </div>
@@ -22,7 +22,7 @@ function TableRow({warehouse}) {
                     </div>
                 </div>
                 <div className="table-row__info-group-2">
-                    <div className="table-row__info">
+                    <div className="table-row__info table-row__info--bottom-margin">
                         <label className="table-row__label">CONTACT NAME</label>
                         <span className="table-row__text">{warehouse.contactName}</span>
                     </div>
