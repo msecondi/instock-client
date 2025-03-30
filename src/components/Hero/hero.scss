@@ -9,13 +9,24 @@
     background-color: $primary-instock-white;
     box-sizing: border-box;
     width: 100%;
-    padding: 0;
+    padding-left: $m-warehouse-page-left-right-padding;
+    padding-right: $m-warehouse-page-left-right-padding;
     padding-top: 1.75rem;
     padding-bottom: 1.5rem;
 
     @include tablet-and-desktop {
         flex-direction: row;
         align-items: center;
+    }
+
+    @include tablet {
+        padding-left: $t-warehouse-page-left-right-padding;
+        padding-right: $t-warehouse-page-left-right-padding;
+    }
+
+    @include desktop {
+        padding-left: $warehouse-page-left-right-padding;
+        padding-right: $warehouse-page-left-right-padding;
     }
 
     &__controls {

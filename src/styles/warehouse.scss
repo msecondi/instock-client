@@ -5,17 +5,14 @@
     margin-left: $m-site-wide-left-right-padding;
     margin-right: $m-site-wide-left-right-padding;
     background-color: $primary-instock-white;
-    padding: 0 1.5rem;
 
     @include tablet {
         margin-left: $t-site-wide-left-right-padding;
         margin-right: $t-site-wide-left-right-padding;
-        padding: 0 2rem;
     }
 
     @include desktop {
         margin-left: $site-wide-left-right-padding;
         margin-right: $site-wide-left-right-padding;
-        padding: 0 2.25rem;
     }
 }
