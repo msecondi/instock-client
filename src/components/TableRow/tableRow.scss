@@ -1,2 +1,116 @@
 @use "../../styles/partials/variables.scss" as *;
 @use "../../styles/partials/mixins.scss" as *;
+
+.table-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 6rem;
+    border-bottom: 1px solid $secondary-cloud;
+    padding-left: $m-warehouse-page-left-right-padding;
+    padding-right: $m-warehouse-page-left-right-padding;
+    box-sizing: border-box;
+
+    @include tablet {
+        padding-left: $t-warehouse-page-left-right-padding;
+        padding-right: $t-warehouse-page-left-right-padding;
+    }
+
+    @include desktop {
+        padding-left: $warehouse-page-left-right-padding;
+        padding-right: $warehouse-page-left-right-padding;
+    }
+
+    @include tablet-and-desktop {
+        flex-direction: row;
+    }
+
+    &__info-groups {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex: 0 0 95%;
+    }
+
+    &__info-group-1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        // flex: 0 0 50%;
+    }
+
+    &__address {
+        @include m-labels-links-buttons;
+        font-weight: 400;
+
+        @include tablet-and-desktop {
+            @include labels-links-buttons;
+            font-weight: 400;
+        }
+    }
+
+    &__info-group-2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        // flex: 0 0 50%;
+    }
+
+    &__contact-name {
+        @include m-labels-links-buttons;
+        font-weight: 400;
+
+        @include tablet-and-desktop {
+            @include labels-links-buttons;
+            font-weight: 400;
+        }
+    }
+
+    &__contact-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &__contact-info-text {
+        @include m-labels-links-buttons;
+        font-weight: 400;
+        margin: 0;
+
+        @include tablet-and-desktop {
+            @include labels-links-buttons;
+            font-weight: 400;
+        }
+    }
+
+    &__label {
+        @include m-labels-links-buttons;
+        font-weight: 500;
+        color: $secondary-slate;
+        display: block;
+
+        @include tablet-and-desktop {
+            @include labels-links-buttons;
+            font-weight: 500;
+            display: none;
+        }
+
+    }
+
+    &__action-group {
+        flex: 1 0 100%;
+        width: 100%;
+
+        @include tablet-and-desktop {
+            flex: 0 0 5%;
+        }
+    }
+}
