@@ -36,7 +36,7 @@ function TableRow({warehouse}) {
                 </div>
             </div>
             <div className="table-row__action-group">
-                <TableAction />
+                <TableAction warehouseId={warehouse.id} />
             </div>
         </div>
     );
