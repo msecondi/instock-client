@@ -11,4 +11,12 @@
     @include tablet-and-desktop {
         width: auto;
     }
+
+    &__left-button{
+        &--right-margin {
+            @include tablet-and-desktop {
+                margin-right: 0.75rem;
+            }
+        }
+    }
 }
