@@ -1,7 +1,6 @@
 import './whDetails.scss';
 
 function WhDetails({warehouseDetails}) {
-    console.log(warehouseDetails);
     return (
         <section className="wh-details">
             <div className="wh-details__location">

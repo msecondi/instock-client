@@ -6,7 +6,7 @@ import { warehousesEndpoint, warehousesPageIndex } from '../../data/appData.json
 import { v4 as uuidv4 } from 'uuid';
 import HeroWhDetails from '../../components/HeroWhDetails/HeroWhDetails';
 import WhDetails from '../../components/WhDetails/WhDetails';
-import TableHeaderWhDetails from '../../components/TableHeaderWhDetails/TableHeaderWhDetails';
+import TableHeader from '../../components/TableHeader/TableHeader';
 import TableRowWhDetails from '../../components/TableRowWhDetails/TableRowWhDetails';
 
 function Warehouses({setNavIndex}) {
@@ -49,6 +49,8 @@ function Warehouses({setNavIndex}) {
         fetchWarehouseInventory();
     }, []);
 
+    const tableLabels = ['INVENTORY ITEM', 'CATEGORY', 'STATUS', 'QUANTITY'];
+
     return (
         <main className="warehouses">
             <div className="warehouses__page-background">
@@ -58,7 +60,7 @@ function Warehouses({setNavIndex}) {
                 <HeroWhDetails heroTitle={warehouseDetails.warehouse_name} id={id}/>
                 <WhDetails warehouseDetails={warehouseDetails} />
                 <section className="warehouses__table">
-                    <TableHeaderWhDetails />
+                    <TableHeader labels={tableLabels}/>
                     {renderInventory()}
                 </section>
             </div>
