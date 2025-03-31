@@ -19,7 +19,7 @@ function Header({navIndex}) {
                 <NavLink className="header__nav-link header__nav-link--right-margin" to="/">
                     <Button buttonText="Warehouses" buttonType={navIndex === warehousesPageIndex ? 'nav--active' : 'nav'} />
                 </NavLink>
-                <NavLink className="header__nav-link" to="/inventory">
+                <NavLink className="header__nav-link" to="/inventories">
                     <Button buttonText="Inventory" buttonType={navIndex === inventoryPageIndex ? 'nav--active' : 'nav'} />
                 </NavLink>
             </nav>
