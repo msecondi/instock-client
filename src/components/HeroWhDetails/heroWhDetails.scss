@@ -18,6 +18,7 @@
 
     @include tablet-and-desktop {
         border-bottom: none;
+        height: 7rem;
     }
 
     @include tablet {
