@@ -42,7 +42,7 @@
         @include tablet-and-desktop {
             flex-direction: row;
             align-items: center;
-            flex: 0 0 95%;
+            flex: 0 0 90%;
         }
     }
 
@@ -123,8 +123,11 @@
         width: 100%;
 
         @include tablet-and-desktop {
+            display: flex ;
+            justify-content: flex-end;
+            flex-direction: row;
             padding-top: 0;
-            flex: 0 0 5%;
+            flex: 0 0 10%;
         }
     }
 }
