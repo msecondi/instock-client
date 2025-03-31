@@ -4,8 +4,8 @@ import TableAction from '../TableAction/TableAction';
 
 function TableRow({warehouse}) {
     const link = {
-        url: warehouse.link,
-        text: warehouse.name
+        url: `/warehouses/${warehouse.id}`,
+        text: warehouse.warehouse_name
     }
 
     return (
@@ -24,13 +24,13 @@ function TableRow({warehouse}) {
                 <div className="table-row__info-group-2">
                     <div className="table-row__info table-row__info--bottom-margin">
                         <label className="table-row__label">CONTACT NAME</label>
-                        <span className="table-row__text">{warehouse.contactName}</span>
+                        <span className="table-row__text">{warehouse.contact_name}</span>
                     </div>
                     <div className="table-row__info">
                         <label className="table-row__label">CONTACT INFORMATION</label>
                         <div className="table-row__contact-info">
-                            <span className="table-row__text">{warehouse.phoneNumber}</span>
-                            <span className="table-row__text">{warehouse.email}</span>
+                            <span className="table-row__text">{warehouse.contact_phone}</span>
+                            <span className="table-row__text">{warehouse.contact_email}</span>
                         </div>
                     </div>
                 </div>
