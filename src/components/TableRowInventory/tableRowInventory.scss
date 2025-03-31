@@ -57,6 +57,12 @@
             flex-direction: row;
             flex: 0 0 50%;
         }
+
+        &--with-wh-name {
+            @include tablet-and-desktop {
+                flex: 0 0 40%;
+            }
+        }
     }
 
     &__info {
@@ -82,12 +88,16 @@
             flex-direction: row;
             flex: 0 0 50%;
         }
+
+        &--with-wh-name {
+            @include tablet-and-desktop {
+                flex: 0 0 60%;
+            }
+        }
     }
 
-    &--with-wh-name {
-        @include tablet-and-desktop {
-            flex: 0 0 40%;
-        }
+    &--hidden {
+        display: none;
     }
 
     &__info-group-3 {
@@ -100,10 +110,6 @@
         @include tablet-and-desktop {
             flex-direction: row;
             flex: 0 0 20%;
-        }
-
-        &--hidden {
-            display: none;
         }
     }
 

@@ -31,7 +31,7 @@ function TableRowInventory({inventory, showWarehouse}) {
     return (
         <div className="table-row">
             <div className="table-row__info-groups">
-                <div className={`table-row__info-group-1 ${showWarehouse ? 'table-row--with-wh-name' : ''}`}>
+                <div className={`table-row__info-group-1 ${showWarehouse ? 'table-row__info-group-1--with-wh-name' : ''}`}>
                     <div className="table-row__info table-row__info--bottom-margin">
                         <label className="table-row__label">INVENTORY ITEM</label>
                         <TableLink link={link} />
@@ -41,18 +41,16 @@ function TableRowInventory({inventory, showWarehouse}) {
                         <span className="table-row__text">{inventory.category}</span>
                     </div>
                 </div>  
-                <div className={`table-row__info-group-2 ${showWarehouse ? 'table-row--with-wh-name' : ''}`}>
+                <div className={`table-row__info-group-2 ${showWarehouse ? 'table-row__info-group-2--with-wh-name' : ''}`}>
                     <div className="table-row__info table-row__info--bottom-margin">
                         <label className="table-row__label">STATUS</label>
                         <InStockTag statusString={inventory.status} />
                     </div>
-                    <div className="table-row__info">
+                    <div className={`table-row__info ${showWarehouse ? 'table-row__info--bottom-margin' : ''}`}>
                         <label className="table-row__label">QUANTITY</label>
                         <span className="table-row__text">{inventory.quantity}</span>
                     </div>
-                </div>
-                <div className={`table-row__info-group-3 ${showWarehouse ? '' : 'table-row__info-group-3--hidden'}`}>
-                    <div className="table-row__info">
+                    <div className={`table-row__info ${showWarehouse ? '' : 'table-row--hidden'}`}>
                         <label className="table-row__label">WAREHOUSE</label>
                         <span className="table-row__text">{warehouseName}</span>
                     </div>
