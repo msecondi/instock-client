@@ -17,7 +17,6 @@
     border-bottom: 1px solid $secondary-cloud;
 
     @include tablet-and-desktop {
-        border-bottom: none;
         height: 7rem;
     }
 

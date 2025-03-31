@@ -5,10 +5,9 @@ import { useParams } from 'react-router-dom';
 import { warehousesEndpoint, warehousesPageIndex } from '../../data/appData.json';
 import { v4 as uuidv4 } from 'uuid';
 import HeroWhDetails from '../../components/HeroWhDetails/HeroWhDetails';
+import WhDetails from '../../components/WhDetails/WhDetails';
 import TableHeaderWhDetails from '../../components/TableHeaderWhDetails/TableHeaderWhDetails';
-import TableRow from '../../components/TableRow/TableRow';
 import TableRowWhDetails from '../../components/TableRowWhDetails/TableRowWhDetails';
-import { render } from 'react-dom';
 
 function Warehouses({setNavIndex}) {
     useEffect(() => {
@@ -57,6 +56,7 @@ function Warehouses({setNavIndex}) {
             </div>
             <div className="warehouses__page-foreground">
                 <HeroWhDetails heroTitle={warehouseDetails.warehouse_name} id={id}/>
+                <WhDetails warehouseDetails={warehouseDetails} />
                 <section className="warehouses__table">
                     <TableHeaderWhDetails />
                     {renderInventory()}
