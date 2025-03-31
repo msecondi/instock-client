@@ -14,7 +14,7 @@ function HeroWhDetails({heroTitle, id}) {
                 </Link>
             </div>
             <div className="hero__controls">
-                <Link className="hero__link" to={`/warehouses/${id}/edit-warehouse`}>
+                <Link className="hero__link" to={`/warehouses/${id}/edit`}>
                     <Button buttonText="Edit" imgSrc={EditIcon}/>
                 </Link>
             </div>

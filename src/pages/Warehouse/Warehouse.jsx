@@ -49,8 +49,6 @@ function Warehouses({setNavIndex}) {
         fetchWarehouseDetails(); 
         fetchWarehouseInventory();
     }, []);
-    // console.log(warehouseDetails);
-    console.log(warehouseInventory);
 
     return (
         <main className="warehouses">

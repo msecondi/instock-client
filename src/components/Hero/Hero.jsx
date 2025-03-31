@@ -14,7 +14,7 @@ function Hero({onClick}) {
                         <img className="hero__search-icon" src={SearchIcon} alt="Search Icon" />
                     </button>
                 </div>
-                <Link className="hero__link" to="/warehouses/add-warehouse">
+                <Link className="hero__link" to="/warehouses/add">
                     <Button buttonText="+ Add New Warehouse" />
                 </Link>
             </div>
