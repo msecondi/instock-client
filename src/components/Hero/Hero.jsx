@@ -1,4 +1,5 @@
 import './hero.scss';
+import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import SearchIcon from '../../assets/icons/search-24px.svg';
 
@@ -13,7 +14,9 @@ function Hero({onClick}) {
                         <img className="hero__search-icon" src={SearchIcon} alt="Search Icon" />
                     </button>
                 </div>
-                <Button buttonText="+ Add New Warehouse" onClick={onClick} />
+                <Link className="hero__link" to="/warehouses/add-warehouse">
+                    <Button buttonText="+ Add New Warehouse" />
+                </Link>
             </div>
         </section>
     );
