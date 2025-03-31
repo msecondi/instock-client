@@ -1,0 +1,4 @@
+{
+    "apiUrl": "http://localhost:8080/",
+    "warehousesEndpoint": "http://localhost:8080/warehouses"
+}
