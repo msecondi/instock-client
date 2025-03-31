@@ -33,13 +33,15 @@ function Warehouses({setNavIndex}) {
 
     useEffect( () => { fetchWarehouses(); }, []);
 
+    const tableLabels = ['WAREHOUSE', 'ADDRESS', 'CONTACT NAME', 'CONTACT INFORMATION'];
+
     return (
         <main className="warehouses">
             <div className="warehouses__page-background"></div>
             <div className="warehouses__page-foreground">
                 <Hero heroTitle="Warehouses" buttonText="+ Add New Warehouse" addButtonUrl={'/warehouses/add'}/>
                 <section className="warehouses__table">
-                    <TableHeader />
+                    <TableHeader labels={tableLabels}/>
                     {renderWarehouses()}
                 </section>
             </div>
