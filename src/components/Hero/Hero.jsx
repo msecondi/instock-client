@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import SearchIcon from '../../assets/icons/search-24px.svg';
 
-function Hero({onClick, heroTitle, buttonText}) {
+function Hero({onClick, heroTitle, buttonText, addButtonUrl}) {
     return (
         <section className="hero">
             <h1 className="hero__title">{heroTitle}</h1>
@@ -14,7 +14,7 @@ function Hero({onClick, heroTitle, buttonText}) {
                         <img className="hero__search-icon" src={SearchIcon} alt="Search Icon" />
                     </button>
                 </div>
-                <Link className="hero__link" to="/warehouses/add">
+                <Link className="hero__link" to={addButtonUrl}>
                     <Button buttonText={buttonText} />
                 </Link>
             </div>

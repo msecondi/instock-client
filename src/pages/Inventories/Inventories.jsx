@@ -13,7 +13,7 @@ function Inventories({setNavIndex}) {
         <main className="inventories">
             <div className="inventories__page-background"></div>
             <div className="inventories__page-foreground">
-                <Hero heroTitle="Inventory" buttonText="+ Add New Item"/>
+                <Hero heroTitle="Inventory" buttonText="+ Add New Item" addButtonUrl={'/inventories/add'}/>
                 <section className="inventories__table">
                     <TableHeader />
                 </section>
