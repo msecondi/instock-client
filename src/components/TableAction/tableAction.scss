@@ -12,9 +12,9 @@
         width: auto;
     }
 
-    &__left-button {
-        @include tablet-and-desktop {
-            margin-right: 0.75rem;
-        }
-    }
+    // &__left-button {
+    //     @include tablet-and-desktop {
+    //         margin-right: 0.75rem;
+    //     }
+    // }
 }
