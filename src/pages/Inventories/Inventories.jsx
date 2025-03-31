@@ -2,12 +2,14 @@ import './inventories.scss';
 import { useEffect } from 'react';
 import { inventoryPageIndex } from '../../data/appData.json';
 import Hero from '../../components/Hero/Hero';
-import TableHeaderInv from '../../components/TableHeaderInv/TableHeaderInv';
+import TableHeader from '../../components/TableHeader/TableHeader';
 
 function Inventories({setNavIndex}) {
     useEffect(() => {
         setNavIndex(inventoryPageIndex);
     }, []);
+
+    const tableLabels = ['INVENTORY ITEM', 'CATEGORY', 'STATUS', 'QTY', 'WAREHOUSE'];
 
     return (
         <main className="inventories">
@@ -15,7 +17,7 @@ function Inventories({setNavIndex}) {
             <div className="inventories__page-foreground">
                 <Hero heroTitle="Inventory" buttonText="+ Add New Item" addButtonUrl={'/inventories/add'}/>
                 <section className="inventories__table">
-                    <TableHeaderInv />
+                    <TableHeader labels={tableLabels} />
                 </section>
             </div>
         </main>
