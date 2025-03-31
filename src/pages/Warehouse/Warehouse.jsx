@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 import HeroWhDetails from '../../components/HeroWhDetails/HeroWhDetails';
 import TableHeaderWhDetails from '../../components/TableHeaderWhDetails/TableHeaderWhDetails';
 import TableRow from '../../components/TableRow/TableRow';
+import TableRowWhDetails from '../../components/TableRowWhDetails/TableRowWhDetails';
+import { render } from 'react-dom';
 
 function Warehouses({setNavIndex}) {
     useEffect(() => {
@@ -14,19 +16,41 @@ function Warehouses({setNavIndex}) {
     }, []);
 
     const {id} = useParams();
-    const [warehouse, setWarehouse] = useState([]);
+    const [warehouseDetails, setWarehouseDetails] = useState([]);
+    const [warehouseInventory, setWarehouseInventory] = useState([]);
 
-    const fetchWarehouse = async () => {
+    const fetchWarehouseDetails = async () => {
         try {
             const warehouseResponse = await axios.get(`${warehousesEndpoint}/${id}`);
-            setWarehouse(warehouseResponse.data);
+            setWarehouseDetails(warehouseResponse.data);
         } catch (error) {
-            console.log(`Could not load warehouses: ${error}`);
+            console.log(`Could not load warehouses details: ${error}`);
         }
     }
 
-    useEffect( () => { fetchWarehouse(); }, []);
-    console.log(warehouse);
+    const fetchWarehouseInventory = async () => {
+        try {
+            const warehouseInventoryResponse = await axios.get(`${warehousesEndpoint}/${id}/inventories`);
+            setWarehouseInventory(warehouseInventoryResponse.data);
+        } catch (error) {
+            console.log(`Could not load warehouse inventory: ${error}`);
+        }
+    }
+
+    const renderInventory = () => {
+        return warehouseInventory.map((inventory) => {
+            return (
+                <TableRowWhDetails inventory={inventory} key={uuidv4()}/>
+            );
+        });
+    }
+
+    useEffect( () => { 
+        fetchWarehouseDetails(); 
+        fetchWarehouseInventory();
+    }, []);
+    // console.log(warehouseDetails);
+    console.log(warehouseInventory);
 
     return (
         <main className="warehouses">
@@ -34,9 +58,10 @@ function Warehouses({setNavIndex}) {
 
             </div>
             <div className="warehouses__page-foreground">
-                <HeroWhDetails heroTitle={warehouse.warehouse_name} id={id}/>
+                <HeroWhDetails heroTitle={warehouseDetails.warehouse_name} id={id}/>
                 <section className="warehouses__table">
                     <TableHeaderWhDetails />
+                    {renderInventory()}
                 </section>
             </div>
         </main>
