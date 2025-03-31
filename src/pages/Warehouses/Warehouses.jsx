@@ -35,11 +35,9 @@ function Warehouses({setNavIndex}) {
 
     return (
         <main className="warehouses">
-            <div className="warehouses__page-background">
-
-            </div>
+            <div className="warehouses__page-background"></div>
             <div className="warehouses__page-foreground">
-                <Hero />
+                <Hero heroTitle="Warehouses" buttonText="+ Add New Warehouse"/>
                 <section className="warehouses__table">
                     <TableHeader />
                     {renderWarehouses()}

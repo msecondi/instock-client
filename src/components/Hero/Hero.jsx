@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import SearchIcon from '../../assets/icons/search-24px.svg';
 
-function Hero({onClick}) {
+function Hero({onClick, heroTitle, buttonText}) {
     return (
         <section className="hero">
-            <h1 className="hero__title">Warehouses</h1>
+            <h1 className="hero__title">{heroTitle}</h1>
             <div className="hero__controls">
                 <div className="hero__search-box hero__search-box--right-margin">
                     <input className="hero__search-input" type="text" placeholder="Search..." /> 
@@ -15,7 +15,7 @@ function Hero({onClick}) {
                     </button>
                 </div>
                 <Link className="hero__link" to="/warehouses/add">
-                    <Button buttonText="+ Add New Warehouse" />
+                    <Button buttonText={buttonText} />
                 </Link>
             </div>
         </section>
