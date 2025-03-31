@@ -20,10 +20,10 @@ function App() {
         <Header navIndex={navIndex}/>
         <Routes>
             <Route path="/" element={ <Warehouses setNavIndex={setNavIndex}/> }/>
-            <Route path="/warehouses/add-warehouse" element={ <AddWarehouse /> }/>
-            <Route path="/warehouses/:id" element={ <Warehouse /> }/>
-            <Route path="/warehouses/:id/edit-warehouse" element={ <EditWarehouse /> }/>
-            <Route path="/warehouses/:id/delete-warehouse" element={ <DeleteWarehouse /> }/>
+            <Route path="/warehouses/add-warehouse" element={ <AddWarehouse setNavIndex={setNavIndex}/> }/>
+            <Route path="/warehouses/:id" element={ <Warehouse setNavIndex={setNavIndex}/> }/>
+            <Route path="/warehouses/:id/edit-warehouse" element={ <EditWarehouse setNavIndex={setNavIndex}/> }/>
+            <Route path="/warehouses/:id/delete-warehouse" element={ <DeleteWarehouse setNavIndex={setNavIndex}/> }/>
             <Route path="/inventory" element={ <Inventory setNavIndex={setNavIndex}/> }/>
         </Routes>
         <Footer />

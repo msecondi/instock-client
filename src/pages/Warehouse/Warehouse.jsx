@@ -1,8 +1,11 @@
 import './Warehouse.scss';
-import { inventoryPageIndex } from '../../data/appData.json';
+import { useEffect } from 'react';
+import { warehousesPageIndex } from '../../data/appData.json';
 
 function Warehouse({setNavIndex}) {
-  setNavIndex(inventoryPageIndex);
+  useEffect(() => {
+      setNavIndex(warehousesPageIndex);
+  }, []);
   
   return (
     <main className="warehouse">

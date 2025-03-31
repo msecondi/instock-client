@@ -8,7 +8,9 @@ import TableHeader from '../../components/TableHeader/TableHeader';
 import TableRow from '../../components/TableRow/TableRow';
 
 function Warehouses({setNavIndex}) {
-    setNavIndex(warehousesPageIndex);
+    useEffect(() => {
+        setNavIndex(warehousesPageIndex);
+    }, []);
     
     const [warehouses, setWarehouses] = useState([]);
 
