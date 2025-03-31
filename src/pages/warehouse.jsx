@@ -31,10 +31,16 @@ function Warehouse() {
 
     return (
         <main className="warehouse">
-            <Hero />
-            <TableHeader />
-            {renderWarehouses()}
+            <div className="warehouse__page-background">
 
+            </div>
+            <div className="warehouse__page-foreground">
+                <Hero />
+                <section className="warehouse__table">
+                    <TableHeader />
+                    {renderWarehouses()}
+                </section>
+            </div>
         </main>
     );
 }
