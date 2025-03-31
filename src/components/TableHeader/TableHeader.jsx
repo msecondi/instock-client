@@ -28,7 +28,7 @@ function TableHeader() {
                 </div>
             </div>
             <div className="table-header__actions">
-                <label className="table-header__label">ACTION</label>
+                <label className="table-header__label">ACTIONS</label>
             </div>
         </div>
     );
