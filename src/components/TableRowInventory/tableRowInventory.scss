@@ -84,6 +84,29 @@
         }
     }
 
+    &--with-wh-name {
+        @include tablet-and-desktop {
+            flex: 0 0 40%;
+        }
+    }
+
+    &__info-group-3 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex: 0 0 40%;
+
+        @include tablet-and-desktop {
+            flex-direction: row;
+            flex: 0 0 20%;
+        }
+
+        &--hidden {
+            display: none;
+        }
+    }
+
     &__text {
         @include m-labels-links-buttons;
         font-weight: 400;

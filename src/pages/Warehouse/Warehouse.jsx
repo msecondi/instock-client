@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import HeroWhDetails from '../../components/HeroWhDetails/HeroWhDetails';
 import WhDetails from '../../components/WhDetails/WhDetails';
 import TableHeader from '../../components/TableHeader/TableHeader';
-import TableRowWhDetails from '../../components/TableRowWhDetails/TableRowWhDetails';
+import TableRowInventory from '../../components/TableRowInventory/TableRowInventory';
 
 function Warehouses({setNavIndex}) {
     useEffect(() => {
@@ -39,7 +39,7 @@ function Warehouses({setNavIndex}) {
     const renderInventory = () => {
         return warehouseInventory.map((inventory) => {
             return (
-                <TableRowWhDetails inventory={inventory} key={uuidv4()}/>
+                <TableRowInventory inventory={inventory} key={uuidv4()}/>
             );
         });
     }
