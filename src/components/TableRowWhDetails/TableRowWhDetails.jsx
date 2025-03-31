@@ -1,6 +1,7 @@
 import './tableRowWhDetails.scss';
 import TableLink from '../TableLink/TableLink';
 import TableAction from '../TableAction/TableAction';
+import InStockTag from '../InStockTag/InStockTag';
 
 function TableRowWhDetails({inventory}) {
     const link = {
@@ -24,7 +25,7 @@ function TableRowWhDetails({inventory}) {
                 <div className="table-row__info-group-2">
                     <div className="table-row__info table-row__info--bottom-margin">
                         <label className="table-row__label">STATUS</label>
-                        <span className="table-row__text">{inventory.status}</span>
+                        <InStockTag statusString={inventory.status} />
                     </div>
                     <div className="table-row__info">
                         <label className="table-row__label">QUANTITY</label>
