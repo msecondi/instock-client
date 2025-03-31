@@ -1,6 +1,9 @@
 import './Warehouse.scss';
+import { inventoryPageIndex } from '../../data/appData.json';
 
-function Warehouse() {
+function Warehouse({setNavIndex}) {
+  setNavIndex(inventoryPageIndex);
+  
   return (
     <main className="warehouse">
 

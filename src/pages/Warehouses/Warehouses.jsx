@@ -1,13 +1,15 @@
 import './warehouses.scss';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { warehousesEndpoint } from '../../data/appData.json';
+import { warehousesEndpoint, warehousesPageIndex } from '../../data/appData.json';
 import { v4 as uuidv4 } from 'uuid';
 import Hero from '../../components/Hero/Hero';
 import TableHeader from '../../components/TableHeader/TableHeader';
 import TableRow from '../../components/TableRow/TableRow';
 
-function Warehouses() {
+function Warehouses({setNavIndex}) {
+    setNavIndex(warehousesPageIndex);
+    
     const [warehouses, setWarehouses] = useState([]);
 
     const fetchWarehouses = async () => {
