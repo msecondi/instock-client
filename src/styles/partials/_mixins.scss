@@ -118,3 +118,7 @@ $primary-font: "Titilium Web", sans-serif;
   font-weight: $font-weight-regular;
   line-height: 1.1rem;
 }
+
+@mixin table-box-shadow {
+  box-shadow: 0 2px 10px rgba($primary-instock-black, 0.25);
+}

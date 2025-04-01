@@ -36,7 +36,7 @@ function TableRow({warehouse}) {
                 </div>
             </div>
             <div className="table-row__action-group">
-                <TableAction warehouseId={warehouse.id} />
+                <TableAction startOfRoute="warehouses" id={warehouse.id} />
             </div>
         </div>
     );
