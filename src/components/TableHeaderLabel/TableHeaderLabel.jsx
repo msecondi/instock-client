@@ -4,8 +4,8 @@ import SortIcon from '../../assets/icons/sort-24px.svg';
 
 function TableHeaderLabel({onClick, labelText}) {
     return (
-        <div className="table-header__column-label">
-            <label className="table-header__label">{labelText}</label>
+        <div className="table-header-label__column-label">
+            <label className="table-header-label__label">{labelText}</label>
             <Button imgSrc={SortIcon} buttonType="icon-only" onClick={onClick}/>
         </div>
     );

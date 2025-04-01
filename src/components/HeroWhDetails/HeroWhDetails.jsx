@@ -6,15 +6,15 @@ import BackIcon from '../../assets/icons/arrow_back-24px.svg';
 
 function HeroWhDetails({heroTitle, id}) {
     return (
-        <section className="hero">
-            <div className="hero__heading">
-                <Link className="hero__link hero__link--heading" to="/">
-                    <img className="hero__back-icon" src={BackIcon} alt="Back Icon" />
-                    <h1 className="hero__title">{heroTitle ?? 'Warehouse Name not Found'}</h1>
+        <section className="hero-wh-details">
+            <div className="hero-wh-details__heading">
+                <Link className="hero-wh-details__link hero-wh-details__link--heading" to="/">
+                    <img className="hero-wh-details__back-icon" src={BackIcon} alt="Back Icon" />
+                    <h1 className="hero-wh-details__title">{heroTitle ?? 'Warehouse Name not Found'}</h1>
                 </Link>
             </div>
-            <div className="hero__controls">
-                <Link className="hero__link" to={`/warehouses/${id}/edit`}>
+            <div className="hero-wh-details__controls">
+                <Link className="hero-wh-details__link" to={`/warehouses/${id}/edit`}>
                     <Button buttonText="Edit" imgSrc={EditIcon}/>
                 </Link>
             </div>

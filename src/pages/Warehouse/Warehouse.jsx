@@ -9,7 +9,7 @@ import WhDetails from '../../components/WhDetails/WhDetails';
 import TableHeader from '../../components/TableHeader/TableHeader';
 import TableRowInventory from '../../components/TableRowInventory/TableRowInventory';
 
-function Warehouses({setNavIndex}) {
+function Warehouse({setNavIndex}) {
     useEffect(() => {
         setNavIndex(warehousesPageIndex);
     }, []);
@@ -23,7 +23,7 @@ function Warehouses({setNavIndex}) {
             const warehouseResponse = await axios.get(`${warehousesEndpoint}/${id}`);
             setWarehouseDetails(warehouseResponse.data);
         } catch (error) {
-            console.log(`Could not load warehouses details: ${error}`);
+            console.log(`Could not load warehouse details: ${error}`);
         }
     }
 
@@ -52,14 +52,14 @@ function Warehouses({setNavIndex}) {
     const tableLabels = ['INVENTORY ITEM', 'CATEGORY', 'STATUS', 'QUANTITY'];
 
     return (
-        <main className="warehouses">
-            <div className="warehouses__page-background">
+        <main className="warehouse">
+            <div className="warehouse__page-background">
 
             </div>
-            <div className="warehouses__page-foreground">
+            <div className="warehouse__page-foreground">
                 <HeroWhDetails heroTitle={warehouseDetails.warehouse_name} id={id}/>
                 <WhDetails warehouseDetails={warehouseDetails} />
-                <section className="warehouses__table">
+                <section className="warehouse__table">
                     <TableHeader labels={tableLabels}/>
                     {renderInventory()}
                 </section>
@@ -68,4 +68,4 @@ function Warehouses({setNavIndex}) {
     );
 }
 
-export default Warehouses;
+export default Warehouse;
