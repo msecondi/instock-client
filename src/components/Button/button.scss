@@ -24,8 +24,11 @@
     }
 
     &__text {
+        @include m-labels-links-buttons;
         display: none;
+
         @include tablet-and-desktop {
+            @include labels-links-buttons;
             display: block;
         }
     }
@@ -79,6 +82,14 @@
         &:hover {
             background-color: $primary-instock-black;
         }
+    }
+
+    &--icon-only {
+        background-color: transparent;
+        margin: 0;
+        padding: 0;
+        width: auto;
+        height: auto;
     }
 
     &--width-img {
