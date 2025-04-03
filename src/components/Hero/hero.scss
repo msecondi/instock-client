@@ -71,6 +71,7 @@
         @include tablet-and-desktop {
             margin-bottom: 0;
             width: auto;
+            min-width: 12.5rem;
         }
 
         &--right-margin {
@@ -106,5 +107,6 @@
 
     &__link {
         text-decoration: none;
+        width: 100%;
     }
 }

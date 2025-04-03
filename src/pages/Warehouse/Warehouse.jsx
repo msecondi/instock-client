@@ -6,10 +6,10 @@ import { warehousesEndpoint, warehousesPageIndex } from '../../data/appData.json
 import { v4 as uuidv4 } from 'uuid';
 import HeroWhDetails from '../../components/HeroWhDetails/HeroWhDetails';
 import WhDetails from '../../components/WhDetails/WhDetails';
-import TableHeaderWhDetails from '../../components/TableHeaderWhDetails/TableHeaderWhDetails';
-import TableRowWhDetails from '../../components/TableRowWhDetails/TableRowWhDetails';
+import TableHeader from '../../components/TableHeader/TableHeader';
+import TableRowInventory from '../../components/TableRowInventory/TableRowInventory';
 
-function Warehouses({setNavIndex}) {
+function Warehouse({setNavIndex}) {
     useEffect(() => {
         setNavIndex(warehousesPageIndex);
     }, []);
@@ -23,7 +23,7 @@ function Warehouses({setNavIndex}) {
             const warehouseResponse = await axios.get(`${warehousesEndpoint}/${id}`);
             setWarehouseDetails(warehouseResponse.data);
         } catch (error) {
-            console.log(`Could not load warehouses details: ${error}`);
+            console.log(`Could not load warehouse details: ${error}`);
         }
     }
 
@@ -39,7 +39,7 @@ function Warehouses({setNavIndex}) {
     const renderInventory = () => {
         return warehouseInventory.map((inventory) => {
             return (
-                <TableRowWhDetails inventory={inventory} key={uuidv4()}/>
+                <TableRowInventory inventory={inventory} key={uuidv4()}/>
             );
         });
     }
@@ -49,16 +49,18 @@ function Warehouses({setNavIndex}) {
         fetchWarehouseInventory();
     }, []);
 
+    const tableLabels = ['INVENTORY ITEM', 'CATEGORY', 'STATUS', 'QUANTITY'];
+
     return (
-        <main className="warehouses">
-            <div className="warehouses__page-background">
+        <main className="warehouse">
+            <div className="warehouse__page-background">
 
             </div>
-            <div className="warehouses__page-foreground">
+            <div className="warehouse__page-foreground">
                 <HeroWhDetails heroTitle={warehouseDetails.warehouse_name} id={id}/>
                 <WhDetails warehouseDetails={warehouseDetails} />
-                <section className="warehouses__table">
-                    <TableHeaderWhDetails />
+                <section className="warehouse__table">
+                    <TableHeader labels={tableLabels}/>
                     {renderInventory()}
                 </section>
             </div>
@@ -66,4 +68,4 @@ function Warehouses({setNavIndex}) {
     );
 }
 
-export default Warehouses;
+export default Warehouse;

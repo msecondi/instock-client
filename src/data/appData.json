@@ -1,6 +1,7 @@
 {
     "apiUrl": "http://localhost:8080/",
     "warehousesEndpoint": "http://localhost:8080/warehouses",
+    "inventoriesEndpoint": "http://localhost:8080/inventories",
     "warehousesPageIndex": 0,
     "inventoryPageIndex": 1
 }
