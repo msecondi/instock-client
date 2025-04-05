@@ -1,19 +1,10 @@
 @use "../../styles/partials/variables.scss" as *;
 @use "../../styles/partials/mixins.scss" as *;
 
-.edit-warehouse {
-  width: 100%;
-  max-width: 74rem; // 1184px converted to rem
+.edit-warehouse { 
   margin: 0 auto;
   padding: 1rem;
   background-color: $background-light-grey; // Using your variable
-
-  // Container for the form
-  &__container {
-    background-color: $primary-instock-white; // Using your variable
-    border-radius: 0.25rem;
-    box-shadow: 0 0.125rem 0.3125rem rgba(19, 24, 44, 0.1);
-  }
 
   // Responsive adjustments
   @media screen and (min-width: 48rem) {

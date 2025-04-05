@@ -106,17 +106,17 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
   };
 
   return (
-    <div className="warehouse-form">
-      <div className="warehouse-form__header">
-        <button className="warehouse-form__back-button" onClick={handleCancel}>
+    <div className="warehouse">
+      <div className="warehouse__header">
+        <button className="warehouse__back-button" onClick={handleCancel}>
           <img src={ArrowIcon} alt="Back" />
         </button>
-        <h1 className="warehouse-form__title">
+        <h1 className="warehouse__title">
           {isEditMode ? "Edit Warehouse" : "Add New Warehouse"}
         </h1>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="warehouse-form">
         <section className="warehouse-form__section">
           <h2 className="warehouse-form__section-title">Warehouse Details</h2>
 
