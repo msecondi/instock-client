@@ -1,0 +1,98 @@
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.25rem;
+    width: 100%;
+    border-radius: 1.25rem;
+    border: none;
+
+    @include tablet-and-desktop {
+        height: 2.375rem;
+        width: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    &__img {
+        @include tablet-and-desktop {
+            margin-right: 0.25rem;
+        }
+    }
+
+    &__text {
+        @include m-labels-links-buttons;
+        display: none;
+
+        @include tablet-and-desktop {
+            @include labels-links-buttons;
+            display: block;
+        }
+    }
+
+    &--nav {
+        color: $primary-instock-white;
+        background-color: $background-graphite;
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &--nav-active {
+        color: $primary-instock-white;
+        background-color: $primary-instock-black;
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &--primary {
+        color: $primary-instock-white;
+        background-color: $primary-instock-indigo;
+
+        &:hover {
+            background-color: $primary-instock-black;
+        }
+    }
+
+    &--secondary {
+        color: $secondary-slate;
+        background-color: $primary-instock-white;
+        border: 1px solid $secondary-cloud;
+
+        &:hover {
+            color: $primary-instock-indigo;
+            border: 1px solid $primary-instock-indigo;
+        }
+    }
+
+    &--delete {
+        color: $primary-instock-white;
+        background-color: $support-red;
+
+        &:hover {
+            background-color: $primary-instock-black;
+        }
+    }
+
+    &--icon-only {
+        background-color: transparent;
+        margin: 0;
+        padding: 0;
+        width: auto;
+        height: auto;
+    }
+
+    &--width-img {
+        width: auto;
+    }
+}

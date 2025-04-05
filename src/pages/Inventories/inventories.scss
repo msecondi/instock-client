@@ -1,0 +1,38 @@
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.inventories {
+    position: relative;
+
+    &__page-background {
+        background-color: $background-graphite;
+        position: absolute;
+        width: 100%;
+        height: 3.75rem;
+        z-index: -1;
+
+        @include tablet-and-desktop {
+            height: 7rem;
+        }
+    }
+
+    &__page-foreground {
+        margin-left: $m-site-wide-left-right-padding;
+        margin-right: $m-site-wide-left-right-padding;
+        background-color: $primary-instock-white;
+        border-radius: 0.5rem;
+        overflow: hidden;
+
+        @include table-box-shadow;
+
+        @include tablet {
+            margin-left: $t-site-wide-left-right-padding;
+            margin-right: $t-site-wide-left-right-padding;
+        }
+    
+        @include desktop {
+            margin-left: $site-wide-left-right-padding;
+            margin-right: $site-wide-left-right-padding;
+        }
+    }
+}

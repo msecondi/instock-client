@@ -1,0 +1,31 @@
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.table-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__link {
+        @include m-labels-links-buttons;
+        font-weight: 400;
+        text-decoration: none;
+        color: $primary-instock-indigo;
+        margin-right: 0.25rem;
+
+        @include tablet-and-desktop {
+            @include labels-links-buttons;
+            font-weight: 400;
+        }
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__link-icon {
+        margin: 0;
+        padding: 0;
+    }
+}

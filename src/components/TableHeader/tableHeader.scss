@@ -1,0 +1,64 @@
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.table-header {
+    display: none;
+    background-color: $background-light-grey;
+    padding-left: $m-warehouse-page-left-right-padding;
+    padding-right: $m-warehouse-page-left-right-padding;
+    box-sizing: border-box;
+    height: 3rem;
+
+    @include tablet {
+        padding-left: $t-warehouse-page-left-right-padding;
+        padding-right: $t-warehouse-page-left-right-padding;
+    }
+
+    @include desktop {
+        padding-left: $warehouse-page-left-right-padding;
+        padding-right: $warehouse-page-left-right-padding;
+    }
+
+    @include tablet-and-desktop {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+    }
+
+    &__info-groups {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex: 0 0 90%;
+    }
+
+    &__column-label {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+    }
+
+    &__label {
+        @include m-labels-links-buttons;
+        font-weight: 500;
+        color: $secondary-slate;
+        margin: 0;
+
+        @include tablet-and-desktop {
+            @include labels-links-buttons;
+            font-weight: 500;
+        }
+    }
+
+    &__actions {
+        display: flex ;
+        justify-content: flex-end;
+        flex-direction: row;
+        flex: 0 0 10%;
+    }
+}

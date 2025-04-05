@@ -1,0 +1,7 @@
+@use "../styles/partials/variables" as *;
+@use "../styles/partials/mixins" as *;
+
+body {
+    background-color: $background-light-grey;
+    margin: 0;
+}
