@@ -8,7 +8,6 @@ import { warehousesPageIndex } from '../../data/appData.json';
 function EditWarehouse({ setNavIndex, onNavigate }) {
   const { id } = useParams();
   const [warehouse, setWarehouse] = useState(null);
-  const [loading, setLoading] = useState(true);
   
   // Set navigation index on component mount
   useEffect(() => {
@@ -20,12 +19,10 @@ function EditWarehouse({ setNavIndex, onNavigate }) {
     const fetchWarehouse = async () => {
       try {
         // Replace with your actual API endpoint
-        const response = await axios.get(`http://localhost:8080/api/warehouses/${id}`);
+        const response = await axios.get(`http://localhost:5174/api/warehouses/${id}`);
         setWarehouse(response.data);
       } catch (error) {
         console.error('Error fetching warehouse:', error);
-      } finally {
-        setLoading(false);
       }
     };
     

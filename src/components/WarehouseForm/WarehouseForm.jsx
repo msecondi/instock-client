@@ -8,7 +8,7 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
 
   const defaultFormValues = {
     warehouse_name: "",
-    stree_address: "",
+    street_address: "",
     city: "",
     country: "",
     contact_name: "",
@@ -56,7 +56,7 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
 
     if (name === "contact_phone") {
       // Basic phone validation found online
-      const phoneRegex = /^\+?\d.*$/; 
+      const phoneRegex = /^\+?\d.*$/;
       if (!phoneRegex.test(value)) return "Please enter a valid phone number";
     }
 
@@ -97,7 +97,7 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
 
   // Handle cancel
   const handleCancel = () => {
-    navigate("/warehouses");
+    navigate("/");
   };
 
   // Check if form has any errors
@@ -118,20 +118,22 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
 
       <form onSubmit={handleSubmit} className="warehouse-form">
         <section className="warehouse-form__section">
-          <h2 className="warehouse-form__section-title">Warehouse Details</h2>
+          <h2 className="warehouse-form__section--title">Warehouse Details</h2>
 
-          <div className="warehouse-form__field">
+          <div className="warehouse-form__section--field">
             <label htmlFor="warehouse_name">Warehouse Name</label>
             <input
               type="text"
               id="warehouse_name"
               name="warehouse_name"
-              className={`warehouse-form__input ${
+              className={`warehouse-form__section--input ${
                 isSubmitted && errors.warehouse_name
-                  ? "warehouse-form__input--error"
+                  ? "warehouse-form__section--input-error"
                   : ""
               } ${
-                touched.warehouse_name ? "warehouse-form__input--active" : ""
+                touched.warehouse_name
+                  ? "warehouse-form__section--input-active"
+                  : ""
               }`}
               value={formValues.warehouse_name}
               onChange={handleChange}
@@ -139,108 +141,124 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
               placeholder="Warehouse Name"
             />
             {isSubmitted && errors.warehouse_name && (
-              <p className="warehouse-form__error">{errors.warehouse_name}</p>
+              <p className="warehouse-form__section--error">
+                {errors.warehouse_name}
+              </p>
             )}
           </div>
 
-          <div className="warehouse-form__field">
+          <div className="warehouse-form__section--field">
             <label htmlFor="address">Street Address</label>
             <input
               type="text"
               id="address"
-              name="address"
-              className={`warehouse-form__input ${
-                isSubmitted && errors.address
-                  ? "warehouse-form__input--error"
+              name="street_address"
+              className={`warehouse-form__section--input ${
+                isSubmitted && errors.street_address
+                  ? "warehouse-form__section--input-error"
                   : ""
-              } ${touched.address ? "warehouse-form__input--active" : ""}`}
+              } ${
+                touched.address ? "warehouse-form__section--input-active" : ""
+              }`}
               value={formValues.address}
               onChange={handleChange}
               onFocus={handleFocus}
               placeholder="Street Address"
             />
-            {isSubmitted && errors.address && (
-              <p className="warehouse-form__error">{errors.address}</p>
+            {isSubmitted && errors.street_address && (
+              <p className="warehouse-form__section--error">{errors.street_address}</p>
             )}
           </div>
 
-          <div className="warehouse-form__field">
+          <div className="warehouse-form__section--field">
             <label htmlFor="city">City</label>
             <input
               type="text"
               id="city"
               name="city"
-              className={`warehouse-form__input ${
-                isSubmitted && errors.city ? "warehouse-form__input--error" : ""
-              } ${touched.city ? "warehouse-form__input--active" : ""}`}
+              className={`warehouse-form__section--input ${
+                isSubmitted && errors.city
+                  ? "warehouse-form__section--input-error"
+                  : ""
+              } ${touched.city ? "warehouse-form__section--input-active" : ""}`}
               value={formValues.city}
               onChange={handleChange}
               onFocus={handleFocus}
               placeholder="City"
             />
             {isSubmitted && errors.city && (
-              <p className="warehouse-form__error">{errors.city}</p>
+              <p className="warehouse-form__section--error">{errors.city}</p>
             )}
           </div>
 
-          <div className="warehouse-form__field">
+          <div className="warehouse-form__section--field">
             <label htmlFor="country">Country</label>
             <input
               type="text"
               id="country"
               name="country"
-              className={`warehouse-form__input ${
+              className={`warehouse-form__section--input ${
                 isSubmitted && errors.country
-                  ? "warehouse-form__input--error"
+                  ? "warehouse-form__section--input-error"
                   : ""
-              } ${touched.country ? "warehouse-form__input--active" : ""}`}
+              } ${
+                touched.country ? "warehouse-form__section--input-active" : ""
+              }`}
               value={formValues.country}
               onChange={handleChange}
               onFocus={handleFocus}
               placeholder="Country"
             />
             {isSubmitted && errors.country && (
-              <p className="warehouse-form__error">{errors.country}</p>
+              <p className="warehouse-form__section--error">{errors.country}</p>
             )}
           </div>
         </section>
 
         <section className="warehouse-form__section">
-          <h2 className="warehouse-form__section-title">Contact Details</h2>
+          <h2 className="warehouse-form__section--title">Contact Details</h2>
 
-          <div className="warehouse-form__field">
+          <div className="warehouse-form__section--field">
             <label htmlFor="contact_name">Contact Name</label>
             <input
               type="text"
               id="contact_name"
               name="contact_name"
-              className={`warehouse-form__input ${
+              className={`warehouse-form__section--input ${
                 isSubmitted && errors.contact_name
-                  ? "warehouse-form__input--error"
+                  ? "warehouse-form__section--input-error"
                   : ""
-              } ${touched.contact_name ? "warehouse-form__input--active" : ""}`}
+              } ${
+                touched.contact_name
+                  ? "warehouse-form__section--input-active"
+                  : ""
+              }`}
               value={formValues.contact_name}
               onChange={handleChange}
               onFocus={handleFocus}
               placeholder="Contact Name"
             />
             {isSubmitted && errors.contact_name && (
-              <p className="warehouse-form__error">{errors.contact_name}</p>
+              <p className="warehouse-form__section--error">
+                {errors.contact_name}
+              </p>
             )}
           </div>
 
-          <div className="warehouse-form__field">
+          <div className="warehouse-form__section--field">
             <label htmlFor="contact_position">Position</label>
             <input
               type="text"
               id="contact_position"
               name="contact_position"
-              className={`warehouse-form__input ${
+              className={`warehouse-form__section--input ${
                 isSubmitted && errors.contact_position
-                  ? "warehouse-form__input--error"
+                  ? "warehouse-form__section--input-error"
                   : ""
               } ${
-                touched.contact_position ? "warehouse-form__input--active" : ""
+                touched.contact_position
+                  ? "warehouse-form__section--input-active"
+                  : ""
               }`}
               value={formValues.contact_position}
               onChange={handleChange}
@@ -248,22 +266,26 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
               placeholder="Position"
             />
             {isSubmitted && errors.contact_position && (
-              <p className="warehouse-form__error">{errors.contact_position}</p>
+              <p className="warehouse-form__section--error">
+                {errors.contact_position}
+              </p>
             )}
           </div>
 
-          <div className="warehouse-form__field">
+          <div className="warehouse-form__section--field">
             <label htmlFor="contact_phone">Phone Number</label>
             <input
               type="tel"
               id="contact_phone"
               name="contact_phone"
-              className={`warehouse-form__input ${
+              className={`warehouse-form__section--input ${
                 isSubmitted && errors.contact_phone
-                  ? "warehouse-form__input--error"
+                  ? "warehouse-form__section--input-error"
                   : ""
               } ${
-                touched.contact_phone ? "warehouse-form__input--active" : ""
+                touched.contact_phone
+                  ? "warehouse-form__section--input-active"
+                  : ""
               }`}
               value={formValues.contact_phone}
               onChange={handleChange}
@@ -271,22 +293,26 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
               placeholder="Phone Number"
             />
             {isSubmitted && errors.contact_phone && (
-              <p className="warehouse-form__error">{errors.contact_phone}</p>
+              <p className="warehouse-form__section--error">
+                {errors.contact_phone}
+              </p>
             )}
           </div>
 
-          <div className="warehouse-form__field">
+          <div className="warehouse-form__section--field">
             <label htmlFor="contact_email">Email</label>
             <input
               type="email"
               id="contact_email"
               name="contact_email"
-              className={`warehouse-form__input ${
+              className={`warehouse-form__section--input ${
                 isSubmitted && errors.contact_email
-                  ? "warehouse-form__input--error"
+                  ? "warehouse-form__section--input-error"
                   : ""
               } ${
-                touched.contact_email ? "warehouse-form__input--active" : ""
+                touched.contact_email
+                  ? "warehouse-form__section--input-active"
+                  : ""
               }`}
               value={formValues.contact_email}
               onChange={handleChange}
@@ -294,7 +320,9 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
               placeholder="Email"
             />
             {isSubmitted && errors.contact_email && (
-              <p className="warehouse-form__error">{errors.contact_email}</p>
+              <p className="warehouse-form__section--error">
+                {errors.contact_email}
+              </p>
             )}
           </div>
         </section>

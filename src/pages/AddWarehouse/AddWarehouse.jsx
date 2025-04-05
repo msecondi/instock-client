@@ -11,15 +11,13 @@ function AddWarehouse({ setNavIndex, onNavigate }) {
 
   const handleSubmit = async (formData) => {
     try {
-      // TO DO: Replace with actual API endpoint
       const response = await axios.post(
         "http://localhost:8080/api/warehouses",
         formData
       );
       
-      // Navigate using the provided navigation function from parent
       if (onNavigate) {
-        onNavigate("/warehouses");
+        onNavigate("/");
       }
     } catch (error) {
       console.error("Error creating warehouse:", error);

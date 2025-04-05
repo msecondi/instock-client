@@ -30,160 +30,155 @@
   &__title {
     @include m-page-header;
     margin: 0;
-    color: $primary-instock-black; // Use your text color variable
+    color: $primary-instock-black; 
   }
+}
 
-  .warehouse-form {
+.warehouse-form {
+  padding: 0;
+
+  &__section {
     padding: 1.5rem;
+    border-bottom: 1px solid $secondary-cloud;
 
-    &__section {
-      // padding: 1rem;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid $secondary-cloud;
-
-      &:last-of-type {
-        border-bottom: none;
-      }
+    &:last-of-type {
+      border-bottom: none;
     }
 
-    &__section-title {
-      font-size: 1.25rem;
-      font-weight: 600;
+    &--title {
+      @include m-subheader;
       margin-top: 0;
       margin-bottom: 1.5rem;
     }
 
-    &__field {
+    &--field {
       margin-bottom: 1rem;
 
       label {
+        @include m-labels-links-buttons;
         display: block;
-        font-size: 0.8125rem; // 13px in rem
-        font-weight: 600;
         margin-bottom: 0.25rem; // 4px spacing as specified
         color: $primary-instock-black; // Use your label color variable
       }
     }
 
-    &__input {
+    &--input {
       width: 89%;
       height: 2.25rem; // 36px for mobile as specified
       padding: 0 1rem; // 16px padding as specified
       border: 1px solid $secondary-cloud; // Use your border color variable
-      border-radius: 1.25rem; // 20px radius as specified
-      font-family: inherit;
-      font-size: 0.8125rem;
+      border-radius: 1.25rem; 
 
       &::placeholder {
         color: $secondary-slate;
         font-weight: 400;
       }
-
-      &--active {
-        border-color: $secondary-slate; // Use your active border color variable
-      }
-
-      &--error {
-        border-color: $support-red; // Use your error color variable
-      }
     }
 
-    &__error {
-      color: green; // Use your error color variable
+    &--input-active {
+      border-color: $primary-instock-indigo;
+    }
+
+    &--input-error {
+      border-color: $support-red;
+    }
+
+    &--error {
+      color: $support-red; // Use your error color variable
       font-size: 0.75rem;
       margin-top: 0.25rem;
       margin-bottom: 0;
     }
-
-    &__actions {
-      display: flex;
-      justify-content: space-between;
-      padding: 1rem 0;
-      gap: 1rem;
-    }
-
-    &__button {
-      @include m-labels-links-buttons;
-      flex: 1;
-      height: 2.25rem; // Match input height on mobile
-      border-radius: 1.25rem; // 20px radius
-      text-align: center;
-
-      &--cancel {
-        background-color: $primary-instock-white;
-        border: 1px solid $secondary-cloud; // Use your button border color variable
-        color: $secondary-slate; // Use your secondary text color variable
-      }
-
-      &--save {
-        background-color: $primary-instock-indigo; // Use your button color variable (blue in the mockup)
-        border: 1px solid $primary-instock-indigo;
-        color: $primary-instock-white;
-
-        &:disabled {
-          opacity: 0.5;
-        }
-      }
-    }
   }
 
-  // Tablet styles (768px and above)
-  @media screen and (min-width: 48rem) {
-    &__header {
-      padding: 2rem 2rem 1.5rem;
-    }
-
-    form {
-      padding: 0 2rem 2rem 2rem;
-    }
-
-    &__input {
-      height: 2.375rem; // 38px for tablet and desktop as specified
-    }
-
-    &__button {
-      height: 2.375rem; // Match input height
-    }
-
-    &__section {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 1.5rem 0;
-    }
-
-    &__section-title {
-      width: 100%;
-    }
-
-    &__field {
-      flex: 1 0 calc(50% - 1rem);
-      margin-bottom: 1.5rem;
-    }
-
-    &__actions {
-      justify-content: flex-end;
-      padding: 1rem 0 0;
-
-      button {
-        flex: 0 0 auto;
-        width: 10rem; // Fixed width buttons on tablet and above
-      }
-    }
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.5rem 1.5rem;
+    gap: 1rem;
   }
 
-  // Desktop styles (1280px and above)
-  @media screen and (min-width: 80rem) {
-    &__header {
-      padding: 2rem 2.5rem 1.5rem;
+  &__button {
+    @include m-labels-links-buttons;
+    flex: 1;
+    height: 2.25rem; // Match input height on mobile
+    border-radius: 1.25rem; // 20px radius
+    text-align: center;
+
+    &--cancel {
+      background-color: $primary-instock-white;
+      border: 1px solid $secondary-cloud; // Use your button border color variable
+      color: $secondary-slate; // Use your secondary text color variable
     }
 
-    form {
-      padding: 0 2.5rem 2.5rem 2.5rem;
-    }
+    &--save {
+      background-color: $primary-instock-indigo; // Use your button color variable (blue in the mockup)
+      border: 1px solid $primary-instock-indigo;
+      color: $primary-instock-white;
 
-    &__section {
-      padding: 2rem 0;
+      &:disabled {
+        opacity: 0.5;
+      }
     }
   }
 }
+
+// Tablet styles (768px and above)
+// @media screen and (min-width: 48rem) {
+//   &__header {
+//     padding: 2rem 2rem 1.5rem;
+//   }
+
+//   form {
+//     padding: 0 2rem 2rem 2rem;
+//   }
+
+//   &__input {
+//     height: 2.375rem; // 38px for tablet and desktop as specified
+//   }
+
+//   &__button {
+//     height: 2.375rem; // Match input height
+//   }
+
+//   &__section {
+//     display: flex;
+//     flex-wrap: wrap;
+//     gap: 1rem;
+//     padding: 1.5rem 0;
+//   }
+
+//   &__section-title {
+//     width: 100%;
+//   }
+
+//   &__field {
+//     flex: 1 0 calc(50% - 1rem);
+//     margin-bottom: 1.5rem;
+//   }
+
+//   &__actions {
+//     justify-content: flex-end;
+//     padding: 1rem 0 0;
+
+//     button {
+//       flex: 0 0 auto;
+//       width: 10rem; // Fixed width buttons on tablet and above
+//     }
+//   }
+// }
+
+// Desktop styles (1280px and above)
+// @media screen and (min-width: 80rem) {
+//   &__header {
+//     padding: 2rem 2.5rem 1.5rem;
+//   }
+
+//   form {
+//     padding: 0 2.5rem 2.5rem 2.5rem;
+//   }
+
+//   &__section {
+//     padding: 2rem 0;
+//   }
+// }
