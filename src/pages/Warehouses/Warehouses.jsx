@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { warehousesEndpoint, warehousesPageIndex } from '../../data/appData.json';
 import { v4 as uuidv4 } from 'uuid';
+import { Outlet } from 'react-router-dom';
 import Hero from '../../components/Hero/Hero';
 import TableHeader from '../../components/TableHeader/TableHeader';
 import TableRow from '../../components/TableRow/TableRow';
@@ -45,6 +46,7 @@ function Warehouses({setNavIndex}) {
                     {renderWarehouses()}
                 </section>
             </div>
+            <Outlet />
         </main>
     );
 }
