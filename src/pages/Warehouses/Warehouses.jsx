@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { warehousesEndpoint, warehousesPageIndex } from '../../data/appData.json';
 import { v4 as uuidv4 } from 'uuid';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Hero from '../../components/Hero/Hero';
 import TableHeader from '../../components/TableHeader/TableHeader';
 import TableRow from '../../components/TableRow/TableRow';
@@ -14,6 +14,8 @@ function Warehouses({setNavIndex}) {
     }, []);
     
     const [warehouses, setWarehouses] = useState([]);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const currentPath = useLocation().pathname;
 
     const fetchWarehouses = async () => {
         try {
@@ -32,7 +34,15 @@ function Warehouses({setNavIndex}) {
         });
     }
 
+
     useEffect( () => { fetchWarehouses(); }, []);
+    useEffect( () => {
+        if (currentPath.includes('delete')) {
+            setIsDeleting(true);
+        } else {
+            setIsDeleting(false);
+        }
+    }, [currentPath]);
 
     const tableLabels = ['WAREHOUSE', 'ADDRESS', 'CONTACT NAME', 'CONTACT INFORMATION'];
 
@@ -46,7 +56,10 @@ function Warehouses({setNavIndex}) {
                     {renderWarehouses()}
                 </section>
             </div>
-            <Outlet />
+            <div className={`warehouses__dimming-overlay ${isDeleting ? '' : 'warehouses__dimming-overlay--hidden'}`}></div>
+            <div className={`warehouses__delete-modal ${isDeleting ? '' : 'warehouses__delete-modal--hidden'}`}>
+                <Outlet />
+            </div>
         </main>
     );
 }
