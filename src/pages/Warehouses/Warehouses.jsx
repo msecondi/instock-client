@@ -8,7 +8,7 @@ import Hero from '../../components/Hero/Hero';
 import TableHeader from '../../components/TableHeader/TableHeader';
 import TableRow from '../../components/TableRow/TableRow';
 
-function Warehouses({setNavIndex}) {
+function Warehouses({setNavIndex, setDeleteModal}) {
     useEffect(() => {
         setNavIndex(warehousesPageIndex);
     }, []);
@@ -39,8 +39,10 @@ function Warehouses({setNavIndex}) {
     useEffect( () => {
         if (currentPath.includes('delete')) {
             setIsDeleting(true);
+            setDeleteModal(true);
         } else {
             setIsDeleting(false);
+            setDeleteModal(false);
         }
     }, [currentPath]);
 

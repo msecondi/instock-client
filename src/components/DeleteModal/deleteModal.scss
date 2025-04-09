@@ -3,7 +3,25 @@
 
 .delete-modal {
     background-color: $primary-instock-white;
-    border-radius: 0.5rem;
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+
+    @include tablet-and-desktop {
+        height: auto;
+        width: 25rem;
+        border-radius: 0.5rem;
+    }
+
+    &__x-button {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    &__message {
+
+    }
 
     &__message-header {
         @include m-page-header;
@@ -26,6 +44,25 @@
         @include tablet-and-desktop {
             @include body-large;
             font-weight: 300;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+        @include tablet-and-desktop {
+            justify-content: flex-end;
+        }
+    }
+
+    &__button-link {
+        text-decoration: none;
+        width: 100%;
+
+        @include tablet-and-desktop {
+            width: auto;
         }
     }
 }

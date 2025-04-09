@@ -1,12 +1,12 @@
 import './deleteModal.scss';
-import { useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {warehousesEndpoint, inventoriesEndpoint } from '../../data/appData.json';
 import Button from '../Button/Button';
 import CloseIcon from '../../assets/icons/close-24px.svg';
 
-function DeleteModal({ setDeleteModal }) {
+function DeleteModal() {
   const [messageHeading, setMessageHeading] = useState('');
   const [messageText, setMessageText] = useState('');
 
@@ -52,9 +52,15 @@ function DeleteModal({ setDeleteModal }) {
     }
   }
 
-  useEffect(() => {
-    setDeleteModal(true);
+  const onClickDelete = async () => {
+    try {
+      console.log('Delete was clicked');
+    } catch (error) {
+      console.log(`Could not delete item id: ${id}, error: ${error.message}`);
+    }
+  }
 
+  useEffect(() => {
     if (isWarehouse) {  
       setWarehouseMessage();
     }
@@ -67,8 +73,10 @@ function DeleteModal({ setDeleteModal }) {
 
   return (
     <div className="delete-modal">
-      <div className="delete-modal__close-button">
-        <Button buttonText="" buttonType="icon-only" imgSrc={CloseIcon}/>
+      <div className="delete-modal__x-button">
+        <Link className="delete-modal__x-button-link" to={`${isWarehouse ? '/' : isInventory ? '/inventories' : ''}`}>
+          <Button buttonText="" buttonType="icon-only" imgSrc={CloseIcon}/>
+        </Link>
       </div>
       <div className="delete-modal__message">
         <h2 className="delete-modal__message-header">
@@ -79,8 +87,12 @@ function DeleteModal({ setDeleteModal }) {
         </p>
       </div>
       <div className="delete-modal__buttons">
-        <Button buttonText="Cancel" buttonType="delete"/>
-        <Button buttonText="Delete" buttonType="secondary"/>
+        <Link className="delete-modal__button-link" to={`${isWarehouse ? '/' : isInventory ? '/inventories' : ''}`}>
+          <Button buttonText="Cancel" buttonType="secondary"/>
+        </Link>
+        <Link className="delete-modal__button-link" to={`${isWarehouse ? '/' : isInventory ? '/inventories' : ''}`}>
+          <Button buttonText="Delete" buttonType="delete" onClick={onClickDelete}/>
+        </Link>
       </div>
     </div>
   );

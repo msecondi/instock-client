@@ -26,14 +26,16 @@ function App() {
           { deleteModal && <div className="app__header--delete-modal-overlay"></div> }
         </div>
         <Routes>
-            <Route path="/" element={ <Warehouses setNavIndex={setNavIndex}/> }>
-              <Route path="/warehouses/:id/delete" element={ <DeleteModal setDeleteModal={setDeleteModal}/> }/>
+            <Route path="/" element={ <Warehouses setNavIndex={setNavIndex} setDeleteModal={setDeleteModal}/> }>
+              <Route path="/warehouses/:id/delete" element={ <DeleteModal /> }/>
             </Route>
             <Route path="/warehouses/add" element={ <AddWarehouse setNavIndex={setNavIndex}/> }/>
-            <Route path="/warehouses/:id" element={ <Warehouse setNavIndex={setNavIndex}/> }/>
+            <Route path="/warehouses/:id" element={ <Warehouse setNavIndex={setNavIndex} setDeleteModal={setDeleteModal}/> }>
+              <Route path="/warehouses/:id/delete" element={ <DeleteModal /> }/>
+            </Route>
             <Route path="/warehouses/:id/edit" element={ <EditWarehouse setNavIndex={setNavIndex}/> }/>
-            <Route path="/inventories" element={ <Inventories setNavIndex={setNavIndex}/> }>
-              <Route path="/inventories/:id/delete" element={ <DeleteModal setDeleteModal={setDeleteModal}/> }/>
+            <Route path="/inventories" element={ <Inventories setNavIndex={setNavIndex} setDeleteModal={setDeleteModal}/> }>
+              <Route path="/inventories/:id/delete" element={ <DeleteModal /> }/>
             </Route>
             <Route path="/inventories/add" element={ <AddInventory setNavIndex={setNavIndex}/> }/>
             <Route path="/inventories/:id" element={ <Inventory setNavIndex={setNavIndex}/> }/>
