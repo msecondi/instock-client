@@ -8,6 +8,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+
+    @include tablet-and-desktop {
+        padding-top: 6rem;
+        padding-bottom: 3rem;
+    }
 
     &__text {
         @include m-body-small; 

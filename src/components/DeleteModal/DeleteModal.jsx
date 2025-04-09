@@ -6,7 +6,7 @@ import {warehousesEndpoint, inventoriesEndpoint } from '../../data/appData.json'
 import Button from '../Button/Button';
 import CloseIcon from '../../assets/icons/close-24px.svg';
 
-function DeleteModal() {
+function DeleteModal({ setDeleteModal }) {
   const [messageHeading, setMessageHeading] = useState('');
   const [messageText, setMessageText] = useState('');
 
@@ -53,6 +53,8 @@ function DeleteModal() {
   }
 
   useEffect(() => {
+    setDeleteModal(true);
+
     if (isWarehouse) {  
       setWarehouseMessage();
     }
