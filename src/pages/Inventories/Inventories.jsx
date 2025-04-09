@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { inventoriesEndpoint, inventoryPageIndex } from '../../data/appData.json';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import { Outlet } from 'react-router-dom';
 import Hero from '../../components/Hero/Hero';
 import TableHeader from '../../components/TableHeader/TableHeader';
 import TableRowInventory from '../../components/TableRowInventory/TableRowInventory';
@@ -47,6 +48,7 @@ function Inventories({setNavIndex}) {
                     {renderInventories()}
                 </section>
             </div>
+            <Outlet />
         </main>
     );
 }

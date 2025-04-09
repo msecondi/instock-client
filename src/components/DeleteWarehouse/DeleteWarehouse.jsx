@@ -17,14 +17,14 @@ function DeleteWarehouse() {
   const setWarehouseMessage = async () => {
     try {
       const warehouseResponse = await axios.get(`${warehousesEndpoint}/${id}`);
-      const warehouse = warehouseResponse.data;
-
-      if (warehouse == null || warehouse.length === 0) {
-        throw new Error(`Warehouse with id ${id} does not exist. warehouse: ${warehouse}`);
+      
+      if (warehouseResponse == null || warehouseResponse.length === 0 || 
+        warehouseResponse.data == null || warehouseResponse.data.length === 0) {
+        throw new Error(`Warehouse with id ${id} does not exist. Warehouse response: ${warehouseResponse}`);
       }
-
-      setMessageHeading(`Delete ${warehouse.warehouse_name} warehouse?`);
-      setMessageText(`Please confirm that you'd like to delete the ${warehouse.warehouse_name} warehouse from the list of warehouses. You won't be able to undo this action.`);
+      
+      setMessageHeading(`Delete ${warehouseResponse.data.warehouse_name} warehouse?`);
+      setMessageText(`Please confirm that you'd like to delete the ${warehouseResponse.data.warehouse_name} warehouse from the list of warehouses. You won't be able to undo this action.`);
 
     } catch (error) {
       console.log(`Could not load item id: ${id}, error: ${error.message}`);
@@ -35,20 +35,20 @@ function DeleteWarehouse() {
 
   const setInventoryMessage = async () => {
     try {
-      const warehouseResponse = await axios.get(`${warehousesEndpoint}/${id}`);
-      const warehouse = warehouseResponse.data;
+      const inventoryResponse = await axios.get(`${inventoriesEndpoint}/${id}`);
 
-      if (warehouse == null || warehouse.length === 0) {
-        throw new Error(`Warehouse with id ${id} does not exist. warehouse: ${warehouse}`);
+      if (inventoryResponse == null || inventoryResponse.length === 0 || 
+        inventoryResponse.data == null || inventoryResponse.data.length === 0) {
+        throw new Error(`Inventory item with id ${id} does not exist. Inventory Response: ${inventoryResponse}`);
       }
 
-      setMessageHeading(`Delete ${warehouse.warehouse_name} warehouse?`);
-      setMessageText(`Please confirm that you'd like to delete the ${warehouse.warehouse_name} warehouse from the list of warehouses. You won't be able to undo this action.`);
+      setMessageHeading(`Delete ${inventoryResponse.data.item_name} inventory item?`);
+      setMessageText(`Please confirm that you'd like to delete ${inventoryResponse.data.item_name} from the inventory list. You won't be able to undo this action.`);
 
     } catch (error) {
       console.log(`Could not load item id: ${id}, error: ${error.message}`);
       setMessageHeading('Error');
-      setMessageText(`Could not load warehouse.`);
+      setMessageText(`Could not load inventory item.`);
     }
   }
 
@@ -58,7 +58,7 @@ function DeleteWarehouse() {
     }
 
     if (isInventory) {  
-      setWarehouseMessage();
+      setInventoryMessage();
     }
       
   }, []);

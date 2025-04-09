@@ -29,11 +29,13 @@ function App() {
             <Route path="/warehouses/add" element={ <AddWarehouse setNavIndex={setNavIndex}/> }/>
             <Route path="/warehouses/:id" element={ <Warehouse setNavIndex={setNavIndex}/> }/>
             <Route path="/warehouses/:id/edit" element={ <EditWarehouse setNavIndex={setNavIndex}/> }/>
-            <Route path="/inventories" element={ <Inventories setNavIndex={setNavIndex}/> }/>
+            <Route path="/inventories" element={ <Inventories setNavIndex={setNavIndex}/> }>
+              <Route path="/inventories/:id/delete" element={ <DeleteWarehouse /> }/>
+            </Route>
             <Route path="/inventories/add" element={ <AddInventory setNavIndex={setNavIndex}/> }/>
             <Route path="/inventories/:id" element={ <Inventory setNavIndex={setNavIndex}/> }/>
             <Route path="/inventories/:id/edit" element={ <EditInventory setNavIndex={setNavIndex}/> }/>
-            <Route path="/inventories/:id/delete" element={ <DeleteInventory setNavIndex={setNavIndex}/> }/>
+            {/* <Route path="/inventories/:id/delete" element={ <DeleteInventory setNavIndex={setNavIndex}/> }/> */}
         </Routes>
         <Footer />
       </BrowserRouter>
