@@ -1,4 +1,4 @@
-import './deleteWarehouse.scss';
+import './deleteModal.scss';
 import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -6,7 +6,7 @@ import {warehousesEndpoint, inventoriesEndpoint } from '../../data/appData.json'
 import Button from '../Button/Button';
 import CloseIcon from '../../assets/icons/close-24px.svg';
 
-function DeleteWarehouse() {
+function DeleteModal() {
   const [messageHeading, setMessageHeading] = useState('');
   const [messageText, setMessageText] = useState('');
 
@@ -64,19 +64,19 @@ function DeleteWarehouse() {
   }, []);
 
   return (
-    <div className="delete-warehouse">
-      <div className="delete-warehouse__close-button">
+    <div className="delete-modal">
+      <div className="delete-modal__close-button">
         <Button buttonText="" buttonType="icon-only" imgSrc={CloseIcon}/>
       </div>
-      <div className="delete-warehouse__message">
-        <h2 className="delete-warehouse__message-header">
+      <div className="delete-modal__message">
+        <h2 className="delete-modal__message-header">
           { messageHeading }
         </h2>
-        <p className="delete-warehouse__message-text">
+        <p className="delete-modal__message-text">
           { messageText }
         </p>
       </div>
-      <div className="delete-warehouse__buttons">
+      <div className="delete-modal__buttons">
         <Button buttonText="Cancel" buttonType="delete"/>
         <Button buttonText="Delete" buttonType="secondary"/>
       </div>
@@ -84,4 +84,4 @@ function DeleteWarehouse() {
   );
 };
 
-export default DeleteWarehouse;
+export default DeleteModal;
