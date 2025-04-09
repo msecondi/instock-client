@@ -9,7 +9,7 @@
         @include m-page-header;
         font-weight: 400;
         margin: 0;
-        margin-bottom: 1rem;
+        padding: 0;
 
         @include tablet-and-desktop {
             @include page-header;
@@ -18,11 +18,13 @@
     }
 
     &__message-text {
-        @include m-labels-links-buttons;
+        @include m-body-large;
         font-weight: 300;
+        margin: 0;
+        padding: 0;
 
         @include tablet-and-desktop {
-            @include labels-links-buttons;
+            @include body-large;
             font-weight: 300;
         }
     }
