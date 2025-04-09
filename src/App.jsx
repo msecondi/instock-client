@@ -7,7 +7,7 @@ import Warehouses from './pages/Warehouses/Warehouses';
 import AddWarehouse from './pages/AddWarehouse/AddWarehouse';
 import Warehouse from './pages/Warehouse/Warehouse';
 import EditWarehouse from './pages/EditWarehouse/EditWarehouse';
-import DeleteWarehouse from './pages/DeleteWarehouse/DeleteWarehouse';
+import DeleteWarehouse from './components/DeleteWarehouse/DeleteWarehouse';
 import Inventories from './pages/Inventories/Inventories';
 import Inventory from './pages/Inventory/Inventory';
 import AddInventory from './pages/Inventory/Inventory';
@@ -23,11 +23,12 @@ function App() {
       <BrowserRouter>
         <Header navIndex={navIndex}/>
         <Routes>
-            <Route path="/" element={ <Warehouses setNavIndex={setNavIndex}/> }/>
+            <Route path="/" element={ <Warehouses setNavIndex={setNavIndex}/> }>
+              <Route path="/warehouses/:id/delete" element={ <DeleteWarehouse /> }/>
+            </Route>
             <Route path="/warehouses/add" element={ <AddWarehouse setNavIndex={setNavIndex}/> }/>
             <Route path="/warehouses/:id" element={ <Warehouse setNavIndex={setNavIndex}/> }/>
             <Route path="/warehouses/:id/edit" element={ <EditWarehouse setNavIndex={setNavIndex}/> }/>
-            <Route path="/warehouses/:id/delete" element={ <DeleteWarehouse setNavIndex={setNavIndex}/> }/>
             <Route path="/inventories" element={ <Inventories setNavIndex={setNavIndex}/> }/>
             <Route path="/inventories/add" element={ <AddInventory setNavIndex={setNavIndex}/> }/>
             <Route path="/inventories/:id" element={ <Inventory setNavIndex={setNavIndex}/> }/>
