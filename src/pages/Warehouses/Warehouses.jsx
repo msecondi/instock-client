@@ -50,8 +50,8 @@ function Warehouses({setNavIndex, setDeleteModal}) {
 
     return (
         <main className="warehouses">
-            <div className="warehouses__page-background"></div>
-            <div className="warehouses__page-foreground">
+            <div className={`warehouses__page-background ${isDeleting ? 'warehouses__page-background--hide' : ''}`}></div>
+            <div className={`warehouses__page-foreground ${isDeleting ? 'warehouses__page-foreground--hide' : ''}`}>
                 <Hero heroTitle="Warehouses" buttonText="+ Add New Warehouse" addButtonUrl={'/warehouses/add'}/>
                 <section className="warehouses__table">
                     <TableHeader labels={tableLabels}/>

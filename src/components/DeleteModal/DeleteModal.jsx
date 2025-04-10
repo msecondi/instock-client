@@ -72,28 +72,32 @@ function DeleteModal() {
   }, []);
 
   return (
-    <div className="delete-modal">
-      <div className="delete-modal__x-button">
-        <Link className="delete-modal__x-button-link" to={`${isWarehouse ? '/' : isInventory ? '/inventories' : ''}`}>
-          <Button buttonText="" buttonType="icon-only" imgSrc={CloseIcon}/>
-        </Link>
+    <div className="delete-modal__wrapper">
+      <div className="delete-modal__left-right-spacing"></div>
+      <div className="delete-modal">
+        <div className="delete-modal__x-button">
+          <Link className="delete-modal__x-button-link" to={`${isWarehouse ? '/' : isInventory ? '/inventories' : ''}`}>
+            <Button buttonText="" buttonType="icon-only" imgSrc={CloseIcon}/>
+          </Link>
+        </div>
+        <div className="delete-modal__message">
+          <h2 className="delete-modal__message-header">
+            { messageHeading }
+          </h2>
+          <p className="delete-modal__message-text">
+            { messageText }
+          </p>
+        </div>
+        <div className="delete-modal__buttons">
+          <Link className="delete-modal__button-link delete-modal__button-link--right-margin " to={`${isWarehouse ? '/' : isInventory ? '/inventories' : ''}`}>
+            <Button buttonText="Cancel" buttonType="secondary"/>
+          </Link>
+          <Link className="delete-modal__button-link" to={`${isWarehouse ? '/' : isInventory ? '/inventories' : ''}`}>
+            <Button buttonText="Delete" buttonType="delete" onClick={onClickDelete}/>
+          </Link>
+        </div>
       </div>
-      <div className="delete-modal__message">
-        <h2 className="delete-modal__message-header">
-          { messageHeading }
-        </h2>
-        <p className="delete-modal__message-text">
-          { messageText }
-        </p>
-      </div>
-      <div className="delete-modal__buttons">
-        <Link className="delete-modal__button-link" to={`${isWarehouse ? '/' : isInventory ? '/inventories' : ''}`}>
-          <Button buttonText="Cancel" buttonType="secondary"/>
-        </Link>
-        <Link className="delete-modal__button-link" to={`${isWarehouse ? '/' : isInventory ? '/inventories' : ''}`}>
-          <Button buttonText="Delete" buttonType="delete" onClick={onClickDelete}/>
-        </Link>
-      </div>
+      <div className="delete-modal__left-right-spacing"></div>
     </div>
   );
 };

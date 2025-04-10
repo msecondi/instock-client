@@ -2,25 +2,27 @@
 @use "../../styles/partials/mixins.scss" as *;
 
 .delete-modal {
+    display: flex;
+    flex-direction: column;
     background-color: $primary-instock-white;
     border-radius: 0;
     width: 100%;
     height: 100%;
+    padding: 1rem;
 
     @include tablet-and-desktop {
+        display: block;
         height: auto;
-        width: 25rem;
         border-radius: 0.5rem;
+        padding: 1rem 0rem;
+        padding-left: 5rem;
+        padding-right: 1rem;
     }
 
     &__x-button {
         display: flex;
-        width: 100%;
         justify-content: flex-end;
-    }
-
-    &__message {
-
+        width: 100%;
     }
 
     &__message-header {
@@ -28,6 +30,7 @@
         font-weight: 400;
         margin: 0;
         padding: 0;
+        padding-bottom: 1rem;
 
         @include tablet-and-desktop {
             @include page-header;
@@ -38,22 +41,33 @@
     &__message-text {
         @include m-body-large;
         font-weight: 300;
+        width: 100%;
         margin: 0;
         padding: 0;
+        padding-bottom: 2rem;
 
         @include tablet-and-desktop {
             @include body-large;
             font-weight: 300;
+            width: 75%;
         }
     }
 
     &__buttons {
+        flex-grow: 1;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: flex-end;
+        // height: 70%;
+        margin-top: auto;
+        padding: 0;
         
         @include tablet-and-desktop {
             justify-content: flex-end;
+            padding-right: 4rem;
+            padding-bottom: 2rem;
+            height: auto;
         }
     }
 
@@ -61,8 +75,36 @@
         text-decoration: none;
         width: 100%;
 
+        &--right-margin {
+            margin-right: 1rem;
+        }
+
         @include tablet-and-desktop {
             width: auto;
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 95vh;
+
+        @include tablet-and-desktop {
+            height: auto;
+        }
+    }
+
+    &__left-right-spacing {
+        width: 0%;
+
+        @include tablet {
+            width: 10%; 
+        }
+
+        @include desktop {
+            width: 65%; 
         }
     }
 }
