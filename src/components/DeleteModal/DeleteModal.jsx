@@ -54,7 +54,12 @@ function DeleteModal() {
 
   const onClickDelete = async () => {
     try {
-      console.log('Delete was clicked');
+      const response = await axios.delete(`${isWarehouse ? warehousesEndpoint : isInventory ? inventoriesEndpoint : ''}/${id}`);
+
+      if (response == null || response.length === 0 || response.status !== 204) {
+        throw new Error(`Delete operation response was unexpected.  id: ${id}, response: ${response}`);
+      }
+
     } catch (error) {
       console.log(`Could not delete item id: ${id}, error: ${error.message}`);
     }
