@@ -15,6 +15,7 @@ function Warehouses({setNavIndex, setDeleteModal}) {
     
     const [warehouses, setWarehouses] = useState([]);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [doRefresh, setDoRefresh] = useState(false);
     const currentPath = useLocation().pathname;
 
     const fetchWarehouses = async () => {
@@ -45,6 +46,12 @@ function Warehouses({setNavIndex, setDeleteModal}) {
             setDeleteModal(false);
         }
     }, [currentPath]);
+    useEffect( () => {
+        if (doRefresh) {
+            fetchWarehouses();
+            setDoRefresh(false);
+        }
+    }, [doRefresh]);
 
     const tableLabels = ['WAREHOUSE', 'ADDRESS', 'CONTACT NAME', 'CONTACT INFORMATION'];
 
@@ -60,7 +67,7 @@ function Warehouses({setNavIndex, setDeleteModal}) {
             </div>
             <div className={`warehouses__dimming-overlay ${isDeleting ? '' : 'warehouses__dimming-overlay--hidden'}`}></div>
             <div className={`warehouses__delete-modal ${isDeleting ? '' : 'warehouses__delete-modal--hidden'}`}>
-                <Outlet />
+                <Outlet context={{ setDoRefresh }}/>
             </div>
         </main>
     );

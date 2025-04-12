@@ -1,5 +1,5 @@
 import './deleteModal.scss';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams, useOutletContext } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {warehousesEndpoint, inventoriesEndpoint } from '../../data/appData.json';
@@ -52,6 +52,7 @@ function DeleteModal() {
     }
   }
 
+  const { setDoRefresh } = useOutletContext(); 
   const onClickDelete = async () => {
     try {
       const response = await axios.delete(`${isWarehouse ? warehousesEndpoint : isInventory ? inventoriesEndpoint : ''}/${id}`);
@@ -60,6 +61,7 @@ function DeleteModal() {
         throw new Error(`Delete operation response was unexpected.  id: ${id}, response: ${response}`);
       }
 
+      setDoRefresh(true);
     } catch (error) {
       console.log(`Could not delete item id: ${id}, error: ${error.message}`);
     }
