@@ -1,13 +1,14 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.warehouse {
+.warehousebox {
   @include m-subheader;
-  // width: 100%;
   background-color: $primary-instock-white;
   border-radius: 0.25rem;
   box-shadow: 0 0.125rem 0.3125rem rgba(19, 24, 44, 0.1);
-
+  position: relative;
+  margin-top: -75px;
+  
   &__header {
     display: flex;
     align-items: center;
@@ -32,6 +33,10 @@
     margin: 0;
     color: $primary-instock-black; 
   }
+
+  // @include tablet {
+
+  // }
 }
 
 .warehouse-form {
@@ -123,62 +128,3 @@
   }
 }
 
-// Tablet styles (768px and above)
-// @media screen and (min-width: 48rem) {
-//   &__header {
-//     padding: 2rem 2rem 1.5rem;
-//   }
-
-//   form {
-//     padding: 0 2rem 2rem 2rem;
-//   }
-
-//   &__input {
-//     height: 2.375rem; // 38px for tablet and desktop as specified
-//   }
-
-//   &__button {
-//     height: 2.375rem; // Match input height
-//   }
-
-//   &__section {
-//     display: flex;
-//     flex-wrap: wrap;
-//     gap: 1rem;
-//     padding: 1.5rem 0;
-//   }
-
-//   &__section-title {
-//     width: 100%;
-//   }
-
-//   &__field {
-//     flex: 1 0 calc(50% - 1rem);
-//     margin-bottom: 1.5rem;
-//   }
-
-//   &__actions {
-//     justify-content: flex-end;
-//     padding: 1rem 0 0;
-
-//     button {
-//       flex: 0 0 auto;
-//       width: 10rem; // Fixed width buttons on tablet and above
-//     }
-//   }
-// }
-
-// Desktop styles (1280px and above)
-// @media screen and (min-width: 80rem) {
-//   &__header {
-//     padding: 2rem 2.5rem 1.5rem;
-//   }
-
-//   form {
-//     padding: 0 2.5rem 2.5rem 2.5rem;
-//   }
-
-//   &__section {
-//     padding: 2rem 0;
-//   }
-// }

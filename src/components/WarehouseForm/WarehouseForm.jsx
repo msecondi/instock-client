@@ -8,7 +8,7 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
 
   const defaultFormValues = {
     warehouse_name: "",
-    street_address: "",
+    address: "",
     city: "",
     country: "",
     contact_name: "",
@@ -18,9 +18,17 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
   };
 
   // Form states
-  const [formValues, setFormValues] = useState(
-    initialValues || defaultFormValues
-  );
+  const [formValues, setFormValues] = useState(() => {
+    if (!initialValues) return defaultFormValues;
+
+    const processedValues = {};
+    Object.keys(defaultFormValues).forEach((key) => {
+      processedValues[key] = initialValues[key]?.toString() || "";
+    });
+
+    return processedValues;
+  });
+
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -28,7 +36,12 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
   // Update form when initialValues change (for edit mode)
   useEffect(() => {
     if (initialValues) {
-      setFormValues(initialValues);
+      // Ensure all values are strings and all keys are present
+      const updatedValues = {};
+      Object.keys(defaultFormValues).forEach((key) => {
+        updatedValues[key] = initialValues[key]?.toString() || "";
+      });
+      setFormValues(updatedValues);
     }
   }, [initialValues]);
 
@@ -39,6 +52,14 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
       ...formValues,
       [name]: value,
     });
+
+    // Clear error when typing after submission
+    if (isSubmitted) {
+      setErrors({
+        ...errors,
+        [name]: validateField(name, value),
+      });
+    }
   };
 
   // Handle focus events
@@ -52,7 +73,11 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
 
   // Validation logic
   const validateField = (name, value) => {
-    if (!value.trim()) return "This field is required";
+    // Skip validation for id field
+    if (name === "id") return "";
+    
+    // Check if value exists and is not just whitespace
+    if (!value || !value.trim()) return "This field is required";
 
     if (name === "contact_phone") {
       // Basic phone validation found online
@@ -75,9 +100,9 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
     let isValid = true;
 
     // Validate each field
-    Object.keys(formValues).forEach((name) => {
-      const error = validateField(name, formValues[name]);
-      newErrors[name] = error;
+    Object.entries(formValues).forEach(([key, value]) => {
+      const error = validateField(key, value);
+      newErrors[key] = error;
       if (error) isValid = false;
     });
 
@@ -106,12 +131,12 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
   };
 
   return (
-    <div className="warehouse">
-      <div className="warehouse__header">
-        <button className="warehouse__back-button" onClick={handleCancel}>
+    <div className="warehousebox">
+      <div className="warehousebox__header">
+        <button className="warehousebox__back-button" onClick={handleCancel}>
           <img src={ArrowIcon} alt="Back" />
         </button>
-        <h1 className="warehouse__title">
+        <h1 className="warehousebox__title">
           {isEditMode ? "Edit Warehouse" : "Add New Warehouse"}
         </h1>
       </div>
@@ -152,9 +177,9 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
             <input
               type="text"
               id="address"
-              name="street_address"
+              name="address"
               className={`warehouse-form__section--input ${
-                isSubmitted && errors.street_address
+                isSubmitted && errors.address
                   ? "warehouse-form__section--input-error"
                   : ""
               } ${
@@ -165,8 +190,10 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
               onFocus={handleFocus}
               placeholder="Street Address"
             />
-            {isSubmitted && errors.street_address && (
-              <p className="warehouse-form__section--error">{errors.street_address}</p>
+            {isSubmitted && errors.address && (
+              <p className="warehouse-form__section--error">
+                {errors.address}
+              </p>
             )}
           </div>
 

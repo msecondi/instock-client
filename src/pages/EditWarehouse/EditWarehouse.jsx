@@ -1,13 +1,15 @@
 import './editWarehouse.scss';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import WarehouseForm from '../../components/WarehouseForm/WarehouseForm';
-import { warehousesPageIndex } from '../../data/appData.json';
+import { warehousesEndpoint, warehousesPageIndex } from '../../data/appData.json';
 
-function EditWarehouse({ setNavIndex, onNavigate }) {
+function EditWarehouse({ setNavIndex }) {
   const { id } = useParams();
   const [warehouse, setWarehouse] = useState(null);
+  const navigate = useNavigate();
   
   // Set navigation index on component mount
   useEffect(() => {
@@ -18,8 +20,7 @@ function EditWarehouse({ setNavIndex, onNavigate }) {
   useEffect(() => {
     const fetchWarehouse = async () => {
       try {
-        // Replace with your actual API endpoint
-        const response = await axios.get(`http://localhost:5174/api/warehouses/${id}`);
+        const response = await axios.get(`${warehousesEndpoint}/${id}`); 
         setWarehouse(response.data);
       } catch (error) {
         console.error('Error fetching warehouse:', error);
@@ -32,12 +33,8 @@ function EditWarehouse({ setNavIndex, onNavigate }) {
   const handleSubmit = async (formData) => {
     try {
       // PUT request for updating an existing warehouse
-      await axios.put(`http://localhost:8080/api/warehouses/${id}`, formData);
-      
-      // Navigate using the provided navigation function from parent
-      if (onNavigate) {
-        onNavigate('/');
-      }
+      await axios.patch(`${warehousesEndpoint}/${id}`, formData);
+      navigate("/"); // Redirect to the main page after successful update
     } catch (error) {
       console.error('Error updating warehouse:', error);
     }
