@@ -8,7 +8,7 @@
   box-shadow: 0 0.125rem 0.3125rem rgba(19, 24, 44, 0.1);
   position: relative;
   margin-top: -75px;
-  
+
   &__header {
     display: flex;
     align-items: center;
@@ -31,12 +31,20 @@
   &__title {
     @include m-page-header;
     margin: 0;
-    color: $primary-instock-black; 
+    color: $primary-instock-black;
   }
 
-  // @include tablet {
+  @include tablet {
+    margin-top: -7.4rem;
 
-  // }
+    &__header {
+      padding: 2rem 2rem 1.3rem 2rem;
+    }
+
+    &__title {
+      @include page-header;
+    }
+  }
 }
 
 .warehouse-form {
@@ -72,7 +80,7 @@
       height: 2.25rem; // 36px for mobile as specified
       padding: 0 1rem; // 16px padding as specified
       border: 1px solid $secondary-cloud; // Use your border color variable
-      border-radius: 1.25rem; 
+      border-radius: 1.25rem;
 
       &::placeholder {
         color: $secondary-slate;
@@ -126,5 +134,31 @@
       }
     }
   }
-}
 
+  @include tablet {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__section {
+      flex: 1 0 40%;
+      border-bottom: none;
+      border-right: 1px solid $secondary-cloud;
+      padding: 2rem;
+
+      &:last-of-type {
+        border-right: none;
+      }
+    }
+
+    &__actions {
+      width: 100%;
+      justify-content: flex-end; 
+      padding: 0 2rem 2rem; 
+
+      button {
+        flex: 0 0 auto; 
+        width: 10rem; 
+      }
+    }
+  }
+}
