@@ -6,14 +6,11 @@
   padding: 1rem;
   background-color: $background-light-grey; // Using your variable
 
-  // Responsive adjustments
-  @media screen and (min-width: 48rem) {
-    // 768px
+  @include tablet {
     padding: 1.5rem 2rem;
   }
 
-  @media screen and (min-width: 80rem) {
-    // 1280px
-    padding: 2rem 2.5rem;
+  @include desktop {
+    padding: 2rem 7.5rem;
   }
 }

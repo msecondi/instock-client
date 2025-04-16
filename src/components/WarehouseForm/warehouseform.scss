@@ -7,7 +7,7 @@
   border-radius: 0.25rem;
   box-shadow: 0 0.125rem 0.3125rem rgba(19, 24, 44, 0.1);
   position: relative;
-  margin-top: -75px;
+  margin-top: -6.25rem;
 
   &__header {
     display: flex;
@@ -44,6 +44,10 @@
     &__title {
       @include page-header;
     }
+  }
+
+  @include desktop {
+    margin-top: -7.4rem;
   }
 }
 
@@ -135,7 +139,7 @@
     }
   }
 
-  @include tablet {
+  @include tablet-and-desktop {
     display: flex;
     flex-wrap: wrap;
 
@@ -143,7 +147,8 @@
       flex: 1 0 40%;
       border-bottom: none;
       border-right: 1px solid $secondary-cloud;
-      padding: 2rem;
+      padding: 0 2rem;
+      margin: 2rem 0 2rem 0;
 
       &:last-of-type {
         border-right: none;
@@ -152,13 +157,20 @@
 
     &__actions {
       width: 100%;
-      justify-content: flex-end; 
-      padding: 0 2rem 2rem; 
+      justify-content: flex-end;
+      padding: 0 2rem 2rem;
 
       button {
-        flex: 0 0 auto; 
-        width: 10rem; 
+        flex: 0 0 auto;
+        width: auto;
+        padding: 0.5rem 1rem 0.5rem 1rem;
       }
+    }
+  }
+
+  @include desktop {
+    &__actions {
+      padding: 0 3rem 2rem;
     }
   }
 }
