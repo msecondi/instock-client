@@ -7,18 +7,18 @@
     justify-content: space-between;
     align-items: center;
     background-color: $background-graphite;
-    padding: 1.5rem $m-site-wide-left-right-padding;
+    padding: 1.5rem 1rem 5.2rem;
 
     @include tablet-and-desktop {
         flex-direction: row;
     }
 
     @include tablet {
-        padding: 2rem $t-site-wide-left-right-padding;
+        padding: 2rem 2rem 7rem;
     }
 
     @include desktop {
-        padding: 2rem $site-wide-left-right-padding;
+        padding: 2rem 8rem 7.4rem;
     }
 
     &__logo {

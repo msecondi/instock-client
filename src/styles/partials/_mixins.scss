@@ -1,7 +1,21 @@
 @use "./variables" as *;
-@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap"); //import font from google fonts
 
-$primary-font: "Titilium Web", sans-serif;
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/Fonts/TitilliumWeb-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/Fonts/TitilliumWeb-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+// Define primary font variable
+$primary-font: "Titillium Web", sans-serif;
 
 @mixin tablet {
   @media screen and (min-width: $min-tablet-breakpoint) and (max-width: $max-tablet-breakpoint) {
@@ -23,7 +37,7 @@ $primary-font: "Titilium Web", sans-serif;
 
 @mixin m-page-header {
   font-family: $primary-font;
-  font-size: 1.75rem;
+  font-size: 1.6rem; //style guide is 1.75rem
   font-weight: $font-weight-semibold;
   line-height: 2.25rem;
 }

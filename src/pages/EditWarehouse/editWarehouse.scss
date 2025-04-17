@@ -1,2 +1,16 @@
 @use "../../styles/partials/variables.scss" as *;
 @use "../../styles/partials/mixins.scss" as *;
+
+.edit-warehouse { 
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: $background-light-grey; // Using your variable
+
+  @include tablet {
+    padding: 1.5rem 2rem;
+  }
+
+  @include desktop {
+    padding: 2rem 7.5rem;
+  }
+}
