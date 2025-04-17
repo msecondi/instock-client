@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./WarehouseForm.scss";
 import ArrowIcon from "../../assets/Icons/arrow_back-24px.svg";
 
-const WarehouseForm = ({ initialValues, onSubmit, isEditMode }) => {
+const WarehouseForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) => {
   const navigate = useNavigate();
 
   const defaultFormValues = {
