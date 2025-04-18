@@ -1,0 +1,74 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.field {
+  &__input-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border: 1px solid $secondary-cloud;
+    border-radius: 1.25rem;
+    padding: 0.25rem 1rem;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    width: 100%;
+  
+    @include tablet-and-desktop {
+      margin-bottom: 0;
+      width: auto;
+      min-width: 12.5rem;
+    }
+  
+    &--active-border {
+      border-color: $primary-instock-indigo;
+    }
+  
+    &--error-border {
+      border-color: $support-red;
+    }
+  
+    &--right-margin {
+      margin-right: 0rem;
+  
+      @include tablet-and-desktop {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &__input {
+    @include m-labels-links-buttons;
+    outline: none;
+    border: none;
+    width: 100%;
+    font-weight: 500;
+
+    @include tablet-and-desktop {
+      @include labels-links-buttons;
+      font-weight: 500;
+    }
+  }
+
+  &__error-container {
+    @include m-labels-links-buttons;
+    display: none;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 400;
+
+    @include tablet-and-desktop {
+      @include labels-links-buttons;
+      font-weight: 400;
+    }
+
+    &--show {
+      display: flex;
+    }
+  }
+
+  &__error-text {
+    color: $support-red;
+  }
+}
