@@ -4,14 +4,14 @@ import SearchIcon from '../../assets/icons/search-24px.svg';
 
 const SearchFormField = () => {
     const [isActive, setIsActive] = useState(false);
-    
+
     const inputOnFocus = () => {
-        setIsActive(true);
+        setIsActive(!isActive);
     }
 
     return (
         <div className={`search search--right-margin ${isActive ? 'search--active-border' : ''}`}>
-            <input className="search__input" type="text" placeholder="Search..." onFocus={inputOnFocus}/> 
+            <input className="search__input" type="text" placeholder="Search..." onFocus={inputOnFocus} onBlur={inputOnFocus}/> 
             <button className="search__button">
                 <img className="search__icon" src={SearchIcon} alt="Search Icon" />
             </button>
