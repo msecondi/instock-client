@@ -2,7 +2,7 @@ import './textFormField.scss';
 import { useState } from 'react';
 import ErrorIcon from '../../assets/icons/error-24px.svg';
 
-const textFormField = ({ placeHolder, setInputText, isError }) => {
+const TextFormField = ({ placeHolder, setInputText, isError }) => {
     const [isActive, setIsActive] = useState(false);
 
     const inputOnFocus = (event) => {
@@ -37,4 +37,4 @@ const textFormField = ({ placeHolder, setInputText, isError }) => {
     );
 };
 
-export default textFormField;
+export default TextFormField;
