@@ -11,11 +11,10 @@
     border-radius: 1.25rem;
     padding: 0.25rem 1rem;
     box-sizing: border-box;
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
     width: 100%;
   
     @include tablet-and-desktop {
-      margin-bottom: 0;
       width: auto;
       min-width: 12.5rem;
     }
@@ -66,6 +65,10 @@
     &--show {
       display: flex;
     }
+  }
+
+  &__error-icon {
+    margin-right: 0.25rem;
   }
 
   &__error-text {
