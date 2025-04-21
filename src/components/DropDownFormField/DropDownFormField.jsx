@@ -7,6 +7,7 @@ import { ReactComponent as DropDownIcon } from '../../assets/icons/arrow_drop_do
 const DropDownFormField = ({ placeHolder, setInputText, isError, dropDownItems }) => {
     const [isActive, setIsActive] = useState(false);
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+    const [ddSelectedText, setDdSelectedText] = useState('');
 
     const inputOnFocus = (event) => {
         event.preventDefault();
@@ -24,12 +25,15 @@ const DropDownFormField = ({ placeHolder, setInputText, isError, dropDownItems }
 
     const toggleDropDown = () => {
         setIsDropDownOpen(!isDropDownOpen);
+        setIsActive(!isActive);
     }
 
     const itemSelectedOnClick = (event) => {
         event.preventDefault();
 
-        console.log(event.currentTarget.id);
+        setDdSelectedText(dropDownItems[event.currentTarget.id]);
+        console.log(ddSelectedText);
+        console.log(dropDownItems[event.currentTarget.id]);
     }
 
     const renderDropDownItems = () => {
@@ -53,7 +57,8 @@ const DropDownFormField = ({ placeHolder, setInputText, isError, dropDownItems }
                         placeholder={placeHolder} 
                         onFocus={inputOnFocus} 
                         onBlur={inputOnFocus} 
-                        onChange={inputText}/> 
+                        onChange={inputText}
+                        value={ddSelectedText}/>
                     <button className="ddField__icon-button" onClick={toggleDropDown}>
                         <DropDownIcon className={`ddField__icon-img ${isActive ? 'ddField__icon-img--active' : ''}`} />
                     </button>
