@@ -10,7 +10,7 @@ const SearchFormField = () => {
     }
 
     return (
-        <div className={`search search--right-margin ${isActive ? 'search--active-border' : ''}`}>
+        <div className={`search ${isActive ? 'search--active-border' : ''}`}>
             <input className="search__input" type="text" placeholder="Search..." onFocus={inputOnFocus} onBlur={inputOnFocus}/> 
             <button className="search__button">
                 <img className="search__icon" src={SearchIcon} alt="Search Icon" />
