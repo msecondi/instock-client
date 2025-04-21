@@ -25,7 +25,7 @@ function App() {
     <>
       <BrowserRouter>
         <Header navIndex={navIndex}/>
-        <DropDownFormField />
+        <DropDownFormField dropDownItems={['Item 1', 'Item 2', 'Item 3']} />
         <TextFormField />
         <SearchFormField />
         <Routes>
