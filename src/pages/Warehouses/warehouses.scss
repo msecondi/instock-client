@@ -11,6 +11,14 @@
         height: 3.75rem;
         z-index: -1;
 
+        &--hide {
+            display: none;
+
+            @include tablet-and-desktop {
+                display: block;
+            }
+        }
+
         @include tablet-and-desktop {
             height: 7rem;
         }
@@ -23,6 +31,14 @@
         border-radius: 0.5rem;
         overflow: hidden;
 
+        &--hide {
+            display: none;
+
+            @include tablet-and-desktop {
+                display: block;
+            }
+        }
+
         @include table-box-shadow;
 
         @include tablet {
@@ -33,6 +49,36 @@
         @include desktop {
             margin-left: $site-wide-left-right-padding;
             margin-right: $site-wide-left-right-padding;
+        }
+    }
+
+    &__dimming-overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        top: 0;
+        background-color: $background-graphite;
+        opacity: 0.75;
+
+        &--hidden {
+            display: none;
+        }
+    }
+
+    &__delete-modal {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        top: 0;
+
+        @include tablet-and-desktop {
+            top: 7rem;
+        }
+
+        &--hidden {
+            display: none;
         }
     }
 }
