@@ -52,7 +52,8 @@ const DropDownFormField = ({ placeHolder, setInputText, isError, dropDownItems }
                         type="text" 
                         placeholder={placeHolder} 
                         onFocus={inputOnFocus} 
-                        onBlur={inputOnFocus} 
+                        onBlur={inputOnFocus}
+                        readOnly={true} 
                         value={ddSelectedText}/>
                     <button className="ddField__icon-button" onClick={toggleDropDown}>
                         <DropDownIcon className={`ddField__icon-img ${isActive ? 'ddField__icon-img--active' : ''}`} />
