@@ -3,16 +3,20 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { warehousesEndpoint, warehousesPageIndex } from '../../data/appData.json';
 import { v4 as uuidv4 } from 'uuid';
+import { Outlet, useLocation } from 'react-router-dom';
 import Hero from '../../components/Hero/Hero';
 import TableHeader from '../../components/TableHeader/TableHeader';
 import TableRow from '../../components/TableRow/TableRow';
 
-function Warehouses({setNavIndex}) {
+function Warehouses({setNavIndex, setDeleteModal}) {
     useEffect(() => {
         setNavIndex(warehousesPageIndex);
     }, []);
     
     const [warehouses, setWarehouses] = useState([]);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [doRefresh, setDoRefresh] = useState(false);
+    const currentPath = useLocation().pathname;
 
     const fetchWarehouses = async () => {
         try {
@@ -31,19 +35,39 @@ function Warehouses({setNavIndex}) {
         });
     }
 
+
     useEffect( () => { fetchWarehouses(); }, []);
+    useEffect( () => {
+        if (currentPath.includes('delete')) {
+            setIsDeleting(true);
+            setDeleteModal(true);
+        } else {
+            setIsDeleting(false);
+            setDeleteModal(false);
+        }
+    }, [currentPath]);
+    useEffect( () => {
+        if (doRefresh) {
+            fetchWarehouses();
+            setDoRefresh(false);
+        }
+    }, [doRefresh]);
 
     const tableLabels = ['WAREHOUSE', 'ADDRESS', 'CONTACT NAME', 'CONTACT INFORMATION'];
 
     return (
         <main className="warehouses">
-            <div className="warehouses__page-background"></div>
-            <div className="warehouses__page-foreground">
+            <div className={`warehouses__page-background ${isDeleting ? 'warehouses__page-background--hide' : ''}`}></div>
+            <div className={`warehouses__page-foreground ${isDeleting ? 'warehouses__page-foreground--hide' : ''}`}>
                 <Hero heroTitle="Warehouses" buttonText="+ Add New Warehouse" addButtonUrl={'/warehouses/add'}/>
                 <section className="warehouses__table">
                     <TableHeader labels={tableLabels}/>
                     {renderWarehouses()}
                 </section>
+            </div>
+            <div className={`warehouses__dimming-overlay ${isDeleting ? '' : 'warehouses__dimming-overlay--hidden'}`}></div>
+            <div className={`warehouses__delete-modal ${isDeleting ? '' : 'warehouses__delete-modal--hidden'}`}>
+                <Outlet context={{ setDoRefresh }}/>
             </div>
         </main>
     );
