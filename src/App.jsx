@@ -14,6 +14,9 @@ import AddInventory from './pages/Inventory/Inventory';
 import EditInventory from './pages/EditInventory/EditInventory';
 import DeleteInventory from './pages/DeleteInventory/DeleteInventory';
 import Footer from './components/Footer/Footer';
+import DropDownFormField from './components/DropDownFormField/DropDownFormField';
+import TextFormField from './components/TextFormField/TextFormField';
+import SearchFormField from './components/SearchFormField/SearchFormField';
 
 function App() {
   const [navIndex, setNavIndex] = useState(warehousesPageIndex);
@@ -22,6 +25,9 @@ function App() {
     <>
       <BrowserRouter>
         <Header navIndex={navIndex}/>
+        <DropDownFormField />
+        <TextFormField />
+        <SearchFormField />
         <Routes>
             <Route path="/" element={ <Warehouses setNavIndex={setNavIndex}/> }/>
             <Route path="/warehouses/add" element={ <AddWarehouse setNavIndex={setNavIndex}/> }/>

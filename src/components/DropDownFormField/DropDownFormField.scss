@@ -1,7 +1,7 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.field {
+.ddField {
   &__input-box {
     display: flex;
     justify-content: center;
@@ -47,6 +47,14 @@
     @include tablet-and-desktop {
       @include labels-links-buttons;
       font-weight: 500;
+    }
+  }
+
+  &__icon-img {
+    color: $secondary-slate;
+
+    &--active {
+      color: $primary-instock-indigo;
     }
   }
 
