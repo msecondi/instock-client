@@ -1,6 +1,6 @@
 import './styles/app.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { warehousesPageIndex } from './data/appData';
 import Header from './components/Header/Header';
 import Warehouses from './pages/Warehouses/Warehouses';
@@ -21,13 +21,38 @@ import SearchFormField from './components/SearchFormField/SearchFormField';
 function App() {
   const [navIndex, setNavIndex] = useState(warehousesPageIndex);
 
+  // Temp code:
+  const [inputText, setInputText] = useState('');
+  const [isError, setIsError] = useState(false);
+  useEffect(() => {
+    if (inputText === 'show error') {
+      setIsError(true);
+    } else {
+      setIsError(false);
+    }
+  }, [inputText]);
+
+
+  const [isDdError, setIsDdError] = useState(false);
+  const [inputDdText, setInputDdText] = useState('');
+  useEffect(() => {
+    if (inputDdText === 'Item 1') {
+      setIsDdError(true);
+    } else {
+      setIsDdError(false);
+    }
+  }, [inputDdText]);
+  // Temp code:
+
   return (
     <>
       <BrowserRouter>
         <Header navIndex={navIndex}/>
-        <DropDownFormField dropDownItems={['Item 1', 'Item 2', 'Item 3']} />
-        <TextFormField />
+        {/* Temp code: */}
+        <DropDownFormField dropDownItems={['Item 1', 'Item 2', 'Item 3']} placeHolder={'Bla bla'} isError={isDdError} setInputText={setInputDdText}/>
+        <TextFormField placeHolder={'This is my placeholder'} setInputText={setInputText} isError={isError}/>
         <SearchFormField />
+        {/* Temp code: */}
         <Routes>
             <Route path="/" element={ <Warehouses setNavIndex={setNavIndex}/> }/>
             <Route path="/warehouses/add" element={ <AddWarehouse setNavIndex={setNavIndex}/> }/>
