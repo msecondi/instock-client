@@ -15,14 +15,6 @@ const DropDownFormField = ({ placeHolder, setInputText, isError, dropDownItems }
         setIsActive(!isActive);
     }
 
-    const inputText = (event) => {
-        event.preventDefault();
-
-        if (setInputText) {
-            setInputText(event.target.value);
-        }
-    }
-
     const toggleDropDown = () => {
         setIsDropDownOpen(!isDropDownOpen);
         setIsActive(!isActive);
@@ -30,8 +22,14 @@ const DropDownFormField = ({ placeHolder, setInputText, isError, dropDownItems }
 
     const itemSelectedOnClick = (event) => {
         event.preventDefault();
-        
+
         setDdSelectedText(dropDownItems[event.currentTarget.id]);
+        setIsDropDownOpen(!isDropDownOpen);
+        setIsActive(!isActive);
+
+        if (setInputText) {
+            setInputText(dropDownItems[event.currentTarget.id]);
+        }
     }
 
     const renderDropDownItems = () => {
@@ -55,7 +53,6 @@ const DropDownFormField = ({ placeHolder, setInputText, isError, dropDownItems }
                         placeholder={placeHolder} 
                         onFocus={inputOnFocus} 
                         onBlur={inputOnFocus} 
-                        onChange={inputText}
                         value={ddSelectedText}/>
                     <button className="ddField__icon-button" onClick={toggleDropDown}>
                         <DropDownIcon className={`ddField__icon-img ${isActive ? 'ddField__icon-img--active' : ''}`} />
