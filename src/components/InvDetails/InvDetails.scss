@@ -4,11 +4,8 @@
 .inv-details {
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
     align-content: center;
-    // box-sizing: border-box;
     height: auto;
-    // width: 100%;
     padding-left: $m-warehouse-page-left-right-padding;
     padding-right: $m-warehouse-page-left-right-padding;
     padding-top: 1.5rem;
@@ -17,7 +14,6 @@
     
     @include tablet-and-desktop {
         flex-direction: row;
-        // border-bottom: none;
     }
 
     @include tablet {
@@ -29,24 +25,6 @@
         padding-left: $warehouse-page-left-right-padding;
         padding-right: $warehouse-page-left-right-padding;
     }
-
-    // &__location {
-    //     display: flex;
-    //     flex-direction: row;
-    //     justify-content: space-around;
-    //     align-content: center;
-    //     box-sizing: border-box;
-    //     height: auto;
-    //     width: 100%;
-    //     border-right: none;
-    //     flex: 0 0 42%;
-    //     padding-bottom: 2rem;
-
-    //     @include tablet-and-desktop {
-    //         border-right: 1px solid $secondary-cloud;
-    //         padding-bottom: 0;
-    //     }
-    // }
 
     &__description {
         display: flex;
@@ -100,7 +78,6 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        // align-content: center;
         box-sizing: border-box;
         height: auto;
         width: 100%;
@@ -109,18 +86,11 @@
         display: flex;
         flex-direction: column;
         margin-bottom: 1.5rem;
-        // justify-content: center;
-        // align-content: center;
-        // box-sizing: border-box;
-        // height: auto;
-        // width: 100%;
     }
 
     &__quantity {
         display: flex;
         flex-direction: column;
-        // justify-content: center;
-        // align-content: center;
         box-sizing: border-box;
         height: auto;
         width: 100%;

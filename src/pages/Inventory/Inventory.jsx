@@ -13,7 +13,6 @@ function Inventory({setNavIndex}) {
 
     const {id} = useParams();
     const [invItemDetails, setInvItemDetails] = useState([]);
-    // const [invItemInventory, setInvItemInventory] = useState([]);
 
     const fetchinvItemDetails = async () => {
         try {
