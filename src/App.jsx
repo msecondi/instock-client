@@ -1,6 +1,6 @@
 import './styles/app.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { warehousesPageIndex } from './data/appData';
 import Header from './components/Header/Header';
 import Warehouses from './pages/Warehouses/Warehouses';
@@ -13,10 +13,36 @@ import Inventory from './pages/Inventory/Inventory';
 import AddInventory from './pages/Inventory/Inventory';
 import EditInventory from './pages/EditInventory/EditInventory';
 import Footer from './components/Footer/Footer';
+import DropDownFormField from './components/DropDownFormField/DropDownFormField';
+import TextFormField from './components/TextFormField/TextFormField';
+import SearchFormField from './components/SearchFormField/SearchFormField';
 
 function App() {
   const [navIndex, setNavIndex] = useState(warehousesPageIndex);
   const [deleteModal, setDeleteModal] = useState(false);
+
+  // Temp code:
+  const [inputText, setInputText] = useState('');
+  const [isError, setIsError] = useState(false);
+  useEffect(() => {
+    if (inputText === 'show error') {
+      setIsError(true);
+    } else {
+      setIsError(false);
+    }
+  }, [inputText]);
+
+
+  const [isDdError, setIsDdError] = useState(false);
+  const [inputDdText, setInputDdText] = useState('');
+  useEffect(() => {
+    if (inputDdText === 'Item 1') {
+      setIsDdError(true);
+    } else {
+      setIsDdError(false);
+    }
+  }, [inputDdText]);
+  // Temp code:
 
   return (
     <>
@@ -25,6 +51,11 @@ function App() {
           <Header navIndex={navIndex} />
           { deleteModal && <div className="app__header--delete-modal-overlay"></div> }
         </div>
+        {/* Temp code: */}
+        <DropDownFormField dropDownItems={['Item 1', 'Item 2', 'Item 3']} placeHolder={'Bla bla'} isError={isDdError} setInputText={setInputDdText}/>
+        <TextFormField placeHolder={'This is my placeholder'} setInputText={setInputText} isError={isError}/>
+        <SearchFormField />
+        {/* Temp code: */}
         <Routes>
             <Route path="/" element={ <Warehouses setNavIndex={setNavIndex} setDeleteModal={setDeleteModal}/> }>
               <Route path="/warehouses/:id/delete" element={ <DeleteModal /> }/>
