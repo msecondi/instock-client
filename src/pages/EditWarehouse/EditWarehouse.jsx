@@ -37,7 +37,7 @@ function EditWarehouse({ setNavIndex }) {
       await axios.patch(`${warehousesEndpoint}/${id}`, formData);
       navigate("/"); // Redirect to the main page after successful update
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
+      if (error.response && error.response.data) {
         setErrorMessage(error.response.data);
       } else {
         setErrorMessage("Please check all entered data and try again.");

@@ -19,6 +19,7 @@
     &__page-foreground {
         margin-left: $m-site-wide-left-right-padding;
         margin-right: $m-site-wide-left-right-padding;
+        margin-top: -4rem;
         background-color: $primary-instock-white;
         border-radius: 0.5rem;
         overflow: hidden;
@@ -36,11 +37,13 @@
         @include tablet {
             margin-left: $t-site-wide-left-right-padding;
             margin-right: $t-site-wide-left-right-padding;
+            margin-top: -6rem;
         }
     
         @include desktop {
             margin-left: $site-wide-left-right-padding;
             margin-right: $site-wide-left-right-padding;
+            margin-top: -6rem;
         }
     }
 
