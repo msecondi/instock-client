@@ -15,7 +15,7 @@ function AddWarehouse({ setNavIndex }) {
       const response = await axios.post(warehousesEndpoint, formData);
       navigate("/");
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
+      if (error.response && error.response.data) {
         setErrorMessage(error.response.data);
       } else {
         setErrorMessage("Please check all entered data and try again.");
