@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./WarehouseForm.scss";
 import ArrowIcon from "../../assets/Icons/arrow_back-24px.svg";
 
-const WarehouseForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) => {
+const WarehouseForm = ({
+  initialValues,
+  onSubmit,
+  isEditMode,
+  errorMessage,
+}) => {
   const navigate = useNavigate();
 
   const defaultFormValues = {
@@ -75,7 +80,7 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
   const validateField = (name, value) => {
     // Skip validation for id field
     if (name === "id") return "";
-    
+
     // Check if value exists and is not just whitespace
     if (!value || !value.trim()) return "This field is required";
 
@@ -144,6 +149,9 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
       <form onSubmit={handleSubmit} className="warehouse-form">
         <section className="warehouse-form__section">
           <h2 className="warehouse-form__section--title">Warehouse Details</h2>
+          {errorMessage && (
+            <p className="warehouse-form__section--error">{errorMessage}</p>
+          )}
 
           <div className="warehouse-form__section--field">
             <label htmlFor="warehouse_name">Warehouse Name</label>
@@ -191,9 +199,7 @@ const WarehouseForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
               placeholder="Street Address"
             />
             {isSubmitted && errors.address && (
-              <p className="warehouse-form__section--error">
-                {errors.address}
-              </p>
+              <p className="warehouse-form__section--error">{errors.address}</p>
             )}
           </div>
 

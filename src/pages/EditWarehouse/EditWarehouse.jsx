@@ -8,6 +8,7 @@ import { warehousesEndpoint, warehousesPageIndex } from '../../data/appData.json
 
 function EditWarehouse({ setNavIndex }) {
   const { id } = useParams();
+  const [errorMessage, setErrorMessage] = useState("");
   const [warehouse, setWarehouse] = useState(null);
   const navigate = useNavigate();
   
@@ -36,7 +37,11 @@ function EditWarehouse({ setNavIndex }) {
       await axios.patch(`${warehousesEndpoint}/${id}`, formData);
       navigate("/"); // Redirect to the main page after successful update
     } catch (error) {
-      console.error('Error updating warehouse:', error);
+      if (error.response && error.response.data && error.response.data.message) {
+        setErrorMessage(error.response.data);
+      } else {
+        setErrorMessage("Please check all entered data and try again.");
+      }
     }
   };
   
@@ -46,6 +51,7 @@ function EditWarehouse({ setNavIndex }) {
         initialValues={warehouse} // Pre-populate with existing data
         onSubmit={handleSubmit}
         isEditMode={true}
+        errorMessage={errorMessage}
       />
     </main>
   );
