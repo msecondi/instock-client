@@ -6,7 +6,7 @@ import WarehouseForm from "../../components/WarehouseForm/WarehouseForm";
 import { warehousesEndpoint, warehousesPageIndex } from "../../data/appData.json";
 
 function AddWarehouse({ setNavIndex }) {
-  const [errorMessage, setErrorMessage] = useState(""); // State for error message
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message so I can pass it as a prop to the form
   const navigate = useNavigate();
 
   const handleSubmit = async (formData) => {
@@ -16,9 +16,9 @@ function AddWarehouse({ setNavIndex }) {
       navigate("/");
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
-        setErrorMessage(error.response.data.message); // Set error message from response
+        setErrorMessage(error.response.data);
       } else {
-        setErrorMessage("An unexpected error occurred. Please try again.");
+        setErrorMessage("Please check all entered data and try again.");
       }
     }
   };

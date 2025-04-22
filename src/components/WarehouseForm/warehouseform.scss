@@ -68,6 +68,13 @@
       margin-bottom: 1.5rem;
     }
 
+    &--error {
+      color: $support-red;
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0;
+    }
+
     &--field {
       margin-bottom: 1rem;
 
@@ -101,7 +108,7 @@
     }
 
     &--error {
-      color: $support-red; // Use your error color variable
+      color: $support-red;
       font-size: 0.75rem;
       margin-top: 0.25rem;
       margin-bottom: 0;
