@@ -21,29 +21,6 @@ function App() {
   const [navIndex, setNavIndex] = useState(warehousesPageIndex);
   const [deleteModal, setDeleteModal] = useState(false);
 
-  // Temp code:
-  const [inputText, setInputText] = useState('');
-  const [isError, setIsError] = useState(false);
-  useEffect(() => {
-    if (inputText === 'show error') {
-      setIsError(true);
-    } else {
-      setIsError(false);
-    }
-  }, [inputText]);
-
-
-  const [isDdError, setIsDdError] = useState(false);
-  const [inputDdText, setInputDdText] = useState('');
-  useEffect(() => {
-    if (inputDdText === 'Item 1') {
-      setIsDdError(true);
-    } else {
-      setIsDdError(false);
-    }
-  }, [inputDdText]);
-  // Temp code:
-
   return (
     <>
       <BrowserRouter>
@@ -51,11 +28,6 @@ function App() {
           <Header navIndex={navIndex} />
           { deleteModal && <div className="app__header--delete-modal-overlay"></div> }
         </div>
-        {/* Temp code: */}
-        <DropDownFormField dropDownItems={['Item 1', 'Item 2', 'Item 3']} placeHolder={'Bla bla'} isError={isDdError} setInputText={setInputDdText}/>
-        <TextFormField placeHolder={'This is my placeholder'} setInputText={setInputText} isError={isError}/>
-        <SearchFormField />
-        {/* Temp code: */}
         <Routes>
             <Route path="/" element={ <Warehouses setNavIndex={setNavIndex} setDeleteModal={setDeleteModal}/> }>
               <Route path="/warehouses/:id/delete" element={ <DeleteModal /> }/>

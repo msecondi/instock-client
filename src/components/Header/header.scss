@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: $background-graphite;
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 6rem;
 
     @include tablet-and-desktop {
         flex-direction: row;
