@@ -1,0 +1,136 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.ddField {
+  &__box {
+    display: block;
+    border: 1px solid $secondary-cloud;
+    background-color: $primary-instock-white;
+    border-radius: 1.25rem;
+    padding: 0.25rem 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    height: 2.25rem;
+  
+    @include tablet-and-desktop {
+      width: auto;
+      min-width: 12.5rem;
+    }
+  
+    &--active-border {
+      border-color: $primary-instock-indigo;
+    }
+  
+    &--error-border {
+      border-color: $support-red;
+    }
+  
+    &--right-margin {
+      margin-right: 0rem;
+  
+      @include tablet-and-desktop {
+        margin-right: 1rem;
+      }
+    }
+
+    &--open-dropdown {
+      height: auto;
+    }
+  }
+
+  &__box-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  &__input {
+    @include m-labels-links-buttons;
+    outline: none;
+    border: none;
+    width: 100%;
+    font-weight: 500;
+
+    @include tablet-and-desktop {
+      @include labels-links-buttons;
+      font-weight: 500;
+    }
+  }
+
+  &__icon-button {
+    border: none;
+    background-color: transparent;  
+    padding: 0;
+    margin: 0;
+  }
+
+  &__icon-img {
+    color: $secondary-slate;
+
+    &--active {
+      color: $primary-instock-indigo;
+    }
+  }
+
+  &__error-container {
+    @include m-labels-links-buttons;
+    display: none;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 400;
+    margin-top: 0.25rem;
+
+    @include tablet-and-desktop {
+      @include labels-links-buttons;
+      font-weight: 400;
+    }
+
+    &--show {
+      display: flex;
+    }
+  }
+
+  &__error-icon {
+    margin-right: 0.25rem;
+  }
+
+  &__error-text {
+    color: $support-red;
+  }
+
+  &__items {
+    display: none;
+
+    &--show {
+      display: block;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: flex-start;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    width: 100%;
+
+    &:hover {
+      background-color: $background-light-grey;
+      border-radius: 1.25rem;
+    }
+  }
+
+  &__item-label {
+    @include m-labels-links-buttons;
+    font-weight: 500;
+
+    @include tablet-and-desktop {
+      @include labels-links-buttons;
+      font-weight: 500;
+    }
+  }
+}

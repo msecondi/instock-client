@@ -2,18 +2,14 @@ import './hero.scss';
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import SearchIcon from '../../assets/icons/search-24px.svg';
+import SearchFormField from '../SearchFormField/SearchFormField';
 
 function Hero({onClick, heroTitle, buttonText, addButtonUrl}) {
     return (
         <section className="hero">
             <h1 className="hero__title">{heroTitle}</h1>
             <div className="hero__controls">
-                <div className="hero__search-box hero__search-box--right-margin">
-                    <input className="hero__search-input" type="text" placeholder="Search..." /> 
-                    <button className="hero__search-button">
-                        <img className="hero__search-icon" src={SearchIcon} alt="Search Icon" />
-                    </button>
-                </div>
+                <SearchFormField />
                 <Link className="hero__link" to={addButtonUrl}>
                     <Button buttonText={buttonText} />
                 </Link>
