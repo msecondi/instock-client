@@ -37,13 +37,13 @@
         @include tablet {
             margin-left: $t-site-wide-left-right-padding;
             margin-right: $t-site-wide-left-right-padding;
-            margin-top: -6rem;
+            margin-top: auto;
         }
     
         @include desktop {
             margin-left: $site-wide-left-right-padding;
             margin-right: $site-wide-left-right-padding;
-            margin-top: -6rem;
+            margin-top: auto;
         }
     }
 
