@@ -35,7 +35,7 @@
   }
 
   @include tablet {
-    margin-top: -7.4rem;
+    margin-top: 0;
 
     &__header {
       padding: 2rem 2rem 1.3rem 2rem;
@@ -47,7 +47,7 @@
   }
 
   @include desktop {
-    margin-top: -7.4rem;
+    margin-top: 0;
   }
 }
 
