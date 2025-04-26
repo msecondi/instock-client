@@ -1,0 +1,148 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.inventory-form {
+  padding: 0;
+
+  &__section {
+    padding: 1.5rem;
+    border-bottom: 1px solid $secondary-cloud;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    &--title {
+      @include m-subheader;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    &--error {
+      color: $support-red;
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0;
+    }
+
+    &--field {
+      margin-bottom: 1rem;
+
+      label {
+        @include m-labels-links-buttons;
+        display: block;
+        margin-bottom: 0.25rem; // 4px spacing as specified
+        color: $primary-instock-black; // Use your label color variable
+      }
+    }
+
+    &--input {
+      width: 89%;
+      height: 2.25rem; // 36px for mobile as specified
+      padding: 0 1rem; // 16px padding as specified
+      border: 1px solid $secondary-cloud; // Use your border color variable
+      border-radius: 1.25rem;
+
+      &::placeholder {
+        color: $secondary-slate;
+        font-weight: 400;
+      }
+    }
+
+    &--input-active {
+      border-color: $primary-instock-indigo;
+    }
+
+    &--input-error {
+      border-color: $support-red;
+    }
+
+    &--error {
+      color: $support-red;
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0;
+    }
+
+    &--textarea {
+        height: 8rem;
+        resize: none;
+        @include m-labels-links-buttons;
+        color: $primary-instock-black; // Use your label color variable
+        padding-top: 0.5rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.5rem 1.5rem;
+    gap: 1rem;
+  }
+
+  &__button {
+    @include m-labels-links-buttons;
+    flex: 1;
+    height: 2.25rem; // Match input height on mobile
+    border-radius: 1.25rem; // 20px radius
+    text-align: center;
+
+    &--cancel {
+      background-color: $primary-instock-white;
+      border: 1px solid $secondary-cloud; // Use your button border color variable
+      color: $secondary-slate; // Use your secondary text color variable
+    }
+
+    &--save {
+      background-color: $primary-instock-indigo; // Use your button color variable (blue in the mockup)
+      border: 1px solid $primary-instock-indigo;
+      color: $primary-instock-white;
+
+      &:disabled {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  @include tablet-and-desktop {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__section {
+      flex: 1 0 40%;
+      border-bottom: none;
+      border-right: 1px solid $secondary-cloud;
+      padding: 0 2rem;
+      margin: 2rem 0 2rem 0;
+
+      &:last-of-type {
+        border-right: none;
+      }
+    }
+
+    &__actions {
+      width: 100%;
+      justify-content: flex-end;
+      padding: 0 2rem 2rem;
+
+      button {
+        flex: 0 0 auto;
+        width: auto;
+        padding: 0.5rem 1rem 0.5rem 1rem;
+      }
+    }
+  }
+
+  @include desktop {
+    &__actions {
+      padding: 0 3rem 2rem;
+    }
+  }
+}
+
+.radio-options {
+    display: flex;
+    &__indiv {
+        display: flex;
+    }
+}
