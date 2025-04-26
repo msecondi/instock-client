@@ -23,6 +23,7 @@
         background-color: $primary-instock-white;
         border-radius: 0.25rem;
         overflow: hidden;
+        @include table-box-shadow;
 
         &--hide {
             display: none;
@@ -31,8 +32,6 @@
                 display: block;
             }
         }
-
-        @include table-box-shadow;
 
         @include tablet {
             margin-left: $t-site-wide-left-right-padding;
