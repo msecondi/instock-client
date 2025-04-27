@@ -32,7 +32,6 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
 
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [categories, setCategories] = useState([]);
   const [warehouses, setWarehouses] = useState({});
   const [instock, setInstock] = useState(true);
@@ -118,6 +117,10 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
       ...prevValues,
       [name]: value,
     }));
+    setTouched((prevTouched) => ({
+        ...prevTouched,
+        [name]: true,
+      }));
   };
 
   // Focus handler
@@ -126,6 +129,14 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
     setTouched((prevTouched) => ({
       ...prevTouched,
       [name]: true,
+    }));
+  };
+  //user no longer 'touching' current form
+  const handleBlur = (event) => {
+    const { name } = event.target;
+    setTouched((prevTouched) => ({
+      ...prevTouched,
+      [name]: false,
     }));
   };
 
@@ -149,8 +160,8 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
   // Validation functions
   const validateField = (name, value) => {
     if (name === "id") return "";
-    if (formValues.status === 'In Stock' && name === 'quantity' && value <= 0) {
-        return "Quantity must be greater than 0 if item is 'In stock'"
+    if (formValues.status === 'In Stock' && name === 'quantity' && (isNaN(parseInt(value)) || parseInt(value) <= 0)) {
+        return "Quantity must be a number greater than 0 if item is 'In stock'";
     }
     if (!value || !value.trim()) return "This field is required";
     return "";
@@ -162,7 +173,6 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
 
     if (!hasErrors()) {
         onSubmit(formValues);
@@ -188,14 +198,15 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
             id="item_name"
             name="item_name"
             className={`inventory-form__section--input ${
-              isSubmitted && errors.item_name ? "inventory-form__section--input-error" : ""
+               touched.item_name && errors.item_name ? "inventory-form__section--input-error" : ""
             } ${touched.item_name ? "inventory-form__section--input-active" : ""}`}
             value={formValues.item_name}
             onChange={handleChange}
             onFocus={handleFocus}
+            onBlur={handleBlur}
             placeholder="Item Name"
           />
-          {isSubmitted && errors.item_name && (
+          {touched.item_name && errors.item_name && (
             <p className="inventory-form__section--error">{errors.item_name}</p>
           )}
         </div>
@@ -206,14 +217,15 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
             id="description"
             name="description"
             className={`inventory-form__section--input inventory-form__section--textarea ${
-              isSubmitted && errors.description ? "inventory-form__section--input-error" : ""
+              touched.description && errors.description ? "inventory-form__section--input-error" : ""
             } ${touched.description ? "inventory-form__section--input-active" : ""}`}
             value={formValues.description}
             onChange={handleChange}
             onFocus={handleFocus}
+            onBlur={handleBlur}
             placeholder="Please enter a brief description..."
           />
-          {isSubmitted && errors.description && (
+          {touched.description && errors.description && (
             <p className="inventory-form__section--error">{errors.description}</p>
           )}
         </div>
@@ -223,7 +235,6 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
           <DropDownFormField
             dropDownItems={categories.length ? categories : ["No categories found"]}
             placeHolder="Please select"
-            
             setInputText={setSelectedCategory}
           />
         </div>
@@ -243,6 +254,8 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
                 value="in-stock"
                 checked={formValues.status === "In Stock"}
                 onChange={() => handleStatusChange(true)}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
                 required
               />
               <label htmlFor="in-stock" className="item-labels">In stock</label>
@@ -271,14 +284,15 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
               id="quantity"
               name="quantity"
               className={`inventory-form__section--input ${
-                isSubmitted && errors.quantity ? "inventory-form__section--input-error" : ""
+                touched.quantity && errors.quantity ? "inventory-form__section--input-error" : ""
               } ${touched.quantity ? "inventory-form__section--input-active" : ""}`}
               value={formValues.quantity}
               onChange={handleChange}
               onFocus={handleFocus}
+              onBlur={handleBlur}
               placeholder="0"
             />
-            {isSubmitted && errors.quantity && (
+            { touched.quantity && errors.quantity && (
               <p className="inventory-form__section--error">{errors.quantity}</p>
             )}
           </div>

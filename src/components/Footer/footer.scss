@@ -15,7 +15,10 @@
     @include tablet-and-desktop {
         padding-top: 6rem;
         padding-bottom: 3rem;
-        margin-top: 8rem;
+        margin-top: 16rem;
+    }
+    @include desktop {
+        margin-top: 9.6rem
     }
 
     &__text {
