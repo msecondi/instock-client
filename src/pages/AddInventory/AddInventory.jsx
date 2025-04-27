@@ -18,7 +18,7 @@ const AddInventory = ({setNavIndex}) => {
   const handleSubmit = async (formData) => {
     try {
       setErrorMessage(""); // Clear previous errors
-      const response = await axios.post(inventoriesEndpoint, formData);
+      await axios.post(inventoriesEndpoint, formData);
       navigate("/inventories");
     } catch (error) {
       if (error.response && error.response.data) {

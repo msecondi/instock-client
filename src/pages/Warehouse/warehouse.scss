@@ -5,7 +5,7 @@
     position: relative;
 
     &__page-background {
-        // background-color: $background-graphite;
+        background-color: $background-graphite;
         position: absolute;
         width: 100%;
         height: 3.75rem;
@@ -21,7 +21,7 @@
         margin-right: $m-site-wide-left-right-padding;
         margin-top: -4.5rem;
         background-color: $primary-instock-white;
-        border-radius: 0.5rem;
+        border-radius: 0.25rem;
         overflow: hidden;
 
         @include table-box-shadow;
@@ -29,11 +29,13 @@
         @include tablet {
             margin-left: $t-site-wide-left-right-padding;
             margin-right: $t-site-wide-left-right-padding;
+            margin-top: 0;
         }
     
         @include desktop {
             margin-left: $site-wide-left-right-padding;
             margin-right: $site-wide-left-right-padding;
+            margin-top: 0;
         }
     }
 }

@@ -24,9 +24,11 @@ function AddWarehouse({ setNavIndex }) {
   };
 
   return (
-    <main className="addwarehouse">
-      <div></div>
-      <WarehouseForm onSubmit={handleSubmit} isEditMode={false} errorMessage={errorMessage} />
+    <main className="add-warehouse">
+      <div className="add-warehouse__page-background"></div>
+      <div className="add-warehouse__page-foreground">
+        <WarehouseForm onSubmit={handleSubmit} isEditMode={false} errorMessage={errorMessage} />
+      </div>
     </main>
   );
 }

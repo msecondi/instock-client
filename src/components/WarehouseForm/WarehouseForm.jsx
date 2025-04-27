@@ -136,7 +136,7 @@ const WarehouseForm = ({
   };
 
   return (
-    <div className="warehousebox">
+    <>
       <div className="warehousebox__header">
         <button className="warehousebox__back-button" onClick={handleCancel}>
           <img src={ArrowIcon} alt="Back" />
@@ -378,7 +378,7 @@ const WarehouseForm = ({
           </button>
         </div>
       </form>
-    </div>
+      </>
   );
 };
 

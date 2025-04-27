@@ -103,5 +103,9 @@
 
   @include desktop {
     margin-top: 0;
+    &__title {
+        @include page-header;
+  
+      }
   }
 }
