@@ -37,7 +37,8 @@
     }
 
     &--input {
-      width: 89%;
+      width: 100%;
+      box-sizing: border-box;
       height: 2.25rem; // 36px for mobile as specified
       padding: 0 1rem; // 16px padding as specified
       border: 1px solid $secondary-cloud; // Use your border color variable
@@ -76,8 +77,9 @@
   &__actions {
     display: flex;
     justify-content: space-between;
-    padding: 0 1.5rem 1.5rem;
+    padding: 1rem 1.5rem;
     gap: 1rem;
+    background-color: $background-light-grey
   }
 
   &__button {
@@ -123,7 +125,7 @@
     &__actions {
       width: 100%;
       justify-content: flex-end;
-      padding: 0 2rem 2rem;
+      padding: 1rem 2rem;
 
       button {
         flex: 0 0 auto;
@@ -135,14 +137,23 @@
 
   @include desktop {
     &__actions {
-      padding: 0 3rem 2rem;
+      padding: 1rem 3rem;
     }
   }
 }
 
 .radio-options {
+    opacity: 100%;
     display: flex;
     &__indiv {
         display: flex;
+        margin-right: 3rem 
+        
+    }
+    &__indiv label {
+        margin-left: 0.25rem;
+        margin-bottom: 0;
+        font-weight: $font-weight-regular;
     }
 }
+

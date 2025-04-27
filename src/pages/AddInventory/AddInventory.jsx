@@ -1,5 +1,5 @@
 import './addInventory.scss';
-import { inventoryPageIndex } from "../../data/appData.json"
+import { inventoriesEndpoint, inventoryPageIndex } from "../../data/appData.json"
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';

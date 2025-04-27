@@ -12,12 +12,12 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
   const navigate = useNavigate();
 
   const defaultFormValues = {
+    warehouse_id: "",
     item_name: "",
     description: "",
     category: "",
     status: "",
-    quantity: "",
-    warehouse_id: "",
+    quantity: ""
   };
 
   const [formValues, setFormValues] = useState(() => {
@@ -34,8 +34,12 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
   const [touched, setTouched] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [warehouses, setWarehouses] = useState([]);
+  const [warehouses, setWarehouses] = useState({});
   const [instock, setInstock] = useState(true);
+
+  //dropdown states
+  const [selectedWarehouse, setSelectedWarehouse] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   // Update formValues if initialValues change
   useEffect(() => {
@@ -62,8 +66,11 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
     const fetchWarehouses = async () => {
       try {
         const { data } = await axios.get(`${warehousesEndpoint}`);
-        const warehouseNames = data.map((warehouse) => warehouse.warehouse_name);
-        setWarehouses(warehouseNames);
+        const warehouseObj = data.reduce((acc, warehouse) => {
+            acc[warehouse.id] = warehouse.warehouse_name;
+            return acc;
+          }, {});
+        setWarehouses(warehouseObj);
       } catch (error) {
         console.error('Error fetching warehouses:', error);
       }
@@ -73,6 +80,37 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
     fetchWarehouses();
   }, []);
 
+  useEffect( () => {
+    if(selectedCategory){
+        setFormValues((prevValues) => ({
+            ...prevValues,
+            category: selectedCategory
+        }));
+    }
+    if(selectedWarehouse) {
+        const warehouseID = Object.entries(warehouses).find(warehouse => warehouse[1] === selectedWarehouse)
+
+        setFormValues((prevValues) => ({
+            ...prevValues,
+            warehouse_id: warehouseID[0]
+          }));
+    }
+  }, [selectedCategory, selectedWarehouse])
+
+  //for ongoing validation 
+  useEffect(() => {
+    const newErrors = {};
+  
+    Object.entries(formValues).forEach(([key, value]) => {
+      const error = validateField(key, value);
+      if (error) {
+        newErrors[key] = error;
+      }
+    });
+  
+    setErrors(newErrors);
+  }, [formValues]);
+
   // Input change handler
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -80,13 +118,6 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
       ...prevValues,
       [name]: value,
     }));
-
-    if (isSubmitted) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [name]: validateField(name, value),
-      }));
-    }
   };
 
   // Focus handler
@@ -104,30 +135,25 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
     if (!status) {
       setFormValues((prevValues) => ({
         ...prevValues,
+        status: 'Out of Stock',
         quantity: '0',
       }));
+    } else {
+        setFormValues((prevValues) => ({
+            ...prevValues,
+            status: 'In Stock'
+        }));
     }
   };
 
   // Validation functions
   const validateField = (name, value) => {
     if (name === "id") return "";
+    if (formValues.status === 'In Stock' && name === 'quantity' && value <= 0) {
+        return "Quantity must be greater than 0 if item is 'In stock'"
+    }
     if (!value || !value.trim()) return "This field is required";
     return "";
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-    let isValid = true;
-
-    Object.entries(formValues).forEach(([key, value]) => {
-      const error = validateField(key, value);
-      newErrors[key] = error;
-      if (error) isValid = false;
-    });
-
-    setErrors(newErrors);
-    return isValid;
   };
 
   const hasErrors = () => {
@@ -138,9 +164,9 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
     e.preventDefault();
     setIsSubmitted(true);
 
-    if (validateForm()) {
-      onSubmit(formValues);
-    }
+    if (!hasErrors()) {
+        onSubmit(formValues);
+      }
   };
 
   const handleCancel = () => {
@@ -197,7 +223,8 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
           <DropDownFormField
             dropDownItems={categories.length ? categories : ["No categories found"]}
             placeHolder="Please select"
-            isError={errors.category}
+            
+            setInputText={setSelectedCategory}
           />
         </div>
       </section>
@@ -214,6 +241,7 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
                 id="in-stock"
                 name="status"
                 value="in-stock"
+                checked={formValues.status === "In Stock"}
                 onChange={() => handleStatusChange(true)}
                 required
               />
@@ -226,6 +254,7 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
                 id="out-of-stock"
                 name="status"
                 value="out-of-stock"
+                checked={formValues.status === "Out of Stock"}
                 onChange={() => handleStatusChange(false)}
                 required
               />
@@ -258,9 +287,10 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
         <div className="inventory-form__section--field">
           <label htmlFor="warehouse">Warehouse</label>
           <DropDownFormField
-            dropDownItems={warehouses.length ? warehouses : ["No warehouses found"]}
+            dropDownItems={Object.values(warehouses).length ? Object.values(warehouses) : ["No warehouses found"]}
             placeHolder="Please select"
-            isError={errors.warehouse_id}
+            
+            setInputText={setSelectedWarehouse}
           />
         </div>
       </section>
@@ -277,9 +307,9 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
         <button
           type="submit"
           className="inventory-form__button inventory-form__button--save"
-          disabled={isSubmitted && hasErrors()}
+          disabled={hasErrors()}
         >
-          {isEditMode ? "Save" : "+ Add inventory"}
+          {isEditMode ? "Save" : "+ Add Item"}
         </button>
       </div>
     </form>

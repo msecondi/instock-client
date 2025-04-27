@@ -22,8 +22,6 @@ const DropDownFormField = ({ placeHolder, setInputText, isError, dropDownItems }
 
     const itemSelectedOnClick = (event) => {
         event.preventDefault();
-        console.log(event.currentTarget)
-        console.log(event.currentTarget.id)
         setDdSelectedText(dropDownItems[event.currentTarget.id]);
         setIsDropDownOpen(!isDropDownOpen);
         setIsActive(!isActive);
