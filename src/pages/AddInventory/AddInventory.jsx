@@ -39,10 +39,10 @@ const AddInventory = ({setNavIndex}) => {
       <div className="add-inventory__page-background" />
       <div className="add-inventory__page-foreground">
         <div className="add-inventory__header">
-          <button className="add-inventory__back-button" onClick={handleCancel}>
-            <img src={ArrowIcon} alt="Back" />
-          </button>
           <h1 className="add-inventory__title">
+            <button className="add-inventory__back-button" onClick={handleCancel}>
+              <img src={ArrowIcon} alt="Back" />
+            </button>
             Add New Inventory Item
           </h1>
         </div>
