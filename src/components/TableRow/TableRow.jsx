@@ -18,7 +18,7 @@ function TableRow({warehouse}) {
                     </div>
                     <div className="table-row__info">
                         <label className="table-row__label">ADDRESS</label>
-                        <span className="table-row__text">{warehouse.address}</span>
+                        <span className="table-row__text">{warehouse.address}, {warehouse.city}, {warehouse.country}</span>
                     </div>
                 </div>
                 <div className="table-row__info-group-2">

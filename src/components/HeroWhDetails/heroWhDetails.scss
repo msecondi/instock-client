@@ -32,14 +32,12 @@
 
     &__title {
         @include m-page-header;
-        font-weight: 400;
         color: $primary-instock-black;
         margin: 0;
         margin-left: 1rem;
 
         @include tablet-and-desktop {
             @include page-header;
-            font-weight: 400;
         }
     }
 
