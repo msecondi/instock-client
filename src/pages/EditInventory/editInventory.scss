@@ -29,13 +29,7 @@ $medium-gray: #6b7280;
   border-radius: 4px;
   padding: 4px;
 }
-input#quantity {
-  width: 80px;
-  padding-left: 15px;
-  height: 38px;
-  border: 1px solid #BDC5D5;
-  border-radius:20px;
-}
+
 
 select#category , select#warehouse_id{
   height: 38px !important;
@@ -164,7 +158,10 @@ select#category , select#warehouse_id{
           }
           
           .quantity-input {
-            max-width: 180px;
+            padding-left: 15px;
+            height: 38px;
+            border: 1px solid #BDC5D5;
+            border-radius:20px;
           }
           
           .select-wrapper {

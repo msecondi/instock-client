@@ -57,6 +57,8 @@
   &__link {
     text-decoration: none;
     width: 100%;
-    margin-left: 1rem;
+    @include tablet-and-desktop {
+      margin-left: 1rem;
+    }
   }
 }

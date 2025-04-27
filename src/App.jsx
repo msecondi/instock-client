@@ -10,7 +10,7 @@ import EditWarehouse from './pages/EditWarehouse/EditWarehouse';
 import DeleteModal from './components/DeleteModal/DeleteModal';
 import Inventories from './pages/Inventories/Inventories';
 import Inventory from './pages/Inventory/Inventory';
-import AddInventory from './pages/Inventory/Inventory';
+import AddInventory from './pages/AddInventory/AddInventory';
 import EditInventory from './pages/EditInventory/EditInventory';
 import Footer from './components/Footer/Footer';
 import DropDownFormField from './components/DropDownFormField/DropDownFormField';
