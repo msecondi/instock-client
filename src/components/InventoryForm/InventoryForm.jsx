@@ -20,13 +20,26 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
     quantity: ""
   };
 
+  //dropdown states
+  const [selectedWarehouse, setSelectedWarehouse] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(() => {
+    if (!initialValues) return "";
+    return initialValues.category;
+  });
+
   const [formValues, setFormValues] = useState(() => {
-    if (!initialValues) return defaultFormValues;
+    if (!initialValues) return defaultFormValues; //problem not recognizing initialValues
 
     const processedValues = {};
     Object.keys(defaultFormValues).forEach((key) => {
-      processedValues[key] = initialValues[key]?.toString() || "";
+        processedValues[key] = initialValues[key]?.toString() || "";
     });
+    Object.keys(initialValues).forEach((key) => {
+        if(key === 'warehouse_name') {
+            return processedValues.warehouse_id = Object.entries(warehouses).find(warehouse => warehouse[1] === selectedWarehouse)
+        }
+    });
+    console.log(processedValues)
     return processedValues;
   });
 
@@ -36,15 +49,14 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
   const [warehouses, setWarehouses] = useState({});
   const [instock, setInstock] = useState(true);
 
-  //dropdown states
-  const [selectedWarehouse, setSelectedWarehouse] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-
   // Update formValues if initialValues change
   useEffect(() => {
     if (initialValues) {
       const updatedValues = {};
       Object.keys(defaultFormValues).forEach((key) => {
+        if(key === 'id') {
+            return;
+        }
         updatedValues[key] = initialValues[key]?.toString() || "";
       });
       setFormValues(updatedValues);
@@ -79,23 +91,6 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
     fetchWarehouses();
   }, []);
 
-  useEffect( () => {
-    if(selectedCategory){
-        setFormValues((prevValues) => ({
-            ...prevValues,
-            category: selectedCategory
-        }));
-    }
-    if(selectedWarehouse) {
-        const warehouseID = Object.entries(warehouses).find(warehouse => warehouse[1] === selectedWarehouse)
-
-        setFormValues((prevValues) => ({
-            ...prevValues,
-            warehouse_id: warehouseID[0]
-          }));
-    }
-  }, [selectedCategory, selectedWarehouse])
-
   //for ongoing validation 
   useEffect(() => {
     const newErrors = {};
@@ -106,9 +101,26 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
         newErrors[key] = error;
       }
     });
-  
+    console.log(formValues)
     setErrors(newErrors);
   }, [formValues]);
+
+  
+  useEffect(() => {
+    if (initialValues) {
+        if (Object.keys(warehouses).length) {
+            // const warehouseName = warehouses[initialValues.id];
+            const warehouseName = Object.entries(warehouses).find(warehouse => warehouse[1] === initialValues.warehouse_name);
+            if (warehouseName) {
+                setSelectedWarehouse(warehouseName[1]);
+                // formValues.warehouse_id = warehouseName[0];
+            }
+        }
+        if (categories.length) {
+            setSelectedCategory(initialValues.category);
+        }
+    }
+  }, [initialValues, warehouses, categories]);
 
   // Input change handler
   const handleChange = (event) => {
@@ -152,7 +164,8 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
     } else {
         setFormValues((prevValues) => ({
             ...prevValues,
-            status: 'In Stock'
+            status: 'In Stock',
+            quantity: (initialValues.quantity.toString())
         }));
     }
   };
@@ -175,6 +188,7 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
     e.preventDefault();
 
     if (!hasErrors()) {
+        // formValues.quantity = formValues.quantity.toString();
         onSubmit(formValues);
       }
   };
@@ -234,8 +248,9 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
           <label htmlFor="category">Category</label>
           <DropDownFormField
             dropDownItems={categories.length ? categories : ["No categories found"]}
-            placeHolder="Please select"
+            placeHolder={"Please select"}
             setInputText={setSelectedCategory}
+            value={selectedCategory}
           />
         </div>
       </section>
@@ -302,8 +317,8 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
           <label htmlFor="warehouse">Warehouse</label>
           <DropDownFormField
             dropDownItems={Object.values(warehouses).length ? Object.values(warehouses) : ["No warehouses found"]}
-            placeHolder="Please select"
-            
+            placeHolder={"Please select"}
+            value={selectedWarehouse}
             setInputText={setSelectedWarehouse}
           />
         </div>
