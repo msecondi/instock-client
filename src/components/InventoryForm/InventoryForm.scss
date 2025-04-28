@@ -68,7 +68,7 @@
     &--textarea {
         height: 8rem;
         resize: none;
-        @include m-labels-links-buttons;
+        @include m-body-medium;
         color: $primary-instock-black; // Use your label color variable
         padding-top: 0.5rem;
     }

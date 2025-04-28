@@ -7,12 +7,6 @@ import { ReactComponent as DropDownIcon } from '../../assets/icons/arrow_drop_do
 const DropDownFormField = ({ value, placeHolder, setInputText, isError, dropDownItems }) => {
     const [isActive, setIsActive] = useState(false);
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-    // const [ddSelectedText, setDdSelectedText] = useState(() => {
-    //     if(value)
-    //         return value
-    //     else 
-    //         return ''
-    // });
 
     const inputOnFocus = (event) => {
         event.preventDefault();

@@ -5,7 +5,6 @@ import axios from "axios";
 import "./InventoryForm.scss";
 import { warehousesEndpoint, inventoriesEndpoint } from "../../data/appData.json";
 
-import TextFormField from '../../components/TextFormField/TextFormField';
 import DropDownFormField from '../../components/DropDownFormField/DropDownFormField';
 
 const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) => {
@@ -22,46 +21,16 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
 
   //dropdown states
   const [selectedWarehouse, setSelectedWarehouse] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState(() => {
-    if (!initialValues) return "";
-    return initialValues.category;
-  });
+  const [selectedCategory, setSelectedCategory] = useState('');
 
-  const [formValues, setFormValues] = useState(() => {
-    if (!initialValues) return defaultFormValues; //problem not recognizing initialValues
-
-    const processedValues = {};
-    Object.keys(defaultFormValues).forEach((key) => {
-        processedValues[key] = initialValues[key]?.toString() || "";
-    });
-    Object.keys(initialValues).forEach((key) => {
-        if(key === 'warehouse_name') {
-            return processedValues.warehouse_id = Object.entries(warehouses).find(warehouse => warehouse[1] === selectedWarehouse)
-        }
-    });
-    console.log(processedValues)
-    return processedValues;
-  });
+  //values in the form used for api data
+  const [formValues, setFormValues] = useState(defaultFormValues);
 
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [categories, setCategories] = useState([]);
   const [warehouses, setWarehouses] = useState({});
   const [instock, setInstock] = useState(true);
-
-  // Update formValues if initialValues change
-  useEffect(() => {
-    if (initialValues) {
-      const updatedValues = {};
-      Object.keys(defaultFormValues).forEach((key) => {
-        if(key === 'id') {
-            return;
-        }
-        updatedValues[key] = initialValues[key]?.toString() || "";
-      });
-      setFormValues(updatedValues);
-    }
-  }, [initialValues]);
 
   // Fetch categories and warehouses
   useEffect(() => {
@@ -91,6 +60,87 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
     fetchWarehouses();
   }, []);
 
+
+useEffect(() => {
+  if (initialValues) {
+    const updatedValues = { ...defaultFormValues };
+
+    // Fill form fields from initialValues
+    Object.keys(defaultFormValues).forEach((key) => {
+      updatedValues[key] = initialValues[key]?.toString() || "";
+    });
+
+    // Find warehouse match
+    if (Object.keys(warehouses).length) {
+      const warehouseEntry = Object.entries(warehouses).find(
+        ([_id, name]) => name === initialValues.warehouse_name
+      );
+      if (warehouseEntry) {
+        const [warehouseId, warehouseName] = warehouseEntry;
+        setSelectedWarehouse(warehouseName);
+        updatedValues.warehouse_id = warehouseId;
+      }
+    }
+
+    // Set category
+    if (categories.length) {
+      setSelectedCategory(initialValues.category);
+    }
+    // Set status IF initialValues has been set so quantity doesn't show when item is out of stock
+    if (initialValues.status === "Out of Stock") {
+        setInstock(false);
+    } else {
+        setInstock(true);
+    }
+
+    setFormValues(updatedValues);
+  }
+}, [initialValues, warehouses, categories]);
+
+//to update selectedWarehouse and warehouse_id
+useEffect(() => {
+    if (!selectedWarehouse || !Object.keys(warehouses).length) return;
+  
+    const warehouseEntry = Object.entries(warehouses).find(
+      ([ _id, name ]) => name === selectedWarehouse
+    );
+  
+    if (warehouseEntry) {
+      const [ warehouseId ] = warehouseEntry;
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        warehouse_id: warehouseId,
+      }));
+    }
+  }, [selectedWarehouse, warehouses]);
+
+  //to update formvalues.category when user selects category
+  useEffect(() => {
+    if (selectedCategory) {
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        category: selectedCategory,
+      }));
+    }
+  }, [selectedCategory]);
+
+  //to update status 
+  useEffect(() => {
+    if (!instock) {
+        setFormValues((prevValues) => ({
+          ...prevValues,
+          status: 'Out of Stock',
+          quantity: '0',
+        }));
+      } else {
+          setFormValues((prevValues) => ({
+              ...prevValues,
+              status: 'In Stock',
+              quantity: (initialValues ? initialValues.quantity?.toString() : '0')
+          }));
+      }
+  }, [instock])
+
   //for ongoing validation 
   useEffect(() => {
     const newErrors = {};
@@ -101,26 +151,8 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
         newErrors[key] = error;
       }
     });
-    console.log(formValues)
     setErrors(newErrors);
   }, [formValues]);
-
-  
-  useEffect(() => {
-    if (initialValues) {
-        if (Object.keys(warehouses).length) {
-            // const warehouseName = warehouses[initialValues.id];
-            const warehouseName = Object.entries(warehouses).find(warehouse => warehouse[1] === initialValues.warehouse_name);
-            if (warehouseName) {
-                setSelectedWarehouse(warehouseName[1]);
-                // formValues.warehouse_id = warehouseName[0];
-            }
-        }
-        if (categories.length) {
-            setSelectedCategory(initialValues.category);
-        }
-    }
-  }, [initialValues, warehouses, categories]);
 
   // Input change handler
   const handleChange = (event) => {
@@ -153,21 +185,8 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
   };
 
   // Status change handler (in stock / out of stock)
-  const handleStatusChange = (status) => {
-    setInstock(status);
-    if (!status) {
-      setFormValues((prevValues) => ({
-        ...prevValues,
-        status: 'Out of Stock',
-        quantity: '0',
-      }));
-    } else {
-        setFormValues((prevValues) => ({
-            ...prevValues,
-            status: 'In Stock',
-            quantity: (initialValues.quantity.toString())
-        }));
-    }
+  const handleStatusChange = (instockStatus) => {
+    setInstock(instockStatus);
   };
 
   // Validation functions
@@ -266,7 +285,7 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
                 type="radio"
                 id="in-stock"
                 name="status"
-                value="in-stock"
+                value="In Stock"
                 checked={formValues.status === "In Stock"}
                 onChange={() => handleStatusChange(true)}
                 onFocus={handleFocus}
@@ -281,7 +300,7 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
                 type="radio"
                 id="out-of-stock"
                 name="status"
-                value="out-of-stock"
+                value="Out of Stock"
                 checked={formValues.status === "Out of Stock"}
                 onChange={() => handleStatusChange(false)}
                 required
