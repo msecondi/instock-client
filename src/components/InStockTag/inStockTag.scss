@@ -1,0 +1,41 @@
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.tag {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 1.25rem;
+    width: fit-content;
+
+    @include tablet-and-desktop {
+        height: 1.625rem;
+    }
+
+    &--in-stock {
+        background-color: rgb($support-green, 0.07);
+        color:  $support-green;
+    }
+
+    &--out-of-stock {
+        background-color: rgb($support-red, 0.07);
+        color:  $support-red;
+    }
+
+    &__text {
+        @include m-labels-links-buttons;
+        font-weight: 400;
+        width: auto;
+        margin: 0;
+        padding: 0;
+
+        @include tablet-and-desktop {
+            @include labels-links-buttons;
+            font-weight: 400;
+        }
+    }
+}

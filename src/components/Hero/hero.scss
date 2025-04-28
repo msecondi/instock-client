@@ -1,0 +1,64 @@
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  flex-direction: column;
+  background-color: $primary-instock-white;
+  box-sizing: border-box;
+  width: 100%;
+  height: 12rem;
+  padding-left: $m-warehouse-page-left-right-padding;
+  padding-right: $m-warehouse-page-left-right-padding;
+  padding-top: 1.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $secondary-cloud;
+
+  @include tablet-and-desktop {
+    border-bottom: none;
+    flex-direction: row;
+    align-items: center;
+    height: 7rem;
+  }
+
+  @include tablet {
+    padding-left: $t-warehouse-page-left-right-padding;
+    padding-right: $t-warehouse-page-left-right-padding;
+  }
+
+  @include desktop {
+    padding-left: $warehouse-page-left-right-padding;
+    padding-right: $warehouse-page-left-right-padding;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @include tablet-and-desktop {
+      flex-direction: row;
+    }
+  }
+
+  &__title {
+    @include m-page-header;
+    margin: 0;
+    margin-bottom: 1rem;
+
+    @include tablet-and-desktop {
+      @include page-header;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    width: 100%;
+    @include tablet-and-desktop {
+      margin-left: 1rem;
+    }
+  }
+}
