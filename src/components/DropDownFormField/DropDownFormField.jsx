@@ -1,6 +1,5 @@
 import './DropDownFormField.scss';
 import { useState } from 'react';
-import { v4 as uuid } from 'uuid';
 import ErrorIcon from '../../assets/icons/error-24px.svg';
 import { ReactComponent as DropDownIcon } from '../../assets/icons/arrow_drop_down-24px.svg';
 

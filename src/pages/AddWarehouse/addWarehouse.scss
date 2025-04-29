@@ -2,15 +2,6 @@
 @use "../../styles/partials/mixins.scss" as *;
 
 .add-warehouse {
-  // padding: 1rem;
-
-  // @include tablet {
-  //   padding: 1.5rem 2rem;
-  // }
-
-  // @include desktop {
-  //   padding: 2rem 7.5rem;
-  // }
   @include m-subheader;
   border-radius: 0.25rem;
   position: relative;
