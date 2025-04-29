@@ -1,6 +1,4 @@
 import './tableHeader.scss';
-import Button from '../Button/Button';
-import SortIcon from '../../assets/icons/sort-24px.svg';
 import TableHeaderLabel from '../TableHeaderLabel/TableHeaderLabel';
 
 function TableHeader({labels}) {

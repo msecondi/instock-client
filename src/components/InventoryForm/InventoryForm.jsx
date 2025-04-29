@@ -60,12 +60,11 @@ const InventoryForm = ({ initialValues, onSubmit, isEditMode, errorMessage }) =>
     fetchWarehouses();
   }, []);
 
-
 useEffect(() => {
   if (initialValues) {
     const updatedValues = { ...defaultFormValues };
 
-    // Fill form fields from initialValues
+    // // Fill form fields from initialValues
     Object.keys(defaultFormValues).forEach((key) => {
       updatedValues[key] = initialValues[key]?.toString() || "";
     });
@@ -175,7 +174,7 @@ useEffect(() => {
       [name]: true,
     }));
   };
-  //user no longer 'touching' current form
+  //user no longer 'touching' current form field
   const handleBlur = (event) => {
     const { name } = event.target;
     setTouched((prevTouched) => ({
@@ -207,7 +206,6 @@ useEffect(() => {
     e.preventDefault();
 
     if (!hasErrors()) {
-        // formValues.quantity = formValues.quantity.toString();
         onSubmit(formValues);
       }
   };

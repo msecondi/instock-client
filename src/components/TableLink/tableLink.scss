@@ -25,7 +25,9 @@
     }
 
     &__link-icon {
-        margin: 0;
-        padding: 0;
+        transition: 1s ease all;
+        &:hover {
+            transform: translateX(4px);
+        }
     }
 }

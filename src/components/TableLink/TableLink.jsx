@@ -7,7 +7,7 @@ function TableLink({link}) {
     return (
         <div className="table-link">
             <Link className="table-link__link" to={link.url}>{link.text}</Link>
-            <img className="table-link_link-icon" src={linkIcon} alt="Link Icon" />
+            <img className="table-link__link-icon" src={linkIcon} alt="Link Icon" />
         </div>
     );
 }
