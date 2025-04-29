@@ -278,7 +278,7 @@ useEffect(() => {
         <div className="inventory-form__section--field radio-field">
           <label htmlFor="status">Status</label>
           <div className="radio-options">
-            <div className="radio-options__indiv">
+            <div className={`radio-options__indiv ${formValues.status !== 'In Stock' ? 'radio-options__indiv--inactive' : ''}`}>
               <input
                 type="radio"
                 id="in-stock"
@@ -293,7 +293,7 @@ useEffect(() => {
               <label htmlFor="in-stock" className="item-labels">In stock</label>
             </div>
 
-            <div className="radio-options__indiv">
+            <div className={`radio-options__indiv ${formValues.status !== 'Out of Stock' ? 'radio-options__indiv--inactive' : ''}`}>
               <input
                 type="radio"
                 id="out-of-stock"

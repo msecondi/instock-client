@@ -10,8 +10,12 @@ const DropDownFormField = ({ value, placeHolder, setInputText, isError, dropDown
 
     const inputOnFocus = (event) => {
         event.preventDefault();
+        setIsActive(true);
+    }
 
-        setIsActive(!isActive);
+    const inputOnBlur = (event) => {
+        event.preventDefault();
+        setIsActive(false);
     }
 
     const toggleDropDown = () => {
@@ -49,7 +53,7 @@ const DropDownFormField = ({ value, placeHolder, setInputText, isError, dropDown
                         type="text" 
                         placeholder={placeHolder} 
                         onFocus={inputOnFocus} 
-                        onBlur={inputOnFocus}
+                        onBlur={inputOnBlur}
                         readOnly={true} 
                         value={value || ''}
                         />
