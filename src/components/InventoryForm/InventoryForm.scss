@@ -68,7 +68,7 @@
     &--textarea {
         height: 8rem;
         resize: none;
-        @include m-labels-links-buttons;
+        @include m-body-medium;
         color: $primary-instock-black; // Use your label color variable
         padding-top: 0.5rem;
     }
@@ -147,13 +147,20 @@
     display: flex;
     &__indiv {
         display: flex;
-        margin-right: 3rem 
-        
+        margin-right: 3rem;
+        transition: 0.2s all linear;
+        &:checked {
+            width: 1px;
+            height: 1px;
+        }
     }
     &__indiv label {
         margin-left: 0.25rem;
         margin-bottom: 0;
         font-weight: $font-weight-regular;
+    }
+    &__indiv--inactive {
+        opacity: 50%;
     }
 }
 

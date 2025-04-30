@@ -1,18 +1,20 @@
 import './DropDownFormField.scss';
 import { useState } from 'react';
-import { v4 as uuid } from 'uuid';
 import ErrorIcon from '../../assets/icons/error-24px.svg';
 import { ReactComponent as DropDownIcon } from '../../assets/icons/arrow_drop_down-24px.svg';
 
-const DropDownFormField = ({ placeHolder, setInputText, isError, dropDownItems }) => {
+const DropDownFormField = ({ value, placeHolder, setInputText, isError, dropDownItems }) => {
     const [isActive, setIsActive] = useState(false);
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-    const [ddSelectedText, setDdSelectedText] = useState('');
 
     const inputOnFocus = (event) => {
         event.preventDefault();
+        setIsActive(true);
+    }
 
-        setIsActive(!isActive);
+    const inputOnBlur = (event) => {
+        event.preventDefault();
+        setIsActive(false);
     }
 
     const toggleDropDown = () => {
@@ -22,13 +24,12 @@ const DropDownFormField = ({ placeHolder, setInputText, isError, dropDownItems }
 
     const itemSelectedOnClick = (event) => {
         event.preventDefault();
-        setDdSelectedText(dropDownItems[event.currentTarget.id]);
-        setIsDropDownOpen(!isDropDownOpen);
-        setIsActive(!isActive);
-
         if (setInputText) {
             setInputText(dropDownItems[event.currentTarget.id]);
         }
+
+        setIsDropDownOpen(!isDropDownOpen);
+        setIsActive(!isActive);
     }
 
     const renderDropDownItems = () => {
@@ -51,10 +52,11 @@ const DropDownFormField = ({ placeHolder, setInputText, isError, dropDownItems }
                         type="text" 
                         placeholder={placeHolder} 
                         onFocus={inputOnFocus} 
-                        onBlur={inputOnFocus}
+                        onBlur={inputOnBlur}
                         readOnly={true} 
-                        value={ddSelectedText}/>
-                    <button className="ddField__icon-button" onClick={toggleDropDown}>
+                        value={value || ''}
+                        />
+                    <button type='button' className="ddField__icon-button" onClick={toggleDropDown}>
                         <DropDownIcon className={`ddField__icon-img ${isActive ? 'ddField__icon-img--active' : ''}`} />
                     </button>
                 </div>

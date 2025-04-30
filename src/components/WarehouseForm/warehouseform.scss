@@ -2,22 +2,36 @@
 @use "../../styles/partials/mixins" as *;
 
 .warehousebox {
-  @include m-subheader;
-  background-color: $primary-instock-white;
-  border-radius: 0.25rem;
-  box-shadow: 0 0.125rem 0.3125rem rgba(19, 24, 44, 0.1);
-  position: relative;
-  margin-top: -5rem;
-
   &__header {
     display: flex;
-    align-items: center;
-    padding: 1.5rem;
+    background-color: $primary-instock-white;
+    box-sizing: border-box;
+    width: 100%;
+    height: 6rem;
+    padding-left: $m-warehouse-page-left-right-padding;
+    padding-right: $m-warehouse-page-left-right-padding;
+    padding-top: 1.75rem;
+    padding-bottom: 1.25rem;
     border-bottom: 1px solid $secondary-cloud;
-
-    img {
-      margin-right: 0.5rem;
+  
+    @include tablet-and-desktop {
+      flex-direction: row;
+      align-items: center;
+      height: 7rem;
     }
+  
+    @include tablet {
+      padding-left: $t-warehouse-page-left-right-padding;
+      padding-right: $t-warehouse-page-left-right-padding;
+    }
+  
+    @include desktop {
+      padding-left: $warehouse-page-left-right-padding;
+      padding-right: $warehouse-page-left-right-padding;
+    }
+    img {
+        margin-right: 0.5rem;
+      }
   }
 
   &__back-button {
@@ -28,10 +42,17 @@
     align-items: center;
   }
 
+  // &__title {
+  //   @include m-page-header;
+  //   margin: 0;
+  //   color: $primary-instock-black;
+  // }
   &__title {
     @include m-page-header;
     margin: 0;
     color: $primary-instock-black;
+    display: flex;
+    align-items: center;
   }
 
   @include tablet {
@@ -48,6 +69,11 @@
 
   @include desktop {
     margin-top: 0;
+
+    &__title {
+      @include page-header;
+
+    }
   }
 }
 
@@ -115,11 +141,18 @@
     }
   }
 
+  // &__actions {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   padding: 0 1.5rem 1.5rem;
+  //   gap: 1rem;
+  // }
   &__actions {
     display: flex;
     justify-content: space-between;
-    padding: 0 1.5rem 1.5rem;
+    padding: 1rem 1.5rem;
     gap: 1rem;
+    background-color: $background-light-grey
   }
 
   &__button {
@@ -165,7 +198,7 @@
     &__actions {
       width: 100%;
       justify-content: flex-end;
-      padding: 0 2rem 2rem;
+      padding: 1rem 2rem;
 
       button {
         flex: 0 0 auto;
@@ -177,7 +210,7 @@
 
   @include desktop {
     &__actions {
-      padding: 0 3rem 2rem;
+      padding: 1rem 2rem;
     }
   }
 }

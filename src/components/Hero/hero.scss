@@ -51,6 +51,7 @@
 
     @include tablet-and-desktop {
       @include page-header;
+      margin-bottom: 0;
     }
   }
 
