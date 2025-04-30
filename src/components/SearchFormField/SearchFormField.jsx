@@ -18,7 +18,6 @@ const SearchFormField = ({searchContext, handleClick}) => {
     }
     
     const search = (event) => {
-        console.log(event.target.value);
         setSearchText(event.target.value)
     }
     const handleEnter = (event) => {
@@ -41,7 +40,6 @@ const SearchFormField = ({searchContext, handleClick}) => {
     }, [])
 
     useEffect(() => {
-        console.log(searchContext)
         //if warehouse_id exists, then we are loading inventories
         //therefore we need to convert warehouse_id into a usable name for the user to search through
         if (searchContext[0]?.warehouse_id && warehouses.length > 0) {
@@ -64,7 +62,6 @@ const SearchFormField = ({searchContext, handleClick}) => {
     }, [searchContext, warehouses])
 
     useEffect(() => {
-        console.log(currentData)
         if (!searchText.trim()) {
             setCurrentData(baseData); // Show all if empty
             return;
