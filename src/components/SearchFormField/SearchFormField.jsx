@@ -22,10 +22,8 @@ const SearchFormField = ({searchContext, handleClick}) => {
     }
     const handleEnter = (event) => {
         if (event.key === 'Enter') {
-            // Action to perform when Enter is pressed
             handleClick(currentData);
-            // Call a function or update state as needed
-          }
+        }
     }
 
     //create warehouses state variable to convert ids to names when rendering inventories
@@ -43,6 +41,7 @@ const SearchFormField = ({searchContext, handleClick}) => {
         //if warehouse_id exists, then we are loading inventories
         //therefore we need to convert warehouse_id into a usable name for the user to search through
         if (searchContext[0]?.warehouse_id && warehouses.length > 0) {
+            
             //find id in warehouses and enrich data to also contain the associated warehouse_name
             const enrichedData = searchContext.map(inventoryObj => {
                 //within the loop, at each individual inventory object, find and assign matching ids and store in variable
@@ -53,7 +52,7 @@ const SearchFormField = ({searchContext, handleClick}) => {
                     warehouse_name: warehouse?.warehouse_name || 'Unknown'
                 };
             });
-            setBaseData(enrichedData);
+            setBaseData(enrichedData)
             setCurrentData(enrichedData);
         } else {
             setBaseData(searchContext);
@@ -67,12 +66,14 @@ const SearchFormField = ({searchContext, handleClick}) => {
             return;
         }
         const filtered = baseData.filter(obj => {
-            return Object.values(obj).some(val =>
-                val.toString().toLowerCase().includes(searchText.toLowerCase())
-            );
+            return Object.entries(obj).some(([key, val]) => {
+                //ensure we only search required keys
+                if(key === 'item_name' || key === 'category' || key === 'description' || key === 'warehouse_name')
+                    return val.toString().toLowerCase().includes(searchText.toLowerCase())
+            });
         });
-        
         setCurrentData(filtered);
+        console.log(currentData)
     }, [searchText, baseData]);
 
     return (
