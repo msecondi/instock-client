@@ -18,7 +18,7 @@ const SearchFormField = ({searchContext, handleClick}) => {
     }
     
     const search = (event) => {
-        setSearchText(event.target.value)
+        setSearchText(event.target.value);
     }
     const handleEnter = (event) => {
         if (event.key === 'Enter') {
@@ -52,7 +52,7 @@ const SearchFormField = ({searchContext, handleClick}) => {
                     warehouse_name: warehouse?.warehouse_name || 'Unknown'
                 };
             });
-            setBaseData(enrichedData)
+            setBaseData(enrichedData);
             setCurrentData(enrichedData);
         } else {
             setBaseData(searchContext);
@@ -73,7 +73,6 @@ const SearchFormField = ({searchContext, handleClick}) => {
             });
         });
         setCurrentData(filtered);
-        console.log(currentData)
     }, [searchText, baseData]);
 
     return (
