@@ -54,6 +54,14 @@
         }
     }
 
+    &__table--no-results {
+        @include body-large;
+        color: $primary-instock-indigo;
+        display: flex;
+        justify-content: center;
+        padding: 2rem 0;
+    }
+
     &__dimming-overlay {
         position: absolute;
         width: 100%;

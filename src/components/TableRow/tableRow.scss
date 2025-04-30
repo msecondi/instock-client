@@ -87,10 +87,12 @@
     &__text {
         @include m-labels-links-buttons;
         font-weight: 400;
-
+        
         @include tablet-and-desktop {
             @include labels-links-buttons;
             font-weight: 400;
+            display: flex;
+            width: 90%;
         }
     }
 

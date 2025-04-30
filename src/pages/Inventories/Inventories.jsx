@@ -14,6 +14,8 @@ function Inventories({setNavIndex, setDeleteModal}) {
     }, []);
 
     const [inventories, setInventories] = useState([]);
+    const [filteredData, setFileredData] = useState(null);
+    const [hasSearched, setHasSearched] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [doRefresh, setDoRefresh] = useState(false);
     const currentPath = useLocation().pathname;
@@ -27,13 +29,10 @@ function Inventories({setNavIndex, setDeleteModal}) {
         }
     }
 
-    const renderInventories = () => {
-        return inventories.map((inventory) => {
-            return (
-                <TableRowInventory inventory={inventory} showWarehouse={true} key={uuidv4()}/>
-            );
-        });
-    }
+    const handleClick = (filteredResults) => {
+        setFileredData(filteredResults);
+        setHasSearched(true)
+    };
 
     useEffect( () => { 
         fetchInventories(); 
@@ -55,15 +54,23 @@ function Inventories({setNavIndex, setDeleteModal}) {
     }, [doRefresh]);
 
     const tableLabels = ['INVENTORY ITEM', 'CATEGORY', 'STATUS', 'QTY', 'WAREHOUSE'];
+    const displayData = hasSearched ? filteredData : inventories;
 
     return (
         <main className="inventories">
             <div className={`inventories__page-background ${isDeleting ? 'inventories__page-foreground--hide' : ''}`}></div>
             <div className={`inventories__page-foreground ${isDeleting ? 'inventories__page-foreground--hide' : ''}`}>
-                <Hero heroTitle="Inventory" buttonText="+ Add New Item" addButtonUrl={'/inventories/add'}/>
+                <Hero dataToRender={inventories} handleClick={handleClick} buttonText="+ Add New Item" addButtonUrl={'/inventories/add'}/>
                 <section className="inventories__table">
                     <TableHeader labels={tableLabels} />
-                    {renderInventories()}
+                    {/* use a conditional here to either map searched items, or display no results found IF user searched */}
+                    {displayData.length > 0 ? displayData.map((inventory) => (
+                        <TableRowInventory inventory={inventory} showWarehouse={true} key={uuidv4()} />
+                    )) : hasSearched ?
+                    <div className="inventories__table--no-results">
+                            No inventory items match your search. Please try again.
+                    </div> : null
+                    }
                 </section>
             </div>
             <div className={`inventories__dimming-overlay ${isDeleting ? '' : 'inventories__dimming-overlay--hidden'}`}></div>

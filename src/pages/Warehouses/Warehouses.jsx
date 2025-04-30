@@ -14,6 +14,8 @@ function Warehouses({setNavIndex, setDeleteModal}) {
     }, []);
     
     const [warehouses, setWarehouses] = useState([]);
+    const [filteredData, setFilteredData] = useState(null);
+    const [hasSearched, setHasSearched] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [doRefresh, setDoRefresh] = useState(false);
     const currentPath = useLocation().pathname;
@@ -27,16 +29,9 @@ function Warehouses({setNavIndex, setDeleteModal}) {
         }
     }
 
-    const renderWarehouses = () => {
-        return warehouses.map((warehouse) => {
-            return (
-                <TableRow warehouse={warehouse} key={uuidv4()}/>
-            );
-        });
-    }
-
-
-    useEffect( () => { fetchWarehouses(); }, []);
+    useEffect( () => { 
+        fetchWarehouses(); 
+    }, []);
     useEffect( () => {
         if (currentPath.includes('delete')) {
             setIsDeleting(true);
@@ -53,16 +48,30 @@ function Warehouses({setNavIndex, setDeleteModal}) {
         }
     }, [doRefresh]);
 
+    const handleClick = (filteredResults) => {
+        setFilteredData(filteredResults);
+        setHasSearched(true)
+    }
+
     const tableLabels = ['WAREHOUSE', 'ADDRESS', 'CONTACT NAME', 'CONTACT INFORMATION'];
+    const displayData = hasSearched ? filteredData : warehouses;
 
     return (
         <main className="warehouses">
             <div className={`warehouses__page-background ${isDeleting ? 'warehouses__page-background--hide' : ''}`}></div>
             <div className={`warehouses__page-foreground ${isDeleting ? 'warehouses__page-foreground--hide' : ''}`}>
-                <Hero heroTitle="Warehouses" buttonText="+ Add New Warehouse" addButtonUrl={'/warehouses/add'}/>
+                <Hero dataToRender={warehouses} handleClick={handleClick} buttonText="+ Add New Warehouse" addButtonUrl={'/warehouses/add'}/>
                 <section className="warehouses__table">
                     <TableHeader labels={tableLabels}/>
-                    {renderWarehouses()}
+                    {/* use a conditional here to either map searched items, or display no results found IF user searched */}
+                    {displayData.length > 0 ? displayData.map((warehouse) => (
+                        <TableRow warehouse={warehouse} key={uuidv4()} />
+                    )) 
+                    :  hasSearched ? <div className="warehouses__table--no-results">
+                            No warehouses match your search. Please try again.
+                        </div> 
+                    : null
+                    }
                 </section>
             </div>
             <div className={`warehouses__dimming-overlay ${isDeleting ? '' : 'warehouses__dimming-overlay--hidden'}`}></div>
