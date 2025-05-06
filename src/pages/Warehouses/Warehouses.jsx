@@ -53,8 +53,41 @@ function Warehouses({setNavIndex, setDeleteModal}) {
         setHasSearched(true)
     }
 
+    //add sorting functionality
+    const [sortBy, setSortBy] = useState(null);
+    const [orderBy, setOrderBy] = useState('asc');
+    const [hasSorted, setHasSorted] = useState(false);
+
+    const handleSort = async (columnName) => {
+        //will be 'asc' on first render, second render, if user clicks same column, will be 'desc'
+        const newOrder = (sortBy === columnName && orderBy === 'asc') ? 'desc' : 'asc';
+        setSortBy(columnName);
+        setOrderBy(newOrder);
+        setHasSorted(true);
+
+        //then make the api call and set warehouses to response
+        try {
+            const response = await axios.get(`${warehousesEndpoint}/sort/${columnName}/order/${newOrder}`);
+            //check if user has searched. If they have, filter the sorted response.data using the already filtered search data then set it to filteredData
+            if (hasSearched) {
+                const filteredIds = filteredData.map(item => item.id);
+                const reFiltered = response.data.filter(item => filteredIds.includes(item.id));
+                setFilteredData(reFiltered);
+            } else {
+                setWarehouses(response.data);
+            }
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
+
     const tableLabels = ['WAREHOUSE', 'ADDRESS', 'CONTACT NAME', 'CONTACT INFORMATION'];
-    const displayData = hasSearched ? filteredData : warehouses;
+    const [displayData, setDisplayData] = useState(() => { return hasSearched ? filteredData : warehouses });
+
+    useEffect(() => {
+        return hasSearched ? setDisplayData(filteredData) : setDisplayData(warehouses);
+    },[filteredData, warehouses, hasSearched])
 
     return (
         <main className="warehouses">
@@ -62,9 +95,9 @@ function Warehouses({setNavIndex, setDeleteModal}) {
             <div className={`warehouses__page-foreground ${isDeleting ? 'warehouses__page-foreground--hide' : ''}`}>
                 <Hero dataToRender={warehouses} handleClick={handleClick} buttonText="+ Add New Warehouse" addButtonUrl={'/warehouses/add'}/>
                 <section className="warehouses__table">
-                    <TableHeader labels={tableLabels}/>
+                    <TableHeader labels={tableLabels} handleSort={handleSort}/>
                     {/* use a conditional here to either map searched items, or display no results found IF user searched */}
-                    {displayData.length > 0 ? displayData.map((warehouse) => (
+                    {displayData && displayData.length > 0 ? displayData.map((warehouse) => (
                         <TableRow warehouse={warehouse} key={uuidv4()} />
                     )) 
                     :  hasSearched ? <div className="warehouses__table--no-results">

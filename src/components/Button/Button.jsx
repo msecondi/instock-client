@@ -1,6 +1,6 @@
 import './button.scss';
 
-function Button({buttonText, imgSrc, buttonType, onClick}) {
+function Button({buttonText, imgSrc, buttonType, onClick, currentInfo}) {
     let buttonClass = 'button--primary';
 
     if (buttonType == 'nav') {
@@ -24,7 +24,7 @@ function Button({buttonText, imgSrc, buttonType, onClick}) {
     }
 
     return ( 
-        <button className={`button ${buttonClass} ${imgSrc ? 'button--width-img' : ''}`} onClick={onClick}>
+        <button className={`button ${buttonClass} ${imgSrc ? 'button--width-img' : ''}`} onClick={onClick ? () => onClick(currentInfo[0]) : null}>
             { imgSrc && (
                 <img className="button__img" src={imgSrc} alt="Button Icon"/>
             )}

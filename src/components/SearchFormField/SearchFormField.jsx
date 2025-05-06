@@ -67,9 +67,15 @@ const SearchFormField = ({searchContext, handleClick}) => {
         }
         const filtered = baseData.filter(obj => {
             return Object.entries(obj).some(([key, val]) => {
-                //ensure we only search required keys
-                if(key === 'item_name' || key === 'category' || key === 'description' || key === 'warehouse_name')
+                if(baseData[0]?.warehouse_id){
+                    //ensure we only search required keys when rendering Inventories Page
+                    if(key === 'item_name' || key === 'category' || key === 'description' || key === 'warehouse_name')
+                        return val.toString().toLowerCase().includes(searchText.toLowerCase())
+                }
+                else {
+                    // otherwise, search all fields for Warehouses Page
                     return val.toString().toLowerCase().includes(searchText.toLowerCase())
+                }
             });
         });
         setCurrentData(filtered);
