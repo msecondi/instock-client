@@ -14,8 +14,9 @@ function Inventories({setNavIndex, setDeleteModal}) {
     }, []);
 
     const [inventories, setInventories] = useState([]);
-    const [filteredData, setFileredData] = useState(null);
+    const [filteredData, setFilteredData] = useState(null);
     const [hasSearched, setHasSearched] = useState(false);
+    const [searchText, setSearchText] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
     const [doRefresh, setDoRefresh] = useState(false);
     const currentPath = useLocation().pathname;
@@ -29,8 +30,9 @@ function Inventories({setNavIndex, setDeleteModal}) {
         }
     }
 
-    const handleClick = (filteredResults) => {
-        setFileredData(filteredResults);
+    const handleClick = (filteredResults, searchText) => {
+        setFilteredData(filteredResults);
+        setSearchText(searchText);
         setHasSearched(true)
     };
 
@@ -53,8 +55,41 @@ function Inventories({setNavIndex, setDeleteModal}) {
         }
     }, [doRefresh]);
 
+    //add sorting functionality
+    const [sortBy, setSortBy] = useState(null);
+    const [orderBy, setOrderBy] = useState('asc');
+    const [hasSorted, setHasSorted] = useState(false);
+
+    const handleSort = async (columnName) => {
+        //will be 'asc' on first render, second render, if user clicks same column, will be 'desc'
+        const newOrder = (sortBy === columnName && orderBy === 'asc') ? 'desc' : 'asc';
+        setSortBy(columnName);
+        setOrderBy(newOrder);
+        setHasSorted(true);
+
+        //then make the api call and set warehouses to response
+        try {
+            const response = await axios.get(`${inventoriesEndpoint}/sort/${columnName}/order/${newOrder}`);
+            //check if user has searched. If they have, filter the sorted response.data using the already filtered search data then set it to filteredData
+            if (hasSearched) {
+                const filteredIds = filteredData.map(item => item.id);
+                const reFiltered = response.data.filter(item => filteredIds.includes(item.id));
+                setFilteredData(reFiltered);
+            } else {
+                setInventories(response.data);
+            }
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
+
     const tableLabels = ['INVENTORY ITEM', 'CATEGORY', 'STATUS', 'QTY', 'WAREHOUSE'];
-    const displayData = hasSearched ? filteredData : inventories;
+    const [displayData, setDisplayData] = useState(() => { return hasSearched ? filteredData : inventories });
+
+    useEffect(() => {
+        return hasSearched ? setDisplayData(filteredData) : setDisplayData(inventories);
+    },[filteredData, inventories, hasSearched])
 
     return (
         <main className="inventories">
@@ -62,7 +97,7 @@ function Inventories({setNavIndex, setDeleteModal}) {
             <div className={`inventories__page-foreground ${isDeleting ? 'inventories__page-foreground--hide' : ''}`}>
                 <Hero dataToRender={inventories} handleClick={handleClick} buttonText="+ Add New Item" addButtonUrl={'/inventories/add'}/>
                 <section className="inventories__table">
-                    <TableHeader labels={tableLabels} />
+                    <TableHeader labels={tableLabels} handleSort={handleSort} />
                     {/* use a conditional here to either map searched items, or display no results found IF user searched */}
                     {displayData.length > 0 ? displayData.map((inventory) => (
                         <TableRowInventory inventory={inventory} showWarehouse={true} key={uuidv4()} />
